@@ -16,7 +16,6 @@ env:
 # command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
 install:
   - pip install $DJANGO
-  - pip install -r requirements.txt
   - pip install -r requirements-test.txt
   - pip install python-coveralls coverage
 

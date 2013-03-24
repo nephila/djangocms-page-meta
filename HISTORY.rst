@@ -3,7 +3,12 @@
 History
 -------
 
-0.3.2 (2014-04-07)
+0.3.3 (2014-03-23)
+++++++++++++++++++
+
+* Better support for sn-dependent descriptions
+
+0.3.2 (2014-03-07)
 ++++++++++++++++++
 
 * Add different descriptions for each supported social network
