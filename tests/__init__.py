@@ -32,9 +32,9 @@ class BaseTest(TestCase):
     og_data = {
         'og_type': 'article',
         'og_author_url': 'https://facebook.com/FakeUser',
-        'og_author_fbid': 123456789,
+        'og_author_fbid': u'123456789',
         'og_publisher': 'https://facebook.com/FakeUser',
-        'og_app_id': 123456789,
+        'og_app_id': u'123456789',
     }
     twitter_data = {
         'twitter_author': 'fake_user',
