@@ -1,0 +1,7 @@
+{% load cms_tags sekizai_tags page_meta_tags %}
+{% page_meta request.current_page as meta %}
+{% render_block "css" %}
+{% include 'djangocms_page_meta/meta.html' %}
+{% cms_toolbar %}
+{% placeholder "placeholder" %}
+{% render_block "js" %}

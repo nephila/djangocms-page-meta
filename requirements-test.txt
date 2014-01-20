@@ -1,0 +1,7 @@
+coverage
+mock>=1.0.1
+nose>=1.3.0
+django-nose>=1.2
+https://github.com/divio/django-cms/archive/develop.zip
+https://bitbucket.org/yakky/django-meta/get/c7a53fd3540d.zip
+django-filer

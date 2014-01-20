@@ -1,0 +1,3 @@
+#django-cms
+django-meta
+django-filer
