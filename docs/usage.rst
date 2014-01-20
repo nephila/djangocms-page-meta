@@ -1,3 +1,5 @@
+.. _meta-usage:
+
 #####
 Usage
 #####
@@ -20,9 +22,9 @@ Rendering meta information
 **************************
 
 To render provided meta information you must add these lines in the main
-template::
+template:
 
-..code-block:: html+django
+.. code-block:: html+django
 
     {% load page_meta_tags %}
     {% page_meta request.current_page as meta %}

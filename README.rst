@@ -41,23 +41,10 @@ or::
 Usage
 -----
 
-You will find two new items in the toolbar Page menu:
+In the toolbar you will find a ``Page meta-information`` submenu in the
+``Page`` menu, with two or more sub-items.
 
-* Title tags (per language)
-* Page tags (global)
-
-These items allows to add tags to ``Title`` and ``Page`` instances, respectively
-
-Templatetags
-------------
-
-``djangocms-page-meta`` allows showing tags using four templatetags
-
-* ``include_page_meta``
-* ``include_title_tags``
-* ``page_meta``
-* ``title_tags``
-
+See :ref:`meta-usage` for more information.
 
 .. image:: https://d2weczhvl823v0.cloudfront.net/nephila/djangocms-page-meta/trend.png
    :alt: Bitdeli badge

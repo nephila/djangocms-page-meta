@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from django.core.cache import cache
 
 
 def get_cache_key(page, language):
@@ -21,6 +20,7 @@ def get_page_meta(page, language):
     :return: Meta instance
     :type: object
     """
+    from django.core.cache import cache
     from meta.views import Meta
     from .models import PageMeta, TitleMeta
 
