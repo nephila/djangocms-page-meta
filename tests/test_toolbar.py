@@ -51,7 +51,7 @@ class ToolbarTest(BaseTest):
         request = self.get_page_request(page1, self.user_staff, '/', edit=True)
         toolbar = CMSToolbar(request)
         toolbar.get_left_items()
-        page_menu = toolbar.find_items(Menu, name='Page')[0].item
+        page_menu = toolbar.menus['page']
         meta_menu = page_menu.find_items(SubMenu, name=force_unicode(PAGE_META_MENU_TITLE))[0].item
         self.assertEqual(len(meta_menu.find_items(ModalItem, name="%s ..." % force_unicode(PAGE_META_ITEM_TITLE))), 1)
 
@@ -79,7 +79,7 @@ class ToolbarTest(BaseTest):
         request = self.get_page_request(page1, self.user, '/', edit=True)
         toolbar = CMSToolbar(request)
         toolbar.get_left_items()
-        page_menu = toolbar.find_items(Menu, name='Page')[0].item
+        page_menu = toolbar.menus['page']
         meta_menu = page_menu.find_items(SubMenu, name=force_unicode(PAGE_META_MENU_TITLE))[0].item
         self.assertEqual(len(meta_menu.find_items(ModalItem, name="%s ..." % force_unicode(PAGE_META_ITEM_TITLE))), 1)
         self.assertEqual(len(meta_menu.find_items(ModalItem)), len(self.languages)+1)
@@ -94,7 +94,7 @@ class ToolbarTest(BaseTest):
         request = self.get_page_request(page1, self.user, '/', edit=True)
         toolbar = CMSToolbar(request)
         toolbar.get_left_items()
-        page_menu = toolbar.find_items(Menu, name='Page')[0].item
+        page_menu = toolbar.menus['page']
         meta_menu = page_menu.find_items(SubMenu, name=force_unicode(PAGE_META_MENU_TITLE))[0].item
         pagemeta_menu = meta_menu.find_items(ModalItem, name="%s ..." % force_unicode(PAGE_META_ITEM_TITLE))
         self.assertEqual(len(pagemeta_menu), 1)

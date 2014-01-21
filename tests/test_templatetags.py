@@ -28,7 +28,7 @@ class TemplateMetaTest(BaseTest):
         self.assertContains(response, '<meta property="article:expiration_time" content="%s">' % page1.publication_end_date.isoformat())
         self.assertContains(response, '<meta property="article:publisher" content="https://facebook.com/FakeUser">')
 
-    def test_title_tags(self):
+    def test_title_meta(self):
         """
         Test title-level templatetags
         """
@@ -45,14 +45,14 @@ class TemplateMetaTest(BaseTest):
         title_ext.save()
         page1.publish()
 
-        # English language
-        response = self.client.get("/en/")
-        self.assertContains(response, '<meta itemprop="description" content="lorem ipsum - english">')
-        self.assertContains(response, '<meta property="og:title" content="page one">')
-        self.assertContains(response, '<meta property="og:url" content="http://example.com/en/">')
-
         # Italian language
         response = self.client.get("/it/")
         self.assertContains(response, '<meta itemprop="description" content="lorem ipsum - italian">')
         self.assertContains(response, '<meta property="og:title" content="pagina uno">')
         self.assertContains(response, '<meta property="og:url" content="http://example.com/it/">')
+
+        # English language
+        response = self.client.get("/en/")
+        self.assertContains(response, '<meta itemprop="description" content="lorem ipsum - english">')
+        self.assertContains(response, '<meta property="og:title" content="page one">')
+        self.assertContains(response, '<meta property="og:url" content="http://example.com/en/">')
