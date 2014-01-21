@@ -26,7 +26,7 @@ history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 setup(
     name='djangocms-page-meta',
     version=version,
-    description='Additional meta attributes for django CMS 3 pages',
+    description='OpenGraph, Twitter Card and Google+ snippet tags for django CMS 3 pages',
     long_description=readme + '\n\n' + history,
     author='Iacopo Spalletti',
     author_email='i.spalletti@nephila.it',
@@ -38,7 +38,7 @@ setup(
     install_requires=open(os.path.join(os.path.dirname(__file__), 'requirements.txt')).readlines(),
     license="BSD",
     zip_safe=False,
-    keywords='djangocms-page-meta',
+    keywords='django cms, meta tags, OpenGraph, Twitter Cards, Google+',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Framework :: Django',

@@ -39,6 +39,9 @@ Dependencies
 * `django-filer`_ >= 0.9.5
 * `django-meta`_  >= 0.1.0
 
+.. warning::
+    
+    As of now, you **must** use a custom branch of django-meta: https://bitbucket.org/yakky/django-meta/branch/more_templatetags
 
 
 .. _django-filer: https://pypi.python.org/pypi/django-filer

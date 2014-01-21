@@ -9,7 +9,7 @@ djangocms-page-meta
         :target: https://travis-ci.org/nephila/djangocms-page-meta
 
 .. image:: https://pypip.in/d/djangocms-page-meta/badge.png
-        :target: https://crate.io/packages/djangocms-page-meta?version=latest
+        :target: https://pypi.python.org/pypi/djangocms-page-meta
 
 .. image:: https://coveralls.io/repos/nephila/djangocms-page-meta/badge.png?branch=master
         :target: https://coveralls.io/r/nephila/djangocms-page-meta?branch=master
@@ -27,7 +27,7 @@ See :ref:`installation` for more information.
 Documentation
 -----
 
-For package documents see http://djangocms-page-meta.readthedocs.org/.
+For package documentation see http://djangocms-page-meta.readthedocs.org/.
 
 
 .. image:: https://d2weczhvl823v0.cloudfront.net/nephila/djangocms-page-meta/trend.png
