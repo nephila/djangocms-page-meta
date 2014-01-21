@@ -24,13 +24,11 @@ Quickstart
 See :ref:`installation` for more information.
 
 
-Usage
+Documentation
 -----
 
-In the toolbar you will find a ``Page meta-information`` submenu in the
-``Page`` menu, with two or more sub-items.
+For package documents see http://djangocms-page-meta.readthedocs.org/.
 
-See :ref:`meta-usage` for more information.
 
 .. image:: https://d2weczhvl823v0.cloudfront.net/nephila/djangocms-page-meta/trend.png
    :alt: Bitdeli badge
