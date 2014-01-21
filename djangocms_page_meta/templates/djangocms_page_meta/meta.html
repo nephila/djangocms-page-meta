@@ -20,9 +20,9 @@
 		{% if meta.modified_time %}{% generic_prop 'article' 'modified_time' meta.modified_time %}{% endif %}
 		{% if meta.expiration_time %}{% generic_prop 'article' 'expiration_time' meta.expiration_time %}{% endif %}
 		{% if meta.og_publisher %}{% generic_prop 'article' 'publisher' meta.og_publisher %}{% endif %}
-		{% if meta.og_app_id %}{% og_prop 'app_id' meta.og_app_id %}{% endif %}
+		{% if meta.og_app_id %}{% generic_prop 'fb' 'app_id' meta.og_app_id %}{% endif %}
 		{% if meta.og_profile_id %}{% generic_prop 'fb' 'profile_id' meta.og_profile_id %}{% endif %}
-		{% if meta.tag %}{% og_prop 'tag' meta.tag %}{% endif %}
+		{% if meta.tag %}{% generic_prop 'article' 'tag' meta.tag %}{% endif %}
 		{% if meta.locale %}{% og_prop 'locale' meta.locale %}{% endif %}
 	{% endif %}
 	{% if meta.use_twitter %}
@@ -33,6 +33,7 @@
 		{% if meta.description %}{% twitter_prop 'description' meta.description %}{% endif %}
 		{% if meta.image %}{% twitter_prop 'image:src' meta.image %}{% endif %}
 		{% if meta.twitter_author %}{% twitter_prop 'creator' meta.twitter_author %}{% endif %}
+		{% if meta.twitter_site %}{% twitter_prop 'site_name' meta.twitter_site %}{% endif %}
 	{% endif %}
 	{% if meta.use_googleplus %}
 		{% if meta.gplus_author %}

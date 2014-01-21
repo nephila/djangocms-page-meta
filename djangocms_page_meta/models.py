@@ -89,7 +89,7 @@ class TitleMeta(TitleExtension):
             return None
 
     class Meta:
-        verbose_name = _(u'Page meta information (language-dependant)')
+        verbose_name = _(u'Page meta information (language-dependent)')
 extension_pool.register(TitleMeta)
 
 
