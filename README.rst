@@ -21,21 +21,7 @@ Tagged pages for django CMS 3
 Quickstart
 ----------
 
-Install djangocms-page-meta::
-
-    pip install djangocms-page-meta
-
-Then add it to INSTALLED_APPS along with its dependencies::
-
-    'meta',
-
-Execute migration or syncdb::
-
-    $ python manage.py syncdb
-
-or::
-
-    $ python manage.py migrate
+See :ref:`installation` for more information.
 
 
 Usage

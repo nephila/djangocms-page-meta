@@ -36,7 +36,7 @@ is open to whoever wants to implement it.
 Translations
 ~~~~~~~~~~~~
 
-Any translation is welcome. Please use Transifex https://www.transifex.com/projects/p/djangocms-pages-tags/
+Any translation is welcome. Please use Transifex https://www.transifex.com/projects/p/djangocms-page-meta/
 to help with translations.
 
 Write Documentation
