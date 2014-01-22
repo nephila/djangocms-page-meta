@@ -21,11 +21,43 @@ Tagged pages for django CMS 3
 Quickstart
 ----------
 
-See :ref:`installation` for more information.
+#. Install djangocms-page-meta::
+
+        $ pip install djangocms-page-meta
+
+   or from the repository::
+
+        pip install -e https://github.com/nephila/djangocms-page-meta#egg=djangocms-page-meta
+
+#. Then add it to INSTALLED_APPS along with its dependencies::
+
+        'filer',
+        'meta',
+        'djangocms_page_meta',
+
+#. Synchronize the database with syncdb::
+
+        $ python manage.py syncdb
+
+   or migrate::
+
+        $ python manage.py migrate
+
+#. That's all!
+
+************
+Dependencies
+************
+
+* `django-filer`_ >= 0.9.5
+* `django-meta`_  >= 0.1.0
+
+.. _django-filer: https://pypi.python.org/pypi/django-filer
+.. _django-meta: https://pypi.python.org/pypi/django-meta
 
 
 Documentation
------
+-------------
 
 For package documentation see http://djangocms-page-meta.readthedocs.org/.
 
