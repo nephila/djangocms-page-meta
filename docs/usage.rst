@@ -10,11 +10,11 @@ Assigning meta information to pages / titles
 
 Meta information can be assigned from the admin interface or the toolbar.
 
-In the toolbar you will find a ``Page meta-information`` submenu in the
+In the toolbar you will find a ``Meta-information`` submenu in the
 ``Page`` menu, with two or more sub-items:
 
-* Common: it allows to edit page-wide (language independent) meta information
-* One entry per active language to edit language dependent information
+* Common: it allows to edit page-wide (language independent) meta information;
+* One entry per active language to edit language dependent information.
 
 
 **************************

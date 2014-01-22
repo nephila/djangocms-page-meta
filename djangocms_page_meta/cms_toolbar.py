@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-from cms.toolbar.items import ModalItem
 from cms.api import get_page_draft
+from cms.cms_toolbar import PAGE_MENU_SECOND_BREAK
+from cms.toolbar.items import Break
 from cms.toolbar_pool import toolbar_pool
 from cms.toolbar_base import CMSToolbar
 from cms.utils import get_cms_setting
@@ -12,7 +13,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from .models import PageMeta, TitleMeta
 
-PAGE_META_MENU_TITLE = _('Page meta-information')
+PAGE_META_MENU_TITLE = _('Meta-information')
 PAGE_META_ITEM_TITLE = _(u'Common')
 
 @toolbar_pool.register
@@ -34,8 +35,8 @@ class PageToolbarMeta(CMSToolbar):
         if has_global_current_page_change_permission or can_change:
             not_edit_mode = not self.toolbar.edit_mode
             current_page_menu = self.toolbar.get_or_create_menu('page')
-            advanced = current_page_menu.find_first(ModalItem, url=reverse('admin:cms_page_advanced', args=(self.page.pk,)))
-            meta_menu = current_page_menu.get_or_create_menu('pagemeta', PAGE_META_MENU_TITLE, position=advanced)
+            super_item = current_page_menu.find_first(Break, identifier=PAGE_MENU_SECOND_BREAK)+1
+            meta_menu = current_page_menu.get_or_create_menu('pagemeta', PAGE_META_MENU_TITLE, position=super_item)
             position = 0
             # Page tags
             try:

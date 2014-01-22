@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: djangocms-page-meta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-21 00:57+0100\n"
-"PO-Revision-Date: 2014-01-21 00:13+0000\n"
+"POT-Creation-Date: 2014-01-22 16:36+0100\n"
+"PO-Revision-Date: 2014-01-22 15:37+0000\n"
 "Last-Translator: yakky <i.spalletti@nephila.it>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/djangocms-page-meta/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -30,11 +30,11 @@ msgstr "Twitter Cards"
 msgid "Google+ Snippets"
 msgstr "Google+ Snippets"
 
-#: cms_toolbar.py:15
-msgid "Page meta-information"
-msgstr "Meta informazioni della Pagina"
-
 #: cms_toolbar.py:16
+msgid "Meta-information"
+msgstr "Metainformazioni"
+
+#: cms_toolbar.py:17
 msgid "Common"
 msgstr "Comune"
 
