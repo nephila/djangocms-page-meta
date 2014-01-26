@@ -55,6 +55,13 @@ Dependencies
 .. _django-filer: https://pypi.python.org/pypi/django-filer
 .. _django-meta: https://pypi.python.org/pypi/django-meta
 
+********
+Python 3
+********
+
+`djangocms-page-meta` per-se is full Python 3.3 compatible; django-filer
+python 3 compatible version is likely to be released soon (python 3 support
+has been merged in develop).
 
 Documentation
 -------------
