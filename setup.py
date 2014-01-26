@@ -15,9 +15,9 @@ version = djangocms_page_meta.__version__
 
 if sys.argv[-1] == 'publish':
     os.system('python setup.py sdist upload')
-    print("You probably want to also tag the version now:")
-    print("  git tag -a %s -m 'version %s'" % (version, version))
-    print("  git push --tags")
+    print('You probably want to also tag the version now:')
+    print('  git tag -a %s -m "version %s"' % (version, version))
+    print('  git push --tags')
     sys.exit()
 
 readme = open('README.rst').read()
@@ -35,17 +35,24 @@ setup(
         'djangocms_page_meta',
     ],
     include_package_data=True,
-    install_requires=open(os.path.join(os.path.dirname(__file__), 'requirements.txt')).readlines(),
-    license="BSD",
+    install_requires=(
+        'django-cms>=3.0',
+        'django-meta>=0.1.0',
+        'django-filer>=0.9.5'
+    ),
+    dependency_links= (
+        'git+https://github.com/divio/django-cms.git@develop#egg=django-cms-3.0',
+    ),
+    license='BSD',
     zip_safe=False,
     keywords='django cms, meta tags, OpenGraph, Twitter Cards, Google+',
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 4 - Beta',
         'Framework :: Django',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
         'Natural Language :: English',
-        "Programming Language :: Python :: 2",
+        'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
