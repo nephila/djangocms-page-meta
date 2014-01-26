@@ -59,8 +59,9 @@ class BaseTest(TestCase):
         page_2 = create_page(u'page two', 'page.html', language='en')
         create_title(language='fr_FR', title=u'page un', page=page)
         create_title(language='it', title=u'pagina uno', page=page)
-        page.publish()
-        page_2.publish()
+        for lang in self.languages:
+            page.publish(lang)
+        page_2.publish('en')
         return page.get_draft_object(), page_2.get_draft_object()
 
     def get_request(self, page, lang):

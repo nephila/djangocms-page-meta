@@ -20,7 +20,8 @@ class TemplateMetaTest(BaseTest):
             setattr(page_ext, key, val)
         page_ext.save()
         page1.publication_end_date = page1.publication_date + timedelta(days=1)
-        page1.publish()
+        page1.publish('it')
+        page1.publish('en')
 
         response = self.client.get("/en/")
         self.assertContains(response, '<meta name="twitter:domain" content="example.com">')
@@ -43,10 +44,12 @@ class TemplateMetaTest(BaseTest):
         for key, val in self.title_data_it.items():
             setattr(title_ext, key, val)
         title_ext.save()
-        page1.publish()
+        page1.publish('it')
+        page1.publish('en')
 
         # Italian language
         response = self.client.get("/it/")
+        response.render()
         self.assertContains(response, '<meta itemprop="description" content="lorem ipsum - italian">')
         self.assertContains(response, '<meta property="og:title" content="pagina uno">')
         self.assertContains(response, '<meta property="og:url" content="http://example.com/it/">')
