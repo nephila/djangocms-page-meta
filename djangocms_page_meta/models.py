@@ -71,7 +71,7 @@ class PageMeta(PageExtension):
                                   help_text=_(u'Use Article for generic pages.'))
 
     class Meta:
-        verbose_name = _(u'Page meta information (all languages)')
+        verbose_name = _(u'Page meta info (all languages)')
 extension_pool.register(PageMeta)
 
 
@@ -89,7 +89,7 @@ class TitleMeta(TitleExtension):
             return None
 
     class Meta:
-        verbose_name = _(u'Page meta information (language-dependent)')
+        verbose_name = _(u'Page meta info (language-dependent)')
 extension_pool.register(TitleMeta)
 
 
