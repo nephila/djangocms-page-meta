@@ -3,6 +3,11 @@
 History
 -------
 
+0.3.2 (2014-04-07)
+++++++++++++++++++
+
+* Add different descriptions for each supported social network
+
 0.3.1 (2014-02-13)
 ++++++++++++++++++
 
