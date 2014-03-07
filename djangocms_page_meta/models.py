@@ -80,6 +80,9 @@ class TitleMeta(TitleExtension):
                            help_text=_(u'If empty, page image will be used for all languages.'))
     keywords = models.CharField(max_length=400, default='', blank=True)
     description = models.CharField(max_length=400, default='', blank=True)
+    og_description = models.CharField(_(u'Facebook Description'), max_length=400, default='', blank=True)
+    twitter_description = models.CharField(_(u'Twitter Description'), max_length=140, default='', blank=True)
+    gplus_description = models.CharField(_(u'Google+ Description'), max_length=400, default='', blank=True)
 
     @property
     def locale(self):
