@@ -24,10 +24,16 @@ class BaseTest(TestCase):
     title_data = {
         'keywords': 'keyword1, keyword2, keyword3',
         'description': 'lorem ipsum - english',
+        'og_description': 'opengraph - lorem ipsum - english',
+        'twitter_description': 'twitter - lorem ipsum - english',
+        'gplus_description': 'gplus - lorem ipsum - english',
     }
     title_data_it = {
         'keywords': 'parola1, parola2, parola3',
         'description': 'lorem ipsum - italian',
+        'og_description': 'opengraph - lorem ipsum - italian',
+        'twitter_description': 'twitter - lorem ipsum - italian',
+        'gplus_description': 'gplus - lorem ipsum - italian',
     }
     og_data = {
         'og_type': 'article',

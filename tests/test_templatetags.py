@@ -52,13 +52,17 @@ class TemplateMetaTest(BaseTest):
         # Italian language
         response = self.client.get("/it/")
         response.render()
-        self.assertContains(response, '<meta itemprop="description" content="lorem ipsum - italian">')
+        self.assertContains(response, '<meta name="twitter:description" content="twitter - lorem ipsum - italian">')
+        self.assertContains(response, '<meta itemprop="description" content="gplus - lorem ipsum - italian">')
+        self.assertContains(response, '<meta property="og:description" content="opengraph - lorem ipsum - italian">')
         self.assertContains(response, '<meta property="og:title" content="pagina uno">')
         self.assertContains(response, '<meta property="og:url" content="http://example.com/it/">')
 
         # English language
         response = self.client.get("/en/")
-        self.assertContains(response, '<meta itemprop="description" content="lorem ipsum - english">')
+        self.assertContains(response, '<meta name="twitter:description" content="twitter - lorem ipsum - english">')
+        self.assertContains(response, '<meta itemprop="description" content="gplus - lorem ipsum - english">')
+        self.assertContains(response, '<meta property="og:description" content="opengraph - lorem ipsum - english">')
         self.assertContains(response, '<meta property="og:title" content="page one">')
         self.assertContains(response, '<meta property="og:url" content="http://example.com/en/">')
 

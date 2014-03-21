@@ -37,6 +37,9 @@ def get_page_meta(page, language):
             meta.description = titlemeta.description.strip()
             meta.keywords = titlemeta.keywords.strip().split(",")
             meta.locale = titlemeta.locale
+            meta.og_description = titlemeta.og_description.strip()
+            meta.twitter_description = titlemeta.twitter_description.strip()
+            meta.gplus_description = titlemeta.gplus_description.strip()
             if titlemeta.image:
                 meta.image = title.titlemeta.image.url
         except TitleMeta.DoesNotExist:
