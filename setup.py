@@ -36,12 +36,9 @@ setup(
     ],
     include_package_data=True,
     install_requires=(
-        'django-cms>=3.0',
+        'django-cms>=3.0c1',
         'django-meta>=0.1.0',
         'django-filer>=0.9.5'
-    ),
-    dependency_links= (
-        'git+https://github.com/divio/django-cms.git@develop#egg=django-cms-3.0',
     ),
     license='BSD',
     zip_safe=False,
