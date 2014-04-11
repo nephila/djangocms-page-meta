@@ -8,7 +8,7 @@ djangocms-page-meta
 .. image:: https://travis-ci.org/nephila/djangocms-page-meta.png?branch=master
         :target: https://travis-ci.org/nephila/djangocms-page-meta
 
-.. image:: https://pypip.in/d/djangocms-page-meta/badge.png
+.. image:: http://img.shields.io/pypi/dm/djangocms-page-tags.svg
         :target: https://pypi.python.org/pypi/djangocms-page-meta
 
 .. image:: https://coveralls.io/repos/nephila/djangocms-page-meta/badge.png?branch=master
