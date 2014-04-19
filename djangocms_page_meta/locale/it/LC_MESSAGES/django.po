@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: djangocms-page-meta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-22 16:36+0100\n"
-"PO-Revision-Date: 2014-01-22 15:51+0000\n"
+"POT-Creation-Date: 2014-04-19 18:29+0200\n"
+"PO-Revision-Date: 2014-04-19 16:32+0000\n"
 "Last-Translator: yakky <i.spalletti@nephila.it>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/djangocms-page-meta/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -156,13 +156,25 @@ msgid ""
 msgstr "Usa il nome Google+ (comprensivo di \"+\") il percorso completo alla pagina."
 
 #: models.py:74
-msgid "Page meta information (all languages)"
-msgstr "Meta informazioni della pagina (tutte le lingue)"
+msgid "Page meta info (all languages)"
+msgstr "Metainformazioni (tuttle le lingue)"
 
 #: models.py:80
 msgid "If empty, page image will be used for all languages."
 msgstr "Se vuota, l'immagine della pagina sarà usata in tutte le lingue."
 
-#: models.py:92
-msgid "Page meta information (language-dependent)"
-msgstr "Meta informazioni della pagina (basate sulla lingua)"
+#: models.py:83
+msgid "Facebook Description"
+msgstr "Descrizione Facebook"
+
+#: models.py:84
+msgid "Twitter Description"
+msgstr "Descrizione Twitter"
+
+#: models.py:85
+msgid "Google+ Description"
+msgstr "Descrizione Google+"
+
+#: models.py:95
+msgid "Page meta info (language-dependent)"
+msgstr "Metainformazioni (per lingua)"
