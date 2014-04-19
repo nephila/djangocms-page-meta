@@ -64,12 +64,6 @@ def get_page_meta(page, language):
                 meta.og_publisher = pagemeta.og_publisher
                 if pagemeta.og_author_url:
                     meta.og_author_url = pagemeta.og_author_url
-                elif pagemeta.og_author:
-                    meta.og_author = {
-                        'first_name': pagemeta.og_author.first_name,
-                        'last_name': pagemeta.og_author.last_name
-                    }
-
                 try:
                     from djangocms_page_meta.utils import get_title_tags, get_page_meta
                     tags = get_title_tags(page, language)

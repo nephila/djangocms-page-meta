@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Tests for `djangocms_page_meta` module.
-"""
 from cms.utils.i18n import get_language_list
 
 from django.contrib.auth.models import User

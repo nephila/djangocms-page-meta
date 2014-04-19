@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-22 16:36+0100\n"
+"POT-Creation-Date: 2014-04-19 18:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -157,13 +157,28 @@ msgstr ""
 "Use the Google+ Name (together with \"+\") or the complete path to the page."
 
 #: models.py:74
-msgid "Page meta information (all languages)"
+#, fuzzy
+msgid "Page meta info (all languages)"
 msgstr "Page meta information (all languages)"
 
 #: models.py:80
 msgid "If empty, page image will be used for all languages."
 msgstr "If empty, page image will be used for all languages."
 
-#: models.py:92
-msgid "Page meta information (language-dependent)"
+#: models.py:83
+msgid "Facebook Description"
+msgstr ""
+
+#: models.py:84
+msgid "Twitter Description"
+msgstr ""
+
+#: models.py:85
+#, fuzzy
+msgid "Google+ Description"
+msgstr "Google+ Snippets"
+
+#: models.py:95
+#, fuzzy
+msgid "Page meta info (language-dependent)"
 msgstr "Page meta information (language-dependent)"

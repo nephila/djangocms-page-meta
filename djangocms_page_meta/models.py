@@ -96,9 +96,7 @@ class TitleMeta(TitleExtension):
 extension_pool.register(TitleMeta)
 
 
-
-
-## Cache cleanup when deleting pages / editing page extensions
+# Cache cleanup when deleting pages / editing page extensions
 @receiver(pre_delete, sender=Page)
 def cleanup_page(sender, instance, **kwargs):
     for language in instance.get_languages():
