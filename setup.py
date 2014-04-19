@@ -36,7 +36,7 @@ setup(
     ],
     include_package_data=True,
     install_requires=(
-        'django-cms>=3.0c1',
+        'django-cms>=3.0',
         'django-meta>=0.1.0',
         'django-filer>=0.9.5',
         'django-meta-mixin',
