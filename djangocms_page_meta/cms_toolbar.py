@@ -16,6 +16,7 @@ from .models import PageMeta, TitleMeta
 PAGE_META_MENU_TITLE = _('Meta-information')
 PAGE_META_ITEM_TITLE = _(u'Common')
 
+
 @toolbar_pool.register
 class PageToolbarMeta(CMSToolbar):
     def populate(self):
@@ -31,12 +32,15 @@ class PageToolbarMeta(CMSToolbar):
         else:
             has_global_current_page_change_permission = False
             # check if user has page edit permission
-        can_change = self.request.current_page and self.request.current_page.has_change_permission(self.request)
+        can_change = (self.request.current_page and
+                      self.request.current_page.has_change_permission(self.request))
         if has_global_current_page_change_permission or can_change:
             not_edit_mode = not self.toolbar.edit_mode
             current_page_menu = self.toolbar.get_or_create_menu('page')
-            super_item = current_page_menu.find_first(Break, identifier=PAGE_MENU_SECOND_BREAK)+1
-            meta_menu = current_page_menu.get_or_create_menu('pagemeta', PAGE_META_MENU_TITLE, position=super_item)
+            super_item = current_page_menu.find_first(
+                Break, identifier=PAGE_MENU_SECOND_BREAK) + 1
+            meta_menu = current_page_menu.get_or_create_menu(
+                'pagemeta', PAGE_META_MENU_TITLE, position=super_item)
             position = 0
             # Page tags
             try:

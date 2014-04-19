@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Tests for `djangocms_page_meta` modules module.
-"""
 from cms.toolbar.items import ModalItem, Menu, SubMenu
 from cms.utils.compat.dj import force_unicode
 from cms.utils.i18n import get_language_object
@@ -9,7 +6,8 @@ from django.contrib.auth.models import Permission, User
 from django.core.urlresolvers import reverse
 from django.test.utils import override_settings
 
-from djangocms_page_meta.cms_toolbar import PAGE_META_MENU_TITLE, PAGE_META_ITEM_TITLE
+from djangocms_page_meta.cms_toolbar import (PAGE_META_MENU_TITLE,
+                                             PAGE_META_ITEM_TITLE)
 from djangocms_page_meta.models import PageMeta, TitleMeta
 
 from . import BaseTest
