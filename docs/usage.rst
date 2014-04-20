@@ -1,8 +1,8 @@
 .. _meta-usage:
 
-#####
+=====
 Usage
-#####
+=====
 
 ********************************************
 Assigning meta information to pages / titles

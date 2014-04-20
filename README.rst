@@ -8,7 +8,7 @@ djangocms-page-meta
 .. image:: https://travis-ci.org/nephila/djangocms-page-meta.png?branch=master
         :target: https://travis-ci.org/nephila/djangocms-page-meta
 
-.. image:: http://img.shields.io/pypi/dm/djangocms-page-tags.svg
+.. image:: http://img.shields.io/pypi/dm/djangocms-page-tags.png
         :target: https://pypi.python.org/pypi/djangocms-page-meta
 
 .. image:: https://coveralls.io/repos/nephila/djangocms-page-meta/badge.png?branch=master
@@ -17,9 +17,9 @@ djangocms-page-meta
 
 Tagged pages for django CMS 3
 
-
+**********
 Quickstart
-----------
+**********
 
 #. Install djangocms-page-meta::
 
@@ -45,9 +45,8 @@ Quickstart
 
 #. That's all!
 
-************
 Dependencies
-************
+============
 
 * `django-filer`_ >= 0.9.5
 * `django-meta`_  >= 0.1.0
@@ -55,16 +54,17 @@ Dependencies
 .. _django-filer: https://pypi.python.org/pypi/django-filer
 .. _django-meta: https://pypi.python.org/pypi/django-meta
 
-********
+
 Python 3
-********
+========
 
 `djangocms-page-meta` per-se is full Python 3.3 compatible; django-filer
 python 3 compatible version is likely to be released soon (python 3 support
 has been merged in develop).
 
+*************
 Documentation
--------------
+*************
 
 For package documentation see http://djangocms-page-meta.readthedocs.org/.
 
