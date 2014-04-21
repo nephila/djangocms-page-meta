@@ -51,9 +51,11 @@ Dependencies
 
 * `django-filer`_ >= 0.9.5
 * `django-meta`_  >= 0.1.0
+* `django-meta-mixin`_  >= 0.1.0
 
 .. _django-filer: https://pypi.python.org/pypi/django-filer
 .. _django-meta: https://pypi.python.org/pypi/django-meta
+.. _django-meta-mixin: https://pypi.python.org/pypi/django-meta-mixin
 
 
 Python 3

@@ -7,7 +7,7 @@ History
 0.4.0 (2014-04-19)
 ==================
 
-* Full django CMS 3
+* django CMS 3 final release support
 * Moved some code to external django-meta-mixin application
 
 0.3.3 (2014-03-23)
