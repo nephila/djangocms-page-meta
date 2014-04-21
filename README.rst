@@ -33,6 +33,7 @@ Quickstart
 
         'filer',
         'meta',
+        'meta_mixin',
         'djangocms_page_meta',
 
 #. Synchronize the database with syncdb::
