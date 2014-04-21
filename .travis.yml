@@ -17,13 +17,11 @@ env:
 install:
   - pip install $DJANGO
   - pip install -r requirements-test.txt
-  - pip install python-coveralls coverage
 
 # command to run tests, e.g. python setup.py test
 script: coverage run runtests.py
 
-after_success:
-  coveralls --config_file=.coveragerc
+after_success: coveralls
 
 matrix:
   exclude:
