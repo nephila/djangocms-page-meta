@@ -2,17 +2,21 @@
 djangocms-page-meta
 ===================
 
-.. image:: https://badge.fury.io/py/djangocms-page-meta.png
-    :target: http://badge.fury.io/py/djangocms-page-meta
+.. image:: https://pypip.in/v/djangocms-page-meta/badge.png
+        :target: https://pypi.python.org/pypi/djangocms-page-meta
+        :alt: Latest PyPI version
     
 .. image:: https://travis-ci.org/nephila/djangocms-page-meta.png?branch=master
         :target: https://travis-ci.org/nephila/djangocms-page-meta
+        :alt: Latest Travis CI build status
 
-.. image:: http://img.shields.io/pypi/dm/djangocms-page-tags.png
+.. image:: https://pypip.in/d/djangocms-page-meta/badge.png
         :target: https://pypi.python.org/pypi/djangocms-page-meta
+        :alt: Monthly downloads
 
 .. image:: https://coveralls.io/repos/nephila/djangocms-page-meta/badge.png?branch=master
         :target: https://coveralls.io/r/nephila/djangocms-page-meta?branch=master
+        :alt: Test coverage
 
 
 Tagged pages for django CMS 3
