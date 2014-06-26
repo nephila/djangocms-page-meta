@@ -111,14 +111,14 @@ def cleanup_title(sender, instance, **kwargs):
 
 
 @receiver(post_save, sender=PageMeta)
-def cleanup_pagetags(sender, instance, **kwargs):
+def cleanup_pagemeta(sender, instance, **kwargs):
     for language in instance.extended_object.get_languages():
         key = get_cache_key(instance.extended_object, language)
         cache.delete(key)
 
 
 @receiver(post_save, sender=TitleMeta)
-def cleanup_titletags(sender, instance, **kwargs):
+def cleanup_titlemeta(sender, instance, **kwargs):
     key = get_cache_key(instance.extended_object.page,
                         instance.extended_object.language)
     cache.delete(key)
