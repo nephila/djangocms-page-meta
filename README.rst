@@ -65,18 +65,12 @@ Dependencies
 Python 3
 ========
 
-`djangocms-page-meta` per-se is full Python 3.3 compatible; django-filer
-python 3 compatible version is likely to be released soon (python 3 support
-has been merged in develop).
+`djangocms-page-meta` per-se is fully Python 3 compatible; django-filer is
+python 3 compatible starting from version 0.9.6.
 
 *************
 Documentation
 *************
 
 For package documentation see http://djangocms-page-meta.readthedocs.org/.
-
-
-.. image:: https://d2weczhvl823v0.cloudfront.net/nephila/djangocms-page-meta/trend.png
-   :alt: Bitdeli badge
-   :target: https://bitdeli.com/free
 
