@@ -27,7 +27,7 @@ Quickstart
 
    or from the repository::
 
-        pip install -e https://github.com/nephila/djangocms-page-meta#egg=djangocms-page-meta
+        pip install -e git+https://github.com/nephila/djangocms-page-meta#egg=djangocms-page-meta
 
 #. Then add it to INSTALLED_APPS along with its dependencies::
 
