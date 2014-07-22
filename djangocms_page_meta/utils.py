@@ -35,7 +35,8 @@ def get_page_meta(page, language):
         try:
             titlemeta = title.titlemeta
             meta.description = titlemeta.description.strip()
-            meta.keywords = titlemeta.keywords.strip().split(",")
+            if titlemeta.keywords:
+                meta.keywords = titlemeta.keywords.strip().split(",")
             meta.locale = titlemeta.locale
             meta.og_description = titlemeta.og_description.strip()
             meta.twitter_description = titlemeta.twitter_description.strip()
