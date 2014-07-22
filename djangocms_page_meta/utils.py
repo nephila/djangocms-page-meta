@@ -30,7 +30,9 @@ def get_page_meta(page, language):
         meta = Meta()
         title = page.get_title_obj(language)
 
-        meta.title = page.get_title(language)
+        meta.title = page.get_page_title(language)
+        if not meta.title:
+            meta.title = page.get_title(language)
 
         try:
             titlemeta = title.titlemeta
