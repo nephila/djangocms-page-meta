@@ -20,7 +20,7 @@ install:
   - pip install -r requirements-test.txt
 
 # command to run tests, e.g. python setup.py test
-script: coverage run runtests.py
+script: coverage run `which djangocms-helper` djangocms_page_meta test --cms --nose
 
 after_success: coveralls
 

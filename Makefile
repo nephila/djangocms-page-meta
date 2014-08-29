@@ -24,18 +24,18 @@ clean-pyc:
 
 lint:
 	flake8 djangocms_page_meta tests
+	djangocms-helper djangocms_page_meta pyflakes --cms
 
 test:
-	python runtests.py test
+	djangocms-helper djangocms_page_meta test --cms --nose
 
 test-all:
 	tox
 
 coverage:
-	coverage run --source djangocms-page-meta setup.py test
+	coverage erase
+	coverage run `which djangocms-helper` djangocms_page_meta test --cms --nose
 	coverage report -m
-	coverage html
-	open htmlcov/index.html
 
 release: clean
 	python setup.py sdist upload

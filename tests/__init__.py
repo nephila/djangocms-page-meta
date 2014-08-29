@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
+from cms.models import Page
 from cms.utils.i18n import get_language_list
-
 from django.contrib.auth.models import User
 from django.http import SimpleCookie
 from django.test import TestCase, RequestFactory
-from six import StringIO
-from cms.models import Page
+from django.utils.six import StringIO
+
 from djangocms_page_meta.models import TitleMeta, PageMeta
 
 
@@ -58,8 +58,8 @@ class BaseTest(TestCase):
 
     def get_pages(self):
         from cms.api import create_page, create_title
-        page = create_page(u'page one', 'page.html', language='en')
-        page_2 = create_page(u'page two', 'page.html', language='en')
+        page = create_page(u'page one', 'page_meta.html', language='en')
+        page_2 = create_page(u'page two', 'page_meta.html', language='en')
         create_title(language='fr_FR', title=u'page un', page=page)
         create_title(language='it', title=u'pagina uno', page=page)
         for lang in self.languages:
