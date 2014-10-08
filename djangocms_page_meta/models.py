@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from django.conf import settings
 from django.core.cache import cache
 from django.db import models
 from django.db.models.signals import post_save, pre_delete
@@ -9,6 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 from cms.extensions import PageExtension, TitleExtension
 from cms.extensions.extension_pool import extension_pool
 from cms.models import Title, Page
+from cms.utils.compat.dj import user_model_label
 from filer.fields.file import FilerFileField
 
 
@@ -45,7 +45,7 @@ class PageMeta(PageExtension):
     og_type = models.CharField(_(u'Resource type'), max_length=255,
                                choices=OG_TYPE_CHOICES,
                                help_text=_(u'Use Article for generic pages.'))
-    og_author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_(u'Author account'),
+    og_author = models.ForeignKey(user_model_label, verbose_name=_(u'Author account'),
                                   null=True, blank=True)
     og_author_url = models.CharField(_(u'Author Facebook URL'),
                                      max_length=255, default='', blank=True)
