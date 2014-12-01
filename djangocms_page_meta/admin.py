@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
+from .forms import TitleMetaAdminForm
 from .models import PageMeta, TitleMeta
 
 
@@ -30,7 +31,7 @@ admin.site.register(PageMeta, PageMetaAdmin)
 
 
 class TitleMetaAdmin(TitleExtensionAdmin):
-
+    form = TitleMetaAdminForm
     class Media:
         css = {
             'all': ('%sdjangocms_page_meta/css/%s' % (
