@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 from django import forms
-from parler.forms import TranslatableModelForm
 
 from .models import TitleMeta
 
 
-class TitleMetaAdminForm(TranslatableModelForm):
+class TitleMetaAdminForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(TitleMetaAdminForm, self).__init__(*args, **kwargs)
