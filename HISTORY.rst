@@ -4,6 +4,13 @@
 History
 *******
 
+0.5 (unreleased)
+==================
+
+* Add support for custom user model
+* Fix the length of SEO fields
+* Use djangocms-helper for tests
+
 0.4.1 (2014-08-10)
 ==================
 
