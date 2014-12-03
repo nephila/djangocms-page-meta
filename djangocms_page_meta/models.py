@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
+from cms.extensions import PageExtension, TitleExtension
+from cms.extensions.extension_pool import extension_pool
+from cms.models import Title, Page
+from cms.utils.compat.dj import user_model_label
 from django.core.cache import cache
 from django.db import models
 from django.db.models.signals import post_save, pre_delete
 from django.dispatch import receiver
 from django.utils.translation import ugettext_lazy as _
-
-from cms.extensions import PageExtension, TitleExtension
-from cms.extensions.extension_pool import extension_pool
-from cms.models import Title, Page
-from cms.utils.compat.dj import user_model_label
 from filer.fields.file import FilerFileField
 
 
