@@ -27,14 +27,29 @@ class PageMetaAdmin(PageExtensionAdmin):
             'all': ('%sdjangocms_page_meta/css/%s' % (
                 settings.STATIC_URL, "djangocms_page_meta_admin.css"),)
         }
+
+    def get_model_perms(self, request):
+        """
+        Return empty perms dict thus hiding the model from admin index.
+        """
+        return {}
+
 admin.site.register(PageMeta, PageMetaAdmin)
 
 
 class TitleMetaAdmin(TitleExtensionAdmin):
     form = TitleMetaAdminForm
+
     class Media:
         css = {
             'all': ('%sdjangocms_page_meta/css/%s' % (
                 settings.STATIC_URL, "djangocms_page_meta_admin.css"),)
         }
+
+    def get_model_perms(self, request):
+        """
+        Return empty perms dict thus hiding the model from admin index.
+        """
+        return {}
+
 admin.site.register(TitleMeta, TitleMetaAdmin)
