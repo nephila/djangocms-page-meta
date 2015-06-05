@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from cms.extensions import PageExtension, TitleExtension
 from cms.extensions.extension_pool import extension_pool
-from cms.models import Title, Page
-from django.core.cache import cache
+from cms.models import Page, Title
 from django.conf import settings
+from django.core.cache import cache
 from django.db import models
 from django.db.models.signals import post_save, pre_delete
 from django.dispatch import receiver
