@@ -44,6 +44,7 @@ setup(
     license='BSD',
     zip_safe=False,
     keywords='django cms, meta tags, OpenGraph, Twitter Cards, Google+',
+    test_suite='cms_helper.run',
     classifiers=[
         'Development Status :: 4 - Beta',
         'Framework :: Django',

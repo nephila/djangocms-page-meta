@@ -1,6 +1,8 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from tempfile import mkdtemp
 
+import sys
+from tempfile import mkdtemp
 gettext = lambda s: s
 
 HELPER_SETTINGS = {
@@ -9,7 +11,6 @@ HELPER_SETTINGS = {
     ],
     'ROOT_URLCONF': 'tests.test_utils.urls',
     'INSTALLED_APPS': [
-        'django_nose',
         'filer',
         'meta',
         'meta_mixin',
@@ -60,3 +61,10 @@ HELPER_SETTINGS = {
     'FILE_UPLOAD_TEMP_DIR': mkdtemp()
 
 }
+
+def run():
+    from djangocms_helper import runner
+    runner.cms('djangocms_page_meta')
+
+if __name__ == "__main__":
+    run()
