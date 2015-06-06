@@ -4,6 +4,11 @@
 History
 *******
 
+0.5.1 (2015-06-06)
+=================
+
+* Make south migrations indipendent from djangocms-helper
+
 0.5 (2015-06-06)
 ================
 
