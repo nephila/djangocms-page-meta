@@ -4,7 +4,7 @@
 History
 *******
 
-0.5 (unreleased)
+0.5 (2015-06-06)
 ================
 
 * Add support for custom user model
