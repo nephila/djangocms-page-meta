@@ -7,6 +7,7 @@ from django.core.cache import cache
 from django.db import models
 from django.db.models.signals import post_save, pre_delete
 from django.dispatch import receiver
+from django.utils.six import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 from filer.fields.file import FilerFileField
 
@@ -38,6 +39,7 @@ GPLUS_TYPE_CHOICES = (
 )
 
 
+@python_2_unicode_compatible
 class PageMeta(PageExtension):
     image = FilerFileField(null=True, blank=True, related_name="djangocms_page_meta_page",
                            help_text=_(u'Used if title image is empty.'))
@@ -72,9 +74,13 @@ class PageMeta(PageExtension):
 
     class Meta:
         verbose_name = _(u'Page meta info (all languages)')
+
+    def __str__(self):
+        return u'Page meta for %s' % self.extended_object
 extension_pool.register(PageMeta)
 
 
+@python_2_unicode_compatible
 class TitleMeta(TitleExtension):
     image = FilerFileField(null=True, blank=True, related_name="djangocms_page_meta_title",
                            help_text=_(u'If empty, page image will be used for all languages.'))
@@ -84,6 +90,12 @@ class TitleMeta(TitleExtension):
     twitter_description = models.CharField(_(u'Twitter Description'), max_length=140, default='', blank=True)
     gplus_description = models.CharField(_(u'Google+ Description'), max_length=400, default='', blank=True)
 
+    class Meta:
+        verbose_name = _(u'Page meta info (language-dependent)')
+
+    def __str__(self):
+        return u'Title Meta for %s' % self.extended_object
+
     @property
     def locale(self):
         if self.extended_object.language.find("_") > -1:
@@ -91,8 +103,6 @@ class TitleMeta(TitleExtension):
         else:
             return None
 
-    class Meta:
-        verbose_name = _(u'Page meta info (language-dependent)')
 extension_pool.register(TitleMeta)
 
 
