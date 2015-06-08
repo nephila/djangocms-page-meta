@@ -20,8 +20,11 @@ class MetaFromPage(Tag):
     )
 
     def render_tag(self, context, page, varname):
-        language = get_language_from_request(context['request'])
-        meta = get_page_meta(page, language)
-        context[varname] = meta
+        try:
+            language = get_language_from_request(context['request'])
+            meta = get_page_meta(page, language)
+            context[varname] = meta
+        except: 
+            pass
         return ''
 register.tag(MetaFromPage)
