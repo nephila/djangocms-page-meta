@@ -4,13 +4,19 @@
 History
 *******
 
-0.5.2 (2015-06-28)
-=================
+0.5.3 (2015-06-29)
+==================
 
-* Compatiility with django CMS 3.1.1
+* Fix Django 1.7 migration
+* Update testing configuration
+
+0.5.2 (2015-06-28)
+==================
+
+* Compatibility with django CMS 3.1.1
 
 0.5.1 (2015-06-06)
-=================
+==================
 
 * Make south migrations indipendent from djangocms-helper
 
