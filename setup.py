@@ -36,11 +36,13 @@ setup(
     ],
     include_package_data=True,
     install_requires=(
-        'django-cms>=3.0',
         'django-meta>=0.1.0',
         'django-filer>=0.9.5',
         'django-meta-mixin',
     ),
+    dependency_links=[
+        'https://github.com/yakky/django-cms/f3c070059f8de053a1891f97a60335263e27b45c/master#egg=django-cms',
+    ],
     license='BSD',
     zip_safe=False,
     keywords='django cms, meta tags, OpenGraph, Twitter Cards, Google+',
