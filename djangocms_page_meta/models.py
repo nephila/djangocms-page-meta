@@ -7,10 +7,8 @@ from django.core.cache import cache
 from django.db import models
 from django.db.models.signals import post_save, pre_delete
 from django.dispatch import receiver
-from django.utils.six import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 from filer.fields.file import FilerFileField
-
 
 from .utils import get_cache_key
 
@@ -39,7 +37,6 @@ GPLUS_TYPE_CHOICES = (
 )
 
 
-@python_2_unicode_compatible
 class PageMeta(PageExtension):
     image = FilerFileField(null=True, blank=True, related_name="djangocms_page_meta_page",
                            help_text=_(u'Used if title image is empty.'))
@@ -73,6 +70,14 @@ class PageMeta(PageExtension):
                                   choices=GPLUS_TYPE_CHOICES,
                                   help_text=_(u'Use Article for generic pages.'))
 
+    def copy_relations(self, oldinstance, language):
+        for tag in oldinstance.tags.all():
+            # instance.pk = None; instance.pk.save() is the slightly odd but
+            # standard Django way of copying a saved model instance
+            tag.pk = None
+            tag.page = self
+            tag.save()
+
     class Meta:
         verbose_name = _(u'Page meta info (all languages)')
 
@@ -80,8 +85,6 @@ class PageMeta(PageExtension):
         return u'Page meta for %s' % self.extended_object
 extension_pool.register(PageMeta)
 
-
-@python_2_unicode_compatible
 class TitleMeta(TitleExtension):
     image = FilerFileField(null=True, blank=True, related_name="djangocms_page_meta_title",
                            help_text=_(u'If empty, page image will be used for all languages.'))
