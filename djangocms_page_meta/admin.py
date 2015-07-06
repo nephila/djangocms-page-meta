@@ -7,16 +7,15 @@ from django.utils.translation import ugettext_lazy as _
 from .forms import TitleMetaAdminForm
 from .models import PageMeta, TitleMeta, GenericMetaTag
 
-class GenericMetaTagInline(admin.StackedInline)
+class GenericMetaTagInline(admin.StackedInline):
     model = GenericMetaTag
-
-
+    fields = ['name', 'content']
 
 class PageMetaAdmin(PageExtensionAdmin):
     raw_id_fields = ('og_author',)
     inlines = [GenericMetaTagInline]
+    exclude = ['image']
     fieldsets = (
-        (None, {'fields': ('image',)}),
         (_(u'OpenGraph'), {'fields': ('og_type',
                                       ('og_author', 'og_author_url', 'og_author_fbid'),
                                       ('og_publisher', 'og_app_id')),
