@@ -43,6 +43,7 @@ GPLUS_TYPE_CHOICES = (
 class PageMeta(PageExtension):
     image = FilerFileField(null=True, blank=True, related_name="djangocms_page_meta_page",
                            help_text=_(u'Used if title image is empty.'))
+
     og_type = models.CharField(_(u'Resource type'), max_length=255,
                                choices=OG_TYPE_CHOICES,
                                help_text=_(u'Use Article for generic pages.'))
@@ -105,6 +106,10 @@ class TitleMeta(TitleExtension):
 
 extension_pool.register(TitleMeta)
 
+class GenericMetaTag(models.Model):
+    name = models.CharField(max_length=128)
+    content = models.CharField(max_length=128)
+    pages = models.ManyToManyField(PageMeta, blank=True) 
 
 # Cache cleanup when deleting pages / editing page extensions
 @receiver(pre_delete, sender=Page)
