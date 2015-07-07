@@ -64,6 +64,7 @@ def get_page_meta(page, language):
             meta.gplus_author = pagemeta.gplus_author
             meta.published_time = page.publication_date.isoformat()
             meta.modified_time = page.changed_date.isoformat()
+            meta.tags = pagemeta.tags.all()
             if page.publication_end_date:
                 meta.expiration_time = page.publication_end_date.isoformat()
             if meta.og_type == 'article':

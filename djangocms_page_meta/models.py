@@ -7,10 +7,8 @@ from django.core.cache import cache
 from django.db import models
 from django.db.models.signals import post_save, pre_delete
 from django.dispatch import receiver
-from django.utils.six import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 from filer.fields.file import FilerFileField
-
 
 from .utils import get_cache_key
 
@@ -39,11 +37,11 @@ GPLUS_TYPE_CHOICES = (
 )
 
 
-@python_2_unicode_compatible
 class PageMeta(PageExtension):
     image = FilerFileField(null=True, blank=True, related_name="djangocms_page_meta_page",
                            help_text=_(u'Used if title image is empty.'))
-    og_type = models.CharField(_(u'Resource type'), max_length=255,
+
+    og_type = models.CharField(_(u'Resource type'), max_length=255, null=True, blank=True,
                                choices=OG_TYPE_CHOICES,
                                help_text=_(u'Use Article for generic pages.'))
     og_author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_(u'Author account'),
@@ -63,14 +61,22 @@ class PageMeta(PageExtension):
     twitter_site = models.CharField(_(u'Website Twitter Account'),
                                     max_length=255, default='', blank=True,
                                     help_text=_(u'"@" sign not required.'))
-    twitter_type = models.CharField(_(u'Resource type'), max_length=255,
+    twitter_type = models.CharField(_(u'Resource type'), max_length=255, null=True, blank=True,
                                     choices=TWITTER_TYPE_CHOICES)
     gplus_author = models.CharField(_(u'Author Google+ URL'),
                                     max_length=255, default='', blank=True,
                                     help_text=_(u'Use the Google+ Name (together with "+") or the complete path to the page.'))
-    gplus_type = models.CharField(_(u'Resource type'), max_length=255,
+    gplus_type = models.CharField(_(u'Resource type'), max_length=255, null=True, blank=True,
                                   choices=GPLUS_TYPE_CHOICES,
                                   help_text=_(u'Use Article for generic pages.'))
+
+    def copy_relations(self, oldinstance, language):
+        for tag in oldinstance.tags.all():
+            # instance.pk = None; instance.pk.save() is the slightly odd but
+            # standard Django way of copying a saved model instance
+            tag.pk = None
+            tag.page = self
+            tag.save()
 
     class Meta:
         verbose_name = _(u'Page meta info (all languages)')
@@ -79,8 +85,6 @@ class PageMeta(PageExtension):
         return u'Page meta for %s' % self.extended_object
 extension_pool.register(PageMeta)
 
-
-@python_2_unicode_compatible
 class TitleMeta(TitleExtension):
     image = FilerFileField(null=True, blank=True, related_name="djangocms_page_meta_title",
                            help_text=_(u'If empty, page image will be used for all languages.'))
@@ -105,6 +109,16 @@ class TitleMeta(TitleExtension):
 
 extension_pool.register(TitleMeta)
 
+class GenericMetaTag(models.Model):
+    name = models.CharField(max_length=128)
+    content = models.CharField(max_length=128)
+    page = models.ForeignKey(PageMeta, blank=True, related_name="tags")
+
+    class Meta:
+        verbose_name = _(u'Meta tag')
+
+    def __str__(self):
+        return u'<meta name="%s" content="%s">' % (self.name, self.content)
 
 # Cache cleanup when deleting pages / editing page extensions
 @receiver(pre_delete, sender=Page)
