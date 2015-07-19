@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from cms.api import get_page_draft
-from cms.cms_toolbar import PAGE_MENU_SECOND_BREAK
 from cms.toolbar.items import Break
 from cms.toolbar_base import CMSToolbar
 from cms.toolbar_pool import toolbar_pool
@@ -11,6 +10,11 @@ from django.core.urlresolvers import NoReverseMatch, reverse
 from django.utils.translation import ugettext_lazy as _
 
 from .models import PageMeta, TitleMeta
+
+try:
+    from cms.cms_toolbars import PAGE_MENU_SECOND_BREAK
+except ImportError:
+    from cms.cms_toolbar import PAGE_MENU_SECOND_BREAK
 
 PAGE_META_MENU_TITLE = _('Meta-information')
 PAGE_META_ITEM_TITLE = _(u'Common')
