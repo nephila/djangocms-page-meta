@@ -1,28 +1,27 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import sys
 from tempfile import mkdtemp
 gettext = lambda s: s
 
-HELPER_SETTINGS = {
-    'NOSE_ARGS': [
+HELPER_SETTINGS = dict(
+    NOSE_ARGS=[
         '-s',
     ],
-    'ROOT_URLCONF': 'tests.test_utils.urls',
-    'INSTALLED_APPS': [
+    ROOT_URLCONF='tests.test_utils.urls',
+    INSTALLED_APPS=[
         'filer',
         'meta',
         'meta_mixin',
         'tests.test_utils',
     ],
-    'LANGUAGE_CODE': 'en',
-    'LANGUAGES': (
+    LANGUAGE_CODE='en',
+    LANGUAGES=(
         ('en', gettext('English')),
         ('fr_FR', gettext('French')),
         ('it', gettext('Italiano')),
     ),
-    'CMS_LANGUAGES': {
+    CMS_LANGUAGES={
         1: [
             {
                 'code': 'en',
@@ -44,23 +43,23 @@ HELPER_SETTINGS = {
             'hide_untranslated': False,
         },
     },
-    'CMS_TEMPLATES': (
+    CMS_TEMPLATES=(
         ('page_meta.html', 'page'),
     ),
-    'META_SITE_PROTOCOL': 'http',
-    'META_SITE_DOMAIN': 'example.com',
-    'META_USE_OG_PROPERTIES': True,
-    'META_USE_TWITTER_PROPERTIES': True,
-    'META_USE_GOOGLEPLUS_PROPERTIES': True,
-    'THUMBNAIL_PROCESSORS': (
+    META_SITE_PROTOCOL='http',
+    META_SITE_DOMAIN='example.com',
+    META_USE_OG_PROPERTIES=True,
+    META_USE_TWITTER_PROPERTIES=True,
+    META_USE_GOOGLEPLUS_PROPERTIES=True,
+    THUMBNAIL_PROCESSORS=(
         'easy_thumbnails.processors.colorspace',
         'easy_thumbnails.processors.autocrop',
         'filer.thumbnail_processors.scale_and_crop_with_subject_location',
         'easy_thumbnails.processors.filters',
     ),
-    'FILE_UPLOAD_TEMP_DIR': mkdtemp()
+    FILE_UPLOAD_TEMP_DIR=mkdtemp()
+)
 
-}
 
 def run():
     from djangocms_helper import runner
