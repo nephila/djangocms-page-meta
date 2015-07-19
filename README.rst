@@ -18,7 +18,25 @@ djangocms-page-meta
         :target: https://coveralls.io/r/nephila/djangocms-page-meta
         :alt: Test coverage
 
-Tagged pages for django CMS 3
+Meta tag information for django CMS 3 pages
+
+Support Python version:
+
+* Python 2.6
+* Python 2.7
+* Python 3.3
+* Python 3.4
+
+Supported Django versions:
+
+* Django 1.6
+* Django 1.7
+* Django 1.8
+
+Supported django CMS versions:
+
+* django CMS 3.x
+
 
 **********
 Quickstart
@@ -63,13 +81,6 @@ Dependencies
 .. _django-filer: https://pypi.python.org/pypi/django-filer
 .. _django-meta: https://pypi.python.org/pypi/django-meta
 .. _django-meta-mixin: https://pypi.python.org/pypi/django-meta-mixin
-
-
-Python 3
-========
-
-`djangocms-page-meta` per-se is fully Python 3 compatible; django-filer is
-python 3 compatible starting from version 0.9.6.
 
 *************
 Documentation
