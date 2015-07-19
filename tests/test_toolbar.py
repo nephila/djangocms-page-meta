@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
-from cms.toolbar.items import ModalItem, Menu, SubMenu
+from cms.toolbar.items import Menu, ModalItem, SubMenu
 from cms.utils.compat.dj import force_unicode
 from cms.utils.i18n import get_language_object
 from django.contrib.auth.models import Permission, User
 from django.core.urlresolvers import reverse
 from django.test.utils import override_settings
-
-from djangocms_page_meta.cms_toolbar import (PAGE_META_MENU_TITLE,
-                                             PAGE_META_ITEM_TITLE)
+from djangocms_page_meta.cms_toolbar import PAGE_META_ITEM_TITLE, PAGE_META_MENU_TITLE
 from djangocms_page_meta.models import PageMeta, TitleMeta
 
 from . import BaseTest
@@ -80,7 +78,7 @@ class ToolbarTest(BaseTest):
         page_menu = toolbar.menus['page']
         meta_menu = page_menu.find_items(SubMenu, name=force_unicode(PAGE_META_MENU_TITLE))[0].item
         self.assertEqual(len(meta_menu.find_items(ModalItem, name="%s ..." % force_unicode(PAGE_META_ITEM_TITLE))), 1)
-        self.assertEqual(len(meta_menu.find_items(ModalItem)), len(self.languages)+1)
+        self.assertEqual(len(meta_menu.find_items(ModalItem)), len(self.languages) + 1)
 
     def test_toolbar_with_items(self):
         """

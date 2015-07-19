@@ -4,9 +4,7 @@ from classytags.core import Options, Tag
 from cms.utils import get_language_from_request
 from django import template
 
-
 from ..utils import get_page_meta
-
 
 register = template.Library()
 

@@ -11,7 +11,6 @@ from django.utils.six import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 from filer.fields.file import FilerFileField
 
-
 from .utils import get_cache_key
 
 OG_TYPE_CHOICES = (

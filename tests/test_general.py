@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
-
 from djangocms_page_meta import models
 from djangocms_page_meta.utils import get_page_meta
 
