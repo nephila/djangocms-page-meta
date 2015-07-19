@@ -27,6 +27,9 @@ def get_page_meta(page, language):
     from meta.views import Meta
     from .models import PageMeta, TitleMeta
 
+    if page is None:
+        return None
+
     meta_key = get_cache_key(page, language)
     meta = cache.get(meta_key)
     if not meta:

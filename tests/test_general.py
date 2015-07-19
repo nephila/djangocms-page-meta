@@ -72,3 +72,7 @@ class PageMetaUtilsTest(BaseTest):
         meta = get_page_meta(page, 'en')
         self.assertEqual(meta.gplus_author, self.gplus_data['gplus_author'])
         self.assertEqual(meta.gplus_type, self.gplus_data['gplus_type'])
+
+    def test_none_page(self):
+        meta = get_page_meta(None, 'en')
+        self.assertIsNone(meta)
