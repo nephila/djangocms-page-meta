@@ -43,12 +43,20 @@ def get_page_meta(page, language):
         try:
             titlemeta = title.titlemeta
             meta.description = titlemeta.description.strip()
+            if not meta.description:
+                meta.description = title.meta_description.strip()
             if titlemeta.keywords:
                 meta.keywords = titlemeta.keywords.strip().split(",")
             meta.locale = titlemeta.locale
             meta.og_description = titlemeta.og_description.strip()
+            if not meta.og_description:
+                meta.og_description = meta.description
             meta.twitter_description = titlemeta.twitter_description.strip()
+            if not meta.twitter_description:
+                meta.twitter_description = meta.description
             meta.gplus_description = titlemeta.gplus_description.strip()
+            if not meta.gplus_description:
+                meta.gplus_description = meta.description
             if titlemeta.image:
                 meta.image = title.titlemeta.image.url
         except TitleMeta.DoesNotExist:
@@ -86,7 +94,5 @@ def get_page_meta(page, language):
         except PageMeta.DoesNotExist:
             # Skipping page-level metas
             pass
-        if not meta.description and page.get_meta_description(language):
-            meta.description = page.get_meta_description(language).strip()
         meta.url = page.get_absolute_url(language)
     return meta
