@@ -13,6 +13,7 @@ help:
 clean: clean-build clean-pyc
 
 clean-build:
+	python setup.py clean --all
 	rm -fr build/
 	rm -fr dist/
 	rm -fr *.egg-info
@@ -38,8 +39,7 @@ coverage:
 	coverage report -m
 
 release: clean
-	python setup.py sdist upload
-	python setup.py bdist_wheel upload
+	python setup.py sdist bdist_wheel upload
 
 sdist: clean
 	python setup.py sdist
