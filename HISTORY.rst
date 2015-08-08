@@ -4,6 +4,14 @@
 History
 *******
 
+0.5.4 (2015-08-08)
+==================
+
+* Fix error when page is None
+* Code cleanup
+* Add pep8/isort to tests
+* Add missing migration
+
 0.5.3 (2015-06-29)
 ==================
 
