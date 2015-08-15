@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
+from django.utils.functional import SimpleLazyObject
 from djangocms_page_meta import models
 from djangocms_page_meta.utils import get_page_meta
 
@@ -75,4 +76,8 @@ class PageMetaUtilsTest(BaseTest):
 
     def test_none_page(self):
         meta = get_page_meta(None, 'en')
+        self.assertIsNone(meta)
+
+        request = self.get_page_request(SimpleLazyObject(lambda: None), self.user, '/')
+        meta = get_page_meta(request.current_page, 'en')
         self.assertIsNone(meta)
