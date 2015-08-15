@@ -1,0 +1,180 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Rüstem Mirzaoğlu, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: djangocms-page-meta\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-19 18:29+0200\n"
+"PO-Revision-Date: 2015-01-25 18:21+0000\n"
+"Last-Translator: Rüstem Mirzaoğlu\n"
+"Language-Team: Turkish (http://www.transifex.com/nephila/djangocms-page-meta/language/tr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: tr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: admin.py:14
+msgid "OpenGraph"
+msgstr "OpenGraph"
+
+#: admin.py:18
+msgid "Twitter Cards"
+msgstr "Twitter Cards"
+
+#: admin.py:20
+msgid "Google+ Snippets"
+msgstr "Google+ parçacıkları"
+
+#: cms_toolbar.py:16
+msgid "Meta-information"
+msgstr "Meta-bilgiler"
+
+#: cms_toolbar.py:17
+msgid "Common"
+msgstr "Genel"
+
+#: models.py:17 models.py:29
+msgid "Article"
+msgstr "Makale"
+
+#: models.py:18
+msgid "Website"
+msgstr "Web site"
+
+#: models.py:21
+msgid "Summary"
+msgstr "Özet"
+
+#: models.py:22
+msgid "Summary large image"
+msgstr "Özet için büyük resim"
+
+#: models.py:23 models.py:36
+msgid "Product"
+msgstr "Ürün"
+
+#: models.py:24
+msgid "Photo"
+msgstr "Fotograf"
+
+#: models.py:25
+msgid "Player"
+msgstr "Oyuncu"
+
+#: models.py:26
+msgid "App"
+msgstr "Uygulama"
+
+#: models.py:30
+msgid "Blog"
+msgstr "Blog"
+
+#: models.py:31
+msgid "Book"
+msgstr "Kitap"
+
+#: models.py:32
+msgid "Event"
+msgstr "Olay"
+
+#: models.py:33
+msgid "LocalBusiness"
+msgstr "Yerel işletme"
+
+#: models.py:34
+msgid "Organization"
+msgstr "Örgüt/İşletme"
+
+#: models.py:35
+msgid "Person"
+msgstr "Kişi"
+
+#: models.py:37
+msgid "Review"
+msgstr "Yorum"
+
+#: models.py:43
+msgid "Used if title image is empty."
+msgstr "Başlık resmi olmadığında kullanılır"
+
+#: models.py:44 models.py:64 models.py:69
+msgid "Resource type"
+msgstr "Kaynak tipi"
+
+#: models.py:46 models.py:71
+msgid "Use Article for generic pages."
+msgstr "Makaleyi genel sayfalar için kullan"
+
+#: models.py:47
+msgid "Author account"
+msgstr "Yazarın hesabı"
+
+#: models.py:49
+msgid "Author Facebook URL"
+msgstr "Yazarın Facebook URL'i"
+
+#: models.py:51
+msgid "Author Facebook ID"
+msgstr "Yazarın Facebook ID'si"
+
+#: models.py:53
+msgid "Use Facebook numeric ID."
+msgstr "Facebook ID'yi kullan"
+
+#: models.py:54
+msgid "Website Facebook URL"
+msgstr "Web sitenin Facebook'taki URL'si"
+
+#: models.py:56
+msgid "Facebook App ID"
+msgstr "Facebook Uygulama ID'si"
+
+#: models.py:58
+msgid "Author Twitter Account"
+msgstr "Yazarın Twitter hesabı"
+
+#: models.py:60 models.py:63
+msgid "\"@\" sign not required."
+msgstr "\"@\" simgesi gerekmemektedir."
+
+#: models.py:61
+msgid "Website Twitter Account"
+msgstr "Web sitenin Twitter hesabı"
+
+#: models.py:66
+msgid "Author Google+ URL"
+msgstr "Yazarın Google+ URL'si"
+
+#: models.py:68
+msgid ""
+"Use the Google+ Name (together with \"+\") or the complete path to the page."
+msgstr "Google+ Hesab Adını kullan(\"+\" simgesi ile birlikte) yada hesabın web adresini."
+
+#: models.py:74
+msgid "Page meta info (all languages)"
+msgstr "Sayfanın meta bilgileri(tüm diller)"
+
+#: models.py:80
+msgid "If empty, page image will be used for all languages."
+msgstr "Eğer boş ise, sayfanın resmi tüm diller için kullanılacaktır"
+
+#: models.py:83
+msgid "Facebook Description"
+msgstr "Facebook özeti"
+
+#: models.py:84
+msgid "Twitter Description"
+msgstr "Twitter özeti"
+
+#: models.py:85
+msgid "Google+ Description"
+msgstr "Google+ özeti"
+
+#: models.py:95
+msgid "Page meta info (language-dependent)"
+msgstr "Sayfanın meta bilgileri(dil bağımlı)"

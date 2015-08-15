@@ -1,0 +1,180 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Rüstem Mirzaoğlu, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: djangocms-page-meta\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-19 18:29+0200\n"
+"PO-Revision-Date: 2015-01-25 13:22+0000\n"
+"Last-Translator: Rüstem Mirzaoğlu\n"
+"Language-Team: Russian (http://www.transifex.com/nephila/djangocms-page-meta/language/ru/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: admin.py:14
+msgid "OpenGraph"
+msgstr "OpenGraph"
+
+#: admin.py:18
+msgid "Twitter Cards"
+msgstr "Twitter Cards"
+
+#: admin.py:20
+msgid "Google+ Snippets"
+msgstr "Сниппеты Google+"
+
+#: cms_toolbar.py:16
+msgid "Meta-information"
+msgstr "Мета информация"
+
+#: cms_toolbar.py:17
+msgid "Common"
+msgstr "Общие"
+
+#: models.py:17 models.py:29
+msgid "Article"
+msgstr "Статья"
+
+#: models.py:18
+msgid "Website"
+msgstr "Веб сайт"
+
+#: models.py:21
+msgid "Summary"
+msgstr "Краткое описание"
+
+#: models.py:22
+msgid "Summary large image"
+msgstr "Основное изображение к описанию"
+
+#: models.py:23 models.py:36
+msgid "Product"
+msgstr "Продукт"
+
+#: models.py:24
+msgid "Photo"
+msgstr "Фото"
+
+#: models.py:25
+msgid "Player"
+msgstr "Игрок"
+
+#: models.py:26
+msgid "App"
+msgstr "Приложение"
+
+#: models.py:30
+msgid "Blog"
+msgstr "Блог"
+
+#: models.py:31
+msgid "Book"
+msgstr "Книга"
+
+#: models.py:32
+msgid "Event"
+msgstr "Событие"
+
+#: models.py:33
+msgid "LocalBusiness"
+msgstr "Локальный бизнес"
+
+#: models.py:34
+msgid "Organization"
+msgstr "Организация"
+
+#: models.py:35
+msgid "Person"
+msgstr "Личность"
+
+#: models.py:37
+msgid "Review"
+msgstr "Обзор"
+
+#: models.py:43
+msgid "Used if title image is empty."
+msgstr "Используется, если изображение отсутствует"
+
+#: models.py:44 models.py:64 models.py:69
+msgid "Resource type"
+msgstr "Тип ресурса"
+
+#: models.py:46 models.py:71
+msgid "Use Article for generic pages."
+msgstr "Использовать статью для общих страниц"
+
+#: models.py:47
+msgid "Author account"
+msgstr "Аккаунт автора"
+
+#: models.py:49
+msgid "Author Facebook URL"
+msgstr "URL автора на Facebook"
+
+#: models.py:51
+msgid "Author Facebook ID"
+msgstr "ID автора на Facebook"
+
+#: models.py:53
+msgid "Use Facebook numeric ID."
+msgstr "Использовать номерной идентификатор Facebook"
+
+#: models.py:54
+msgid "Website Facebook URL"
+msgstr "Адрес веб сайта на Facebook"
+
+#: models.py:56
+msgid "Facebook App ID"
+msgstr "ID приложения на Facebook"
+
+#: models.py:58
+msgid "Author Twitter Account"
+msgstr "Аккаунт автора на Twitter"
+
+#: models.py:60 models.py:63
+msgid "\"@\" sign not required."
+msgstr "знак \"@\" не требуется."
+
+#: models.py:61
+msgid "Website Twitter Account"
+msgstr "Аккаунт сайта на Twitter"
+
+#: models.py:66
+msgid "Author Google+ URL"
+msgstr "URL автора на Google+"
+
+#: models.py:68
+msgid ""
+"Use the Google+ Name (together with \"+\") or the complete path to the page."
+msgstr "Используйте Google+ Имя (вместе со знаком \"+\") или полную ссылку на страницу."
+
+#: models.py:74
+msgid "Page meta info (all languages)"
+msgstr "Мета информация страницы(для всех языков)"
+
+#: models.py:80
+msgid "If empty, page image will be used for all languages."
+msgstr "Если оставить пустым, изображение страницы будет использовано для всех языков."
+
+#: models.py:83
+msgid "Facebook Description"
+msgstr "Описание на Facebook"
+
+#: models.py:84
+msgid "Twitter Description"
+msgstr "Описание на Twitter"
+
+#: models.py:85
+msgid "Google+ Description"
+msgstr "Описание на Google+"
+
+#: models.py:95
+msgid "Page meta info (language-dependent)"
+msgstr "Мета информация страницы(языкозависимая)"
