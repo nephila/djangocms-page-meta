@@ -61,3 +61,64 @@ class TemplateMetaTest(BaseTest):
         self.assertContains(response, '<meta property="og:description" content="opengraph - lorem ipsum - english">')
         self.assertContains(response, '<meta property="og:title" content="page one">')
         self.assertContains(response, '<meta property="og:url" content="http://example.com/en/">')
+
+    def test_fallbacks(self):
+        """
+        Test title-level templatetags
+        """
+        page1, page2 = self.get_pages()
+        title_en = page1.get_title_obj(language='en', fallback=False)
+        title_en.meta_description = self.title_data['description']
+        title_en.save()
+        title_it = page1.get_title_obj(language='it', fallback=False)
+        title_it.meta_description = self.title_data_it['description']
+        title_it.save()
+        title_ext_en = TitleMeta.objects.create(extended_object=title_en)
+        title_ext_en.save()
+        title_ext_it = TitleMeta.objects.create(extended_object=title_it)
+        title_ext_it.save()
+        page1.publish('it')
+        page1.publish('en')
+
+        page1 = page1.get_draft_object()
+        title_en = page1.get_title_obj(language='en', fallback=False)
+        title_ext_en = title_en.titlemeta
+
+        # Italian language
+        response = self.client.get("/it/")
+        response.render()
+        self.assertContains(response, '<meta name="description" content="base lorem ipsum - italian">')
+        self.assertContains(response, '<meta name="twitter:description" content="base lorem ipsum - italian">')
+        self.assertContains(response, '<meta itemprop="description" content="base lorem ipsum - italian">')
+        self.assertContains(response, '<meta property="og:description" content="base lorem ipsum - italian">')
+        self.assertContains(response, '<meta property="og:title" content="pagina uno">')
+        self.assertContains(response, '<meta property="og:url" content="http://example.com/it/">')
+
+        # English language
+        response = self.client.get("/en/")
+        self.assertContains(response, '<meta name="description" content="base lorem ipsum - english">')
+        self.assertContains(response, '<meta name="twitter:description" content="base lorem ipsum - english">')
+        self.assertContains(response, '<meta itemprop="description" content="base lorem ipsum - english">')
+        self.assertContains(response, '<meta property="og:description" content="base lorem ipsum - english">')
+        self.assertContains(response, '<meta property="og:title" content="page one">')
+        self.assertContains(response, '<meta property="og:url" content="http://example.com/en/">')
+
+        title_ext_en.description = 'custom description'
+        title_ext_en.save()
+        page1.publish('en')
+        response = self.client.get("/en/")
+        self.assertContains(response, '<meta name="description" content="custom description">')
+        self.assertContains(response, '<meta name="twitter:description" content="custom description">')
+        self.assertContains(response, '<meta itemprop="description" content="custom description">')
+
+        page1 = page1.get_draft_object()
+        title_en = page1.get_title_obj(language='en', fallback=False)
+        title_ext_en = title_en.titlemeta
+        title_ext_en.twitter_description = 'twitter custom description'
+        title_ext_en.og_description = 'og custom description'
+        title_ext_en.save()
+        page1.publish('en')
+        response = self.client.get("/en/")
+        self.assertContains(response, '<meta name="description" content="custom description">')
+        self.assertContains(response, '<meta name="twitter:description" content="twitter custom description">')
+        self.assertContains(response, '<meta property="og:description" content="og custom description">')
