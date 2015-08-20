@@ -122,3 +122,17 @@ class TemplateMetaTest(BaseTest):
         self.assertContains(response, '<meta name="description" content="custom description">')
         self.assertContains(response, '<meta name="twitter:description" content="twitter custom description">')
         self.assertContains(response, '<meta property="og:description" content="og custom description">')
+
+        title2_en = page2.get_title_obj(language='en', fallback=False)
+        title2_en.meta_description = self.title_data['description']
+        title2_en.save()
+        page2.publish('en')
+        # English language
+        # A page with no title meta, and yet the meta description is there
+        response = self.client.get("/en/page-two/")
+        self.assertContains(response, '<meta name="description" content="base lorem ipsum - english">')
+        self.assertContains(response, '<meta name="twitter:description" content="base lorem ipsum - english">')
+        self.assertContains(response, '<meta itemprop="description" content="base lorem ipsum - english">')
+        self.assertContains(response, '<meta property="og:description" content="base lorem ipsum - english">')
+        self.assertNotContains(response, '<meta property="og:title" content="page one">')
+        self.assertNotContains(response, '<meta property="og:url" content="http://example.com/en/">')
