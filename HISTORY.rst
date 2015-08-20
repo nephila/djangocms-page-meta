@@ -4,6 +4,13 @@
 History
 *******
 
+0.5.5 (2015-08-21)
+==================
+
+* Different approach at fix error when page is None
+* Better fallback mechanism
+* Update i18n
+
 0.5.4 (2015-08-08)
 ==================
 
