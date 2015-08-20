@@ -40,11 +40,12 @@ def get_page_meta(page, language):
         if not meta.title:
             meta.title = page.get_title(language)
 
+        if title.meta_description:
+            meta.description = title.meta_description.strip()
         try:
             titlemeta = title.titlemeta
-            meta.description = titlemeta.description.strip()
-            if not meta.description:
-                meta.description = title.meta_description.strip()
+            if titlemeta.description:
+                meta.description = titlemeta.description.strip()
             if titlemeta.keywords:
                 meta.keywords = titlemeta.keywords.strip().split(",")
             meta.locale = titlemeta.locale
@@ -60,6 +61,10 @@ def get_page_meta(page, language):
             if titlemeta.image:
                 meta.image = title.titlemeta.image.url
         except TitleMeta.DoesNotExist:
+            if meta.description:
+                meta.og_description = meta.description
+                meta.twitter_description = meta.description
+                meta.gplus_description = meta.description
             # Skipping title-level metas
             pass
         try:
