@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import, print_function, unicode_literals
+
 from django.conf import settings
 from django.utils.functional import SimpleLazyObject
+
 from djangocms_page_meta import models
 from djangocms_page_meta.utils import get_page_meta
 

@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import, print_function, unicode_literals
+
 from djangocms_helper.base_test import BaseTestCase
 
 
@@ -32,9 +34,9 @@ class BaseTest(BaseTestCase):
     og_data = {
         'og_type': 'article',
         'og_author_url': 'https://facebook.com/FakeUser',
-        'og_author_fbid': u'123456789',
+        'og_author_fbid': '123456789',
         'og_publisher': 'https://facebook.com/FakeUser',
-        'og_app_id': u'123456789',
+        'og_app_id': '123456789',
     }
     twitter_data = {
         'twitter_author': 'fake_user',
