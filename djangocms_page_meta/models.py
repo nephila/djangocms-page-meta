@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import, print_function, unicode_literals
+
 from cms.extensions import PageExtension, TitleExtension
 from cms.extensions.extension_pool import extension_pool
 from cms.models import Page, Title
@@ -40,64 +42,89 @@ GPLUS_TYPE_CHOICES = (
 
 @python_2_unicode_compatible
 class PageMeta(PageExtension):
-    image = FilerFileField(null=True, blank=True, related_name="djangocms_page_meta_page",
-                           help_text=_(u'Used if title image is empty.'))
-    og_type = models.CharField(_(u'Resource type'), max_length=255,
-                               choices=OG_TYPE_CHOICES,
-                               help_text=_(u'Use Article for generic pages.'))
-    og_author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_(u'Author account'),
-                                  null=True, blank=True)
-    og_author_url = models.CharField(_(u'Author Facebook URL'),
-                                     max_length=255, default='', blank=True)
-    og_author_fbid = models.CharField(_(u'Author Facebook ID'),
-                                      max_length=16, default='', blank=True,
-                                      help_text=_(u'Use Facebook numeric ID.'))
-    og_publisher = models.CharField(_(u'Website Facebook URL'),
-                                    max_length=255, default='', blank=True)
-    og_app_id = models.CharField(_(u'Facebook App ID'),
-                                 max_length=255, default='', blank=True)
-    twitter_author = models.CharField(_(u'Author Twitter Account'),
-                                      max_length=255, default='', blank=True,
-                                      help_text=_(u'"@" sign not required.'))
-    twitter_site = models.CharField(_(u'Website Twitter Account'),
-                                    max_length=255, default='', blank=True,
-                                    help_text=_(u'"@" sign not required.'))
-    twitter_type = models.CharField(_(u'Resource type'), max_length=255,
-                                    choices=TWITTER_TYPE_CHOICES)
-    gplus_author = models.CharField(_(u'Author Google+ URL'),
-                                    max_length=255, default='', blank=True,
-                                    help_text=_(u'Use the Google+ Name (together with "+") or the complete path to the page.'))
-    gplus_type = models.CharField(_(u'Resource type'), max_length=255,
-                                  choices=GPLUS_TYPE_CHOICES,
-                                  help_text=_(u'Use Article for generic pages.'))
+    image = FilerFileField(
+        null=True, blank=True, related_name='djangocms_page_meta_page',
+        help_text=_('Used if title image is empty.')
+    )
+    og_type = models.CharField(
+        _('Resource type'), max_length=255, choices=OG_TYPE_CHOICES,
+        help_text=_('Use Article for generic pages.')
+    )
+    og_author = models.ForeignKey(
+        settings.AUTH_USER_MODEL, verbose_name=_('Author account'), null=True, blank=True
+    )
+    og_author_url = models.CharField(
+        _('Author Facebook URL'), max_length=255, default='', blank=True
+    )
+    og_author_fbid = models.CharField(
+        _('Author Facebook ID'), max_length=16, default='', blank=True,
+        help_text=_('Use Facebook numeric ID.')
+    )
+    og_publisher = models.CharField(
+        _('Website Facebook URL'), max_length=255, default='', blank=True
+    )
+    og_app_id = models.CharField(
+        _('Facebook App ID'), max_length=255, default='', blank=True
+    )
+    twitter_author = models.CharField(
+        _('Author Twitter Account'), max_length=255, default='', blank=True,
+        help_text=_('\'@\' character not required.')
+    )
+    twitter_site = models.CharField(
+        _('Website Twitter Account'), max_length=255, default='', blank=True,
+        help_text=_('\'@\' characther not required.')
+    )
+    twitter_type = models.CharField(
+        _('Resource type'), max_length=255, choices=TWITTER_TYPE_CHOICES
+    )
+    gplus_author = models.CharField(
+        _('Author Google+ URL'), max_length=255, default='', blank=True,
+        help_text=_('Use the Google+ Name (together with '+') or the complete path to the page.')
+    )
+    gplus_type = models.CharField(
+        _('Resource type'), max_length=255, choices=GPLUS_TYPE_CHOICES,
+        help_text=_('Use Article for generic pages.')
+    )
 
     class Meta:
-        verbose_name = _(u'Page meta info (all languages)')
+        verbose_name = _('Page meta info (all languages)')
 
     def __str__(self):
-        return u'Page meta for %s' % self.extended_object
+        return 'Page meta for %s' % self.extended_object
 extension_pool.register(PageMeta)
 
 
 @python_2_unicode_compatible
 class TitleMeta(TitleExtension):
-    image = FilerFileField(null=True, blank=True, related_name="djangocms_page_meta_title",
-                           help_text=_(u'If empty, page image will be used for all languages.'))
-    keywords = models.CharField(max_length=400, default='', blank=True)
-    description = models.CharField(max_length=400, default='', blank=True)
-    og_description = models.CharField(_(u'Facebook Description'), max_length=400, default='', blank=True)
-    twitter_description = models.CharField(_(u'Twitter Description'), max_length=140, default='', blank=True)
-    gplus_description = models.CharField(_(u'Google+ Description'), max_length=400, default='', blank=True)
+    image = FilerFileField(
+        null=True, blank=True, related_name='djangocms_page_meta_title',
+        help_text=_('If empty, page image will be used for all languages.')
+    )
+    keywords = models.CharField(
+        max_length=400, default='', blank=True
+    )
+    description = models.CharField(
+        max_length=400, default='', blank=True
+    )
+    og_description = models.CharField(
+        _('Facebook Description'), max_length=400, default='', blank=True
+    )
+    twitter_description = models.CharField(
+        _('Twitter Description'), max_length=140, default='', blank=True
+    )
+    gplus_description = models.CharField(
+        _('Google+ Description'), max_length=400, default='', blank=True
+    )
 
     class Meta:
-        verbose_name = _(u'Page meta info (language-dependent)')
+        verbose_name = _('Page meta info (language-dependent)')
 
     def __str__(self):
-        return u'Title Meta for %s' % self.extended_object
+        return 'Title Meta for %s' % self.extended_object
 
     @property
     def locale(self):
-        if self.extended_object.language.find("_") > -1:
+        if self.extended_object.language.find('_') > -1:
             return self.extended_object.language
         else:
             return None

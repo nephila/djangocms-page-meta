@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import, print_function, unicode_literals
 
 from tempfile import mkdtemp
 gettext = lambda s: s
@@ -10,9 +11,13 @@ HELPER_SETTINGS = dict(
     ],
     ROOT_URLCONF='tests.test_utils.urls',
     INSTALLED_APPS=[
+        'easy_thumbnails',
         'filer',
+        'taggit',
+        'taggit_autosuggest',
         'meta',
         'meta_mixin',
+        'djangocms_page_tags',
         'tests.test_utils',
     ],
     LANGUAGE_CODE='en',

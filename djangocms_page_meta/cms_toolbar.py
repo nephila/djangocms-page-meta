@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import, print_function, unicode_literals
+
 from cms.api import get_page_draft
 from cms.toolbar.items import Break
 from cms.toolbar_base import CMSToolbar
@@ -17,7 +19,7 @@ except ImportError:
     from cms.cms_toolbar import PAGE_MENU_SECOND_BREAK
 
 PAGE_META_MENU_TITLE = _('Meta-information')
-PAGE_META_ITEM_TITLE = _(u'Common')
+PAGE_META_ITEM_TITLE = _('Common')
 
 
 @toolbar_pool.register
@@ -55,7 +57,7 @@ class PageToolbarMeta(CMSToolbar):
                     url = reverse('admin:djangocms_page_meta_pagemeta_change',
                                   args=(page_extension.pk,))
                 else:
-                    url = "%s?extended_object=%s" % (
+                    url = '%s?extended_object=%s' % (
                         reverse('admin:djangocms_page_meta_pagemeta_add'),
                         self.page.pk)
             except NoReverseMatch:
@@ -76,7 +78,7 @@ class PageToolbarMeta(CMSToolbar):
                         url = reverse('admin:djangocms_page_meta_titlemeta_change',
                                       args=(title_extension.pk,))
                     else:
-                        url = "%s?extended_object=%s" % (
+                        url = '%s?extended_object=%s' % (
                             reverse('admin:djangocms_page_meta_titlemeta_add'),
                             title.pk)
                 except NoReverseMatch:

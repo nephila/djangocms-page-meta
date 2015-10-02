@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import, print_function, unicode_literals
+
 from django.conf import settings
 from django.utils.functional import SimpleLazyObject
+
 from djangocms_page_meta import models
 from djangocms_page_meta.utils import get_page_meta
 
@@ -81,3 +84,40 @@ class PageMetaUtilsTest(BaseTest):
         request = self.get_page_request(SimpleLazyObject(lambda: None), self.user, '/')
         meta = get_page_meta(request.current_page, 'en')
         self.assertIsNone(meta)
+
+    def test_tags(self):
+        tags1 = ('pagetag.1', 'pagetag.2')
+        tags2 = ('titletag.1', 'titletag.2')
+        try:
+            from djangocms_page_tags.models import PageTags, TitleTags
+        except ImportError:
+            self.skipTest('djangocms_page_tags not installed')
+        page1, page2 = self.get_pages()
+        page_ext = PageTags.objects.create(extended_object=page1)
+        page_ext.tags.add(*tags1)
+        title_ext = TitleTags.objects.create(extended_object=page1.get_title_obj('en'))
+        title_ext.tags.add(*tags2)
+        title_ext = TitleTags.objects.create(extended_object=page2.get_title_obj('en'))
+        title_ext.tags.add(*tags2)
+
+        for page in (page1, page2):
+            page_meta = models.PageMeta.objects.create(extended_object=page)
+            for key, val in self.page_data.items():
+                setattr(page_meta, key, val)
+            for key, val in self.og_data.items():
+                setattr(page_meta, key, val)
+            page_meta.save()
+            page.reload()
+
+        for lang in self.languages:
+            page1.publish(lang)
+            page2.publish(lang)
+        page1 = page1.get_public_object()
+        page2 = page2.get_public_object()
+
+        meta1 = get_page_meta(page1, 'en')
+        meta2 = get_page_meta(page2, 'en')
+        for tag in (tags2 + tags1):
+            self.assertTrue(tag in meta1.tag)
+        for tag in tags2:
+            self.assertTrue(tag in meta2.tag)
