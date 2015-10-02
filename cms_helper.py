@@ -11,9 +11,13 @@ HELPER_SETTINGS = dict(
     ],
     ROOT_URLCONF='tests.test_utils.urls',
     INSTALLED_APPS=[
+        'easy_thumbnails',
         'filer',
+        'taggit',
+        'taggit_autosuggest',
         'meta',
         'meta_mixin',
+        'djangocms_page_tags',
         'tests.test_utils',
     ],
     LANGUAGE_CODE='en',

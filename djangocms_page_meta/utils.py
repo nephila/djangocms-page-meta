@@ -48,7 +48,7 @@ def get_page_meta(page, language):
             if titlemeta.description:
                 meta.description = titlemeta.description.strip()
             if titlemeta.keywords:
-                meta.keywords = titlemeta.keywords.strip().split(",")
+                meta.keywords = titlemeta.keywords.strip().split(',')
             meta.locale = titlemeta.locale
             meta.og_description = titlemeta.og_description.strip()
             if not meta.og_description:
@@ -88,12 +88,12 @@ def get_page_meta(page, language):
                 if pagemeta.og_author_url:
                     meta.og_author_url = pagemeta.og_author_url
                 try:
-                    from djangocms_page_meta.utils import get_title_tags, get_page_meta
-                    tags = get_title_tags(page, language)
-                    tags += get_page_meta(page, language)
-                    meta.tag = ",".join(tags)
+                    from djangocms_page_tags.utils import get_title_tags, get_page_tags
+                    tags = list(get_title_tags(page, language))
+                    tags += list(get_page_tags(page))
+                    meta.tag = ','.join([tag.name for tag in tags])
                 except ImportError:
-                    # djangocms-page-meta not available
+                    # djangocms-page-tags not available
                     pass
             if not meta.image and pagemeta.image:
                 meta.image = pagemeta.image.url
