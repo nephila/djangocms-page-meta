@@ -4,6 +4,13 @@
 History
 *******
 
+0.5.6 (2015-10-03)
+==================
+
+* Fix error when retrieing tags from djangocms-page-tags
+* Add support for django CMS 3.2
+* Add support for Django 1.8
+
 0.5.5 (2015-08-21)
 ==================
 
