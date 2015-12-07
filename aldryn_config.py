@@ -5,8 +5,8 @@ from aldryn_client import forms
 
 class Form(forms.BaseForm):
 
-    META_SITE_PROTOCOL = forms.CharField('META_SITE_PROTOCOL', default='', required=True)
-    META_SITE_DOMAIN = forms.CharField('META_SITE_DOMAIN', default='', required=True)
+    META_SITE_PROTOCOL = forms.CharField('META_SITE_PROTOCOL', required=True)
+    META_SITE_DOMAIN = forms.CharField('META_SITE_DOMAIN', required=True)
     META_SITE_TYPE = forms.CharField('META_SITE_TYPE', required=False)
     META_SITE_NAME = forms.CharField('META_SITE_NAME', required=False)
     META_INCLUDE_KEYWORDS = forms.CharField('META_INCLUDE_KEYWORDS', required=False)
