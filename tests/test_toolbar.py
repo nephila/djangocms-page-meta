@@ -52,7 +52,10 @@ class ToolbarTest(BaseTest):
         toolbar.get_left_items()
         page_menu = toolbar.menus['page']
         meta_menu = page_menu.find_items(SubMenu, name=force_unicode(PAGE_META_MENU_TITLE))[0].item
-        self.assertEqual(len(meta_menu.find_items(ModalItem, name="%s ..." % force_unicode(PAGE_META_ITEM_TITLE))), 1)
+        try:
+            self.assertEqual(len(meta_menu.find_items(ModalItem, name="%s..." % force_unicode(PAGE_META_ITEM_TITLE))), 1)
+        except AssertionError:
+            self.assertEqual(len(meta_menu.find_items(ModalItem, name="%s ..." % force_unicode(PAGE_META_ITEM_TITLE))), 1)
 
     @override_settings(CMS_PERMISSION=True)
     def test_perm_permissions(self):
@@ -80,7 +83,10 @@ class ToolbarTest(BaseTest):
         toolbar.get_left_items()
         page_menu = toolbar.menus['page']
         meta_menu = page_menu.find_items(SubMenu, name=force_unicode(PAGE_META_MENU_TITLE))[0].item
-        self.assertEqual(len(meta_menu.find_items(ModalItem, name="%s ..." % force_unicode(PAGE_META_ITEM_TITLE))), 1)
+        try:
+            self.assertEqual(len(meta_menu.find_items(ModalItem, name="%s..." % force_unicode(PAGE_META_ITEM_TITLE))), 1)
+        except AssertionError:
+            self.assertEqual(len(meta_menu.find_items(ModalItem, name="%s ..." % force_unicode(PAGE_META_ITEM_TITLE))), 1)
         self.assertEqual(len(meta_menu.find_items(ModalItem)), len(self.languages) + 1)
 
     def test_toolbar_with_items(self):
@@ -95,13 +101,21 @@ class ToolbarTest(BaseTest):
         toolbar.get_left_items()
         page_menu = toolbar.menus['page']
         meta_menu = page_menu.find_items(SubMenu, name=force_unicode(PAGE_META_MENU_TITLE))[0].item
-        pagemeta_menu = meta_menu.find_items(ModalItem, name="%s ..." % force_unicode(PAGE_META_ITEM_TITLE))
-        self.assertEqual(len(pagemeta_menu), 1)
+        try:
+            pagemeta_menu = meta_menu.find_items(ModalItem, name="%s..." % force_unicode(PAGE_META_ITEM_TITLE))
+            self.assertEqual(len(pagemeta_menu), 1)
+        except AssertionError:
+            pagemeta_menu = meta_menu.find_items(ModalItem, name="%s ..." % force_unicode(PAGE_META_ITEM_TITLE))
+            self.assertEqual(len(pagemeta_menu), 1)
         self.assertTrue(pagemeta_menu[0].item.url.startswith(reverse('admin:djangocms_page_meta_pagemeta_change', args=(page_ext.pk,))))
         for title in page1.title_set.all():
             language = get_language_object(title.language)
-            titlemeta_menu = meta_menu.find_items(ModalItem, name="%s ..." % language['name'])
-            self.assertEqual(len(titlemeta_menu), 1)
+            try:
+                titlemeta_menu = meta_menu.find_items(ModalItem, name="%s..." % language['name'])
+                self.assertEqual(len(titlemeta_menu), 1)
+            except AssertionError:
+                titlemeta_menu = meta_menu.find_items(ModalItem, name="%s ..." % language['name'])
+                self.assertEqual(len(titlemeta_menu), 1)
             try:
                 title_ext = TitleMeta.objects.get(extended_object_id=title.pk)
                 self.assertTrue(titlemeta_menu[0].item.url.startswith(reverse('admin:djangocms_page_meta_titlemeta_change', args=(title_ext.pk,))))
