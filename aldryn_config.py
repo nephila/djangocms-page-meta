@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 from aldryn_client import forms
+from django.utils.translation import ugettext_lazy as _
 
 OBJECT_TYPES = (
     ('Article', _('Article')),
     ('Website', _('Website')),
 )
+
 
 class Form(forms.BaseForm):
 
