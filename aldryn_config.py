@@ -16,7 +16,7 @@ class Form(forms.BaseForm):
     META_IMAGE_URL = forms.CharField('META_IMAGE_URL', required=False)
     META_USE_OG_PROPERTIES = forms.CheckboxField('META_USE_OG_PROPERTIES', required=False)
     META_USE_TWITTER_PROPERTIES = forms.CheckboxField('META_USE_TWITTER_PROPERTIES', required=False)
-    META_USE_GOOGLEPLUS_PROPERTIES = forms.CheckboxField('META_USE_GOOGLEPLUS_PROPERTIESS', required=False)
+    META_USE_GOOGLEPLUS_PROPERTIES = forms.CheckboxField('META_USE_GOOGLEPLUS_PROPERTIES', required=False)
 
     def to_settings(self, data, settings):
         settings['META_SITE_PROTOCOL'] = data['META_SITE_PROTOCOL']
