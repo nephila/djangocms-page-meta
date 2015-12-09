@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
-from django.conf import settings
 from aldryn_client import forms
 
+OBJECT_TYPES = (
+    ('Article', _('Article')),
+    ('Website', _('Website')),
+)
 
 class Form(forms.BaseForm):
 
     META_SITE_PROTOCOL = forms.CharField('META_SITE_PROTOCOL', required=True)
     META_SITE_DOMAIN = forms.CharField('META_SITE_DOMAIN', required=True)
-    META_SITE_TYPE = forms.SelectField('META_SITE_TYPE', choices=settings.OBJECT_TYPES)
+    META_SITE_TYPE = forms.SelectField('META_SITE_TYPE', choices=OBJECT_TYPES)
     META_SITE_NAME = forms.CharField('META_SITE_NAME', required=False)
     META_IMAGE_URL = forms.CharField('META_IMAGE_URL', required=False)
     META_USE_OG_PROPERTIES = forms.CheckboxField('META_USE_OG_PROPERTIES', required=False)
