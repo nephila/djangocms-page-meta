@@ -15,13 +15,28 @@ PROTOCOLS = (
 
 class Form(forms.BaseForm):
 
-    META_SITE_PROTOCOL = forms.SelectField('META_SITE_PROTOCOL', choices=PROTOCOLS)
-    META_SITE_TYPE = forms.SelectField('META_SITE_TYPE', choices=OBJECT_TYPES)
+    META_SITE_PROTOCOL = forms.SelectField(
+        'META_SITE_PROTOCOL',
+        choices=PROTOCOLS
+    )
+    META_SITE_TYPE = forms.SelectField(
+        'META_SITE_TYPE',
+        choices=OBJECT_TYPES
+    )
     META_SITE_NAME = forms.CharField('META_SITE_NAME', required=False)
     META_IMAGE_URL = forms.CharField('META_IMAGE_URL', required=False)
-    META_USE_OG_PROPERTIES = forms.CheckboxField('META_USE_OG_PROPERTIES', required=False)
-    META_USE_TWITTER_PROPERTIES = forms.CheckboxField('META_USE_TWITTER_PROPERTIES', required=False)
-    META_USE_GOOGLEPLUS_PROPERTIES = forms.CheckboxField('META_USE_GOOGLEPLUS_PROPERTIES', required=False)
+    META_USE_OG_PROPERTIES = forms.CheckboxField(
+        'META_USE_OG_PROPERTIES',
+        required=False
+    )
+    META_USE_TWITTER_PROPERTIES = forms.CheckboxField(
+        'META_USE_TWITTER_PROPERTIES',
+        required=False
+    )
+    META_USE_GOOGLEPLUS_PROPERTIES = forms.CheckboxField(
+        'META_USE_GOOGLEPLUS_PROPERTIES',
+        required=False
+    )
 
     def to_settings(self, data, settings):
         settings['META_SITE_PROTOCOL'] = data['META_SITE_PROTOCOL']
