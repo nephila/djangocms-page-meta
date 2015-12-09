@@ -7,10 +7,15 @@ OBJECT_TYPES = (
     ('Website', 'Website'),
 )
 
+PROTOCOLS = (
+    ('http', 'http'),
+    ('https', 'https'),
+)
+
 
 class Form(forms.BaseForm):
 
-    META_SITE_PROTOCOL = forms.CharField('META_SITE_PROTOCOL', required=True)
+    META_SITE_PROTOCOL = forms.SelectField('META_SITE_PROTOCOL', choices=PROTOCOLS)
     META_SITE_TYPE = forms.SelectField('META_SITE_TYPE', choices=OBJECT_TYPES)
     META_SITE_NAME = forms.CharField('META_SITE_NAME', required=False)
     META_IMAGE_URL = forms.CharField('META_IMAGE_URL', required=False)
