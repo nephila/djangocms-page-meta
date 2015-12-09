@@ -4,9 +4,4 @@ include HISTORY.rst
 include LICENSE
 include README.rst
 include requirements.txt
-recursive-include */media *
-recursive-include */boilerplates *
-recursive-include */templates *
-recursive-include */static *
-recursive-include */locale *
-
+recursive-include djangocms_page_meta *.html *.png *.gif *js *jpg *jpeg *svg *py *po *mo *css
