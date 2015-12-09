@@ -42,8 +42,8 @@ class Form(forms.BaseForm):
         settings['META_SITE_PROTOCOL'] = data['META_SITE_PROTOCOL']
         settings['META_SITE_TYPE'] = data['META_SITE_TYPE']
         settings['META_SITE_NAME'] = data['META_SITE_NAME']
-        settings['META_INCLUDE_KEYWORDS'] = False
-        settings['META_DEFAULT_KEYWORDS'] = False
+        settings['META_INCLUDE_KEYWORDS'] = []
+        settings['META_DEFAULT_KEYWORDS'] = []
         settings['META_IMAGE_URL'] = data['META_IMAGE_URL']
         settings['META_USE_OG_PROPERTIES'] = data['META_USE_OG_PROPERTIES']
         settings['META_USE_TWITTER_PROPERTIES'] = data['META_USE_TWITTER_PROPERTIES']
