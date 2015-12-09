@@ -20,7 +20,6 @@ class Form(forms.BaseForm):
 
     def to_settings(self, data, settings):
         settings['META_SITE_PROTOCOL'] = data['META_SITE_PROTOCOL']
-        settings['META_SITE_DOMAIN'] = data['META_SITE_DOMAIN']
         settings['META_SITE_TYPE'] = data['META_SITE_TYPE']
         settings['META_SITE_NAME'] = data['META_SITE_NAME']
         settings['META_INCLUDE_KEYWORDS'] = False
