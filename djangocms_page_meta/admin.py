@@ -33,7 +33,7 @@ class PageMetaAdmin(PageExtensionAdmin):
 
     class Media:
         css = {
-            'all': ('%sdjangocms_page_meta/css/%s' % (
+            'all': ('{0!s}djangocms_page_meta/css/{1!s}'.format(
                 settings.STATIC_URL, 'djangocms_page_meta_admin.css'),)
         }
 
@@ -51,7 +51,7 @@ class TitleMetaAdmin(TitleExtensionAdmin):
 
     class Media:
         css = {
-            'all': ('%sdjangocms_page_meta/css/%s' % (
+            'all': ('{0!s}djangocms_page_meta/css/{1!s}'.format(
                 settings.STATIC_URL, 'djangocms_page_meta_admin.css'),)
         }
 
