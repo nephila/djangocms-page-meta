@@ -25,8 +25,8 @@ class TemplateMetaTest(BaseTest):
 
         response = self.client.get('/en/')
         self.assertContains(response, '<meta name="twitter:domain" content="example.com">')
-        self.assertContains(response, '<meta itemprop="datePublished" content="%s">' % page1.publication_date.isoformat())
-        self.assertContains(response, '<meta property="article:expiration_time" content="%s">' % page1.publication_end_date.isoformat())
+        self.assertContains(response, '<meta itemprop="datePublished" content="{0!s}">'.format(page1.publication_date.isoformat()))
+        self.assertContains(response, '<meta property="article:expiration_time" content="{0!s}">'.format(page1.publication_end_date.isoformat()))
         self.assertContains(response, '<meta property="article:publisher" content="https://facebook.com/FakeUser">')
 
     def test_title_meta(self):

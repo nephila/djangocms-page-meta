@@ -57,7 +57,7 @@ class PageToolbarMeta(CMSToolbar):
                     url = reverse('admin:djangocms_page_meta_pagemeta_change',
                                   args=(page_extension.pk,))
                 else:
-                    url = '%s?extended_object=%s' % (
+                    url = '{0!s}?extended_object={1!s}'.format(
                         reverse('admin:djangocms_page_meta_pagemeta_add'),
                         self.page.pk)
             except NoReverseMatch:
@@ -78,7 +78,7 @@ class PageToolbarMeta(CMSToolbar):
                         url = reverse('admin:djangocms_page_meta_titlemeta_change',
                                       args=(title_extension.pk,))
                     else:
-                        url = '%s?extended_object=%s' % (
+                        url = '{0!s}?extended_object={1!s}'.format(
                             reverse('admin:djangocms_page_meta_titlemeta_add'),
                             title.pk)
                 except NoReverseMatch:

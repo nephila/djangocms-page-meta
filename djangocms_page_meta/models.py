@@ -90,7 +90,7 @@ class PageMeta(PageExtension):
         verbose_name = _('Page meta info (all languages)')
 
     def __str__(self):
-        return 'Page meta for %s' % self.extended_object
+        return 'Page meta for {0!s}'.format(self.extended_object)
 extension_pool.register(PageMeta)
 
 
@@ -120,7 +120,7 @@ class TitleMeta(TitleExtension):
         verbose_name = _('Page meta info (language-dependent)')
 
     def __str__(self):
-        return 'Title Meta for %s' % self.extended_object
+        return 'Title Meta for {0!s}'.format(self.extended_object)
 
     @property
     def locale(self):
