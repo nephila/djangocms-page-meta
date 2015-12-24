@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, print_function, unicode_literals
 
-from aldryn_snake.template_api import registry
+try:
+    from aldryn_snake.template_api import registry
+except InvocationError:
+    registry = None
+
 from cms.extensions import PageExtension, TitleExtension
 from cms.extensions.extension_pool import extension_pool
 from cms.models import Page, Title
@@ -161,4 +165,5 @@ def cleanup_titlemeta(sender, instance, **kwargs):
                         instance.extended_object.language)
     cache.delete(key)
 
-registry.add_to_head(get_metatags)
+if registry:
+    registry.add_to_head(get_metatags)
