@@ -79,8 +79,10 @@ def get_page_meta(page, language):
             meta.twitter_author = pagemeta.twitter_author
             meta.gplus_type = pagemeta.gplus_type
             meta.gplus_author = pagemeta.gplus_author
-            meta.published_time = page.publication_date.isoformat()
-            meta.modified_time = page.changed_date.isoformat()
+            if page.publication_date:
+                meta.published_time = page.publication_date.isoformat()
+            if page.changed_date:
+                meta.modified_time = page.changed_date.isoformat()
             if page.publication_end_date:
                 meta.expiration_time = page.publication_end_date.isoformat()
             if meta.og_type == 'article':
