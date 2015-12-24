@@ -3,7 +3,7 @@ from __future__ import absolute_import, print_function, unicode_literals
 
 try:
     from aldryn_snake.template_api import registry
-except InvocationError:
+except:
     registry = None
 
 from cms.extensions import PageExtension, TitleExtension
