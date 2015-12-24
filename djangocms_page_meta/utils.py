@@ -2,8 +2,9 @@
 from __future__ import absolute_import, print_function, unicode_literals
 
 import django
-from django.utils.translation import get_language_from_request
+
 from django.template.loader import render_to_string
+from django.utils.translation import get_language_from_request
 
 if django.get_version() >= '1.8':
     from django.template.loader import render_to_string
@@ -13,6 +14,7 @@ else:
     def render_to_string(template_name, context=None, request=None):
         context_instance = RequestContext(request) if request else None
         return loader.render_to_string(template_name, context, context_instance)
+
 
 def get_cache_key(page, language):
     """

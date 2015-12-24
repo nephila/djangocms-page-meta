@@ -1,11 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, print_function, unicode_literals
 
-try:
-    from aldryn_snake.template_api import registry
-except:
-    registry = None
-
 from cms.extensions import PageExtension, TitleExtension
 from cms.extensions.extension_pool import extension_pool
 from cms.models import Page, Title
@@ -18,8 +13,14 @@ from django.utils.six import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 from filer.fields.file import FilerFileField
 
+from .utils import get_metatags  # noqa
 from .utils import get_cache_key
-from .utils import get_metatags # noqa
+
+try:
+    from aldryn_snake.template_api import registry
+except:
+    registry = None
+
 
 OG_TYPE_CHOICES = (
     ('article', _('Article')),
