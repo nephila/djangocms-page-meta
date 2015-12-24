@@ -13,7 +13,14 @@ from django.utils.six import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 from filer.fields.file import FilerFileField
 
+from .utils import get_metatags  # noqa
 from .utils import get_cache_key
+
+try:
+    from aldryn_snake.template_api import registry
+except:
+    registry = None
+
 
 OG_TYPE_CHOICES = (
     ('article', _('Article')),
@@ -158,3 +165,6 @@ def cleanup_titlemeta(sender, instance, **kwargs):
     key = get_cache_key(instance.extended_object.page,
                         instance.extended_object.language)
     cache.delete(key)
+
+if registry:
+    registry.add_to_head(get_metatags)

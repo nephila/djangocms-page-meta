@@ -1,0 +1,8 @@
+{
+    "package-name": "djangocms-page-meta",
+    "installed-apps": [
+        "meta",
+        "meta_mixin",
+        "djangocms_page_meta"
+    ]
+}

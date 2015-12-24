@@ -1,6 +1,18 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, print_function, unicode_literals
 
+import django
+from django.utils.translation import get_language_from_request
+
+if django.get_version() >= '1.8':
+    from django.template.loader import render_to_string
+else:
+    from django.template import loader, RequestContext
+
+    def render_to_string(template_name, context=None, request=None):
+        context_instance = RequestContext(request) if request else None
+        return loader.render_to_string(template_name, context, context_instance)
+
 
 def get_cache_key(page, language):
     """
@@ -79,8 +91,10 @@ def get_page_meta(page, language):
             meta.twitter_author = pagemeta.twitter_author
             meta.gplus_type = pagemeta.gplus_type
             meta.gplus_author = pagemeta.gplus_author
-            meta.published_time = page.publication_date.isoformat()
-            meta.modified_time = page.changed_date.isoformat()
+            if page.publication_date:
+                meta.published_time = page.publication_date.isoformat()
+            if page.changed_date:
+                meta.modified_time = page.changed_date.isoformat()
             if page.publication_end_date:
                 meta.expiration_time = page.publication_end_date.isoformat()
             if meta.og_type == 'article':
@@ -102,3 +116,13 @@ def get_page_meta(page, language):
             pass
         meta.url = page.get_absolute_url(language)
     return meta
+
+
+def get_metatags(request):
+    language = get_language_from_request(request, check_path=True)
+    meta = get_page_meta(request.current_page, language)
+    return render_to_string(
+        request=request,
+        template_name='djangocms_page_meta/meta.html',
+        context={'meta': meta}
+    )
