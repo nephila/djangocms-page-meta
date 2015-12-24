@@ -2,8 +2,6 @@
 from __future__ import absolute_import, print_function, unicode_literals
 
 import django
-
-from django.template.loader import render_to_string
 from django.utils.translation import get_language_from_request
 
 if django.get_version() >= '1.8':
@@ -121,4 +119,8 @@ def get_page_meta(page, language):
 def get_metatags(request):
     language = get_language_from_request(request, check_path=True)
     meta = get_page_meta(request.current_page, language)
-    return render_to_string(request=request, template_name='djangocms_page_meta/meta.html', context={'meta': meta})
+    return render_to_string(
+        request=request,
+        template_name='djangocms_page_meta/meta.html',
+        context={'meta': meta}
+    )
