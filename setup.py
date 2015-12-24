@@ -46,7 +46,7 @@ setup(
     keywords='django cms, meta tags, OpenGraph, Twitter Cards, Google+',
     test_suite='cms_helper.run',
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Framework :: Django',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
