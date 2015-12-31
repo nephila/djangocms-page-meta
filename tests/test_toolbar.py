@@ -77,17 +77,36 @@ class ToolbarTest(BaseTest):
         Test that PageMeta/TitleMeta items are present for superuser
         """
         from cms.toolbar.toolbar import CMSToolbar
+        NEW_CMS_LANGS = {
+            1: [
+                {
+                    'code': 'en',
+                    'name': 'English',
+                    'public': True,
+                },
+                {
+                    'code': 'it',
+                    'name': 'Italiano',
+                    'public': True,
+                },
+            ],
+            'default': {
+                'hide_untranslated': False,
+            },
+        }
+
         page1, page2 = self.get_pages()
-        request = self.get_page_request(page1, self.user, '/', edit=True)
-        toolbar = CMSToolbar(request)
-        toolbar.get_left_items()
-        page_menu = toolbar.menus['page']
-        meta_menu = page_menu.find_items(SubMenu, name=force_unicode(PAGE_META_MENU_TITLE))[0].item
-        try:
-            self.assertEqual(len(meta_menu.find_items(ModalItem, name="%s..." % force_unicode(PAGE_META_ITEM_TITLE))), 1)
-        except AssertionError:
-            self.assertEqual(len(meta_menu.find_items(ModalItem, name="%s ..." % force_unicode(PAGE_META_ITEM_TITLE))), 1)
-        self.assertEqual(len(meta_menu.find_items(ModalItem)), len(self.languages) + 1)
+        with self.settings(CMS_LANGUAGES=NEW_CMS_LANGS):
+            request = self.get_page_request(page1, self.user, '/', edit=True)
+            toolbar = CMSToolbar(request)
+            toolbar.get_left_items()
+            page_menu = toolbar.menus['page']
+            meta_menu = page_menu.find_items(SubMenu, name=force_unicode(PAGE_META_MENU_TITLE))[0].item
+            try:
+                self.assertEqual(len(meta_menu.find_items(ModalItem, name="%s..." % force_unicode(PAGE_META_ITEM_TITLE))), 1)
+            except AssertionError:
+                self.assertEqual(len(meta_menu.find_items(ModalItem, name="%s ..." % force_unicode(PAGE_META_ITEM_TITLE))), 1)
+            self.assertEqual(len(meta_menu.find_items(ModalItem)), len(NEW_CMS_LANGS[1])+1)
 
     def test_toolbar_with_items(self):
         """
