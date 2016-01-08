@@ -6,7 +6,7 @@ from cms.toolbar.items import Break
 from cms.toolbar_base import CMSToolbar
 from cms.toolbar_pool import toolbar_pool
 from cms.utils import get_cms_setting
-from cms.utils.i18n import get_language_object
+from cms.utils.i18n import get_language_list, get_language_object
 from cms.utils.permissions import has_page_change_permission
 from django.core.urlresolvers import NoReverseMatch, reverse
 from django.utils.translation import ugettext_lazy as _
@@ -64,11 +64,12 @@ class PageToolbarMeta(CMSToolbar):
                 # not in urls
                 pass
             else:
-                meta_menu.add_modal_item(PAGE_META_ITEM_TITLE,
-                                         url=url, disabled=not_edit_mode,
+                meta_menu.add_modal_item(PAGE_META_ITEM_TITLE, url=url, disabled=not_edit_mode,
                                          position=position)
             # Title tags
-            for title in self.page.title_set.all():
+            for title in self.page.title_set.filter(
+                language__in=get_language_list(self.page.site_id)
+            ):
                 try:
                     title_extension = TitleMeta.objects.get(extended_object_id=title.pk)
                 except TitleMeta.DoesNotExist:
@@ -80,13 +81,13 @@ class PageToolbarMeta(CMSToolbar):
                     else:
                         url = '%s?extended_object=%s' % (
                             reverse('admin:djangocms_page_meta_titlemeta_add'),
-                            title.pk)
+                            title.pk
+                        )
                 except NoReverseMatch:
                     # not in urls
                     pass
                 else:
                     position += 1
                     language = get_language_object(title.language)
-                    meta_menu.add_modal_item(language['name'],
-                                             url=url, disabled=not_edit_mode,
+                    meta_menu.add_modal_item(language['name'], url=url, disabled=not_edit_mode,
                                              position=position)
