@@ -4,6 +4,12 @@
 History
 *******
 
+0.5.7 (2016-01-08)
+==================
+
+* Fix handling of pages in non existing languages
+* Add support for Aldryn environment
+
 0.5.6 (2015-10-03)
 ==================
 

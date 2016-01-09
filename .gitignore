@@ -39,3 +39,4 @@ output/*/index.html
 docs/_build
 
 *.sqlite
+.eggs
