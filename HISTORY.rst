@@ -4,7 +4,7 @@
 History
 *******
 
-0.5.7 (2016-01-08)
+0.5.7 (2016-01-09)
 ==================
 
 * Fix handling of pages in non existing languages
