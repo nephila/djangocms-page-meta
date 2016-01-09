@@ -53,7 +53,7 @@ class ToolbarTest(BaseTest):
         page_menu = toolbar.menus['page']
         meta_menu = page_menu.find_items(SubMenu, name=force_text(PAGE_META_MENU_TITLE))[0].item
         try:
-            self.assertEqual(len(meta_menu.find_items(ModalItem, nname="{0}...".format(force_text(PAGE_META_ITEM_TITLE)))), 1)
+            self.assertEqual(len(meta_menu.find_items(ModalItem, name="{0}...".format(force_text(PAGE_META_ITEM_TITLE)))), 1)
         except AssertionError:
             self.assertEqual(len(meta_menu.find_items(ModalItem, name="{0} ...".format(force_text(PAGE_META_ITEM_TITLE)))), 1)
 
@@ -103,7 +103,7 @@ class ToolbarTest(BaseTest):
             page_menu = toolbar.menus['page']
             meta_menu = page_menu.find_items(SubMenu, name=force_text(PAGE_META_MENU_TITLE))[0].item
             try:
-                self.assertEqual(len(meta_menu.find_items(ModalItem, nname="{0}...".format(force_text(PAGE_META_ITEM_TITLE)))), 1)
+                self.assertEqual(len(meta_menu.find_items(ModalItem, name="{0}...".format(force_text(PAGE_META_ITEM_TITLE)))), 1)
             except AssertionError:
                 self.assertEqual(len(meta_menu.find_items(ModalItem, name="{0} ...".format(force_text(PAGE_META_ITEM_TITLE)))), 1)
             self.assertEqual(len(meta_menu.find_items(ModalItem)), len(NEW_CMS_LANGS[1])+1)
@@ -130,10 +130,10 @@ class ToolbarTest(BaseTest):
         for title in page1.title_set.all():
             language = get_language_object(title.language)
             try:
-                titlemeta_menu = pagemeta_menu.find_items(ModalItem, name='{0}...'.format(language['name']))
+                titlemeta_menu = meta_menu.find_items(ModalItem, name='{0}...'.format(language['name']))
                 self.assertEqual(len(titlemeta_menu), 1)
             except AssertionError:
-                titlemeta_menu = pagemeta_menu.find_items(ModalItem, name='{0} ...'.format(language['name']))
+                titlemeta_menu = meta_menu.find_items(ModalItem, name='{0} ...'.format(language['name']))
                 self.assertEqual(len(titlemeta_menu), 1)
             try:
                 title_ext = TitleMeta.objects.get(extended_object_id=title.pk)
