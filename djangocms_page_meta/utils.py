@@ -73,7 +73,7 @@ def get_page_meta(page, language):
                 meta.gplus_description = meta.description
             if titlemeta.image:
                 meta.image = title.titlemeta.image.url
-        except TitleMeta.DoesNotExist:
+        except (TitleMeta.DoesNotExist, AttributeError):
             if meta.description:
                 meta.og_description = meta.description
                 meta.twitter_description = meta.description
