@@ -24,7 +24,6 @@ class Form(forms.BaseForm):
         choices=OBJECT_TYPES
     )
     META_SITE_NAME = forms.CharField('Site name', required=False)
-    META_IMAGE_URL = forms.CharField('Base image url for OpenGraph', required=False)
     META_USE_OG_PROPERTIES = forms.CheckboxField(
         'Render the OpenGraph properties',
         required=False
@@ -34,7 +33,7 @@ class Form(forms.BaseForm):
         required=False
     )
     META_USE_GOOGLEPLUS_PROPERTIES = forms.CheckboxField(
-        'Render the Google propertie',
+        'Render the Google properties',
         required=False
     )
 
@@ -44,7 +43,6 @@ class Form(forms.BaseForm):
         settings['META_SITE_NAME'] = data['META_SITE_NAME']
         settings['META_INCLUDE_KEYWORDS'] = []
         settings['META_DEFAULT_KEYWORDS'] = []
-        settings['META_IMAGE_URL'] = data['META_IMAGE_URL']
         settings['META_USE_OG_PROPERTIES'] = data['META_USE_OG_PROPERTIES']
         settings['META_USE_TWITTER_PROPERTIES'] = data['META_USE_TWITTER_PROPERTIES']
         settings['META_USE_GOOGLEPLUS_PROPERTIES'] = data['META_USE_GOOGLEPLUS_PROPERTIES']
