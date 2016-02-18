@@ -3,11 +3,13 @@ from aldryn_client import forms
 
 
 OBJECT_TYPES = (
+    ('', '----'),
     ('Article', 'Article'),
     ('Website', 'Website'),
 )
 
 PROTOCOLS = (
+    ('', '----'),
     ('http', 'http'),
     ('https', 'https'),
 )
@@ -17,11 +19,13 @@ class Form(forms.BaseForm):
 
     META_SITE_PROTOCOL = forms.SelectField(
         'Site protocol',
-        choices=PROTOCOLS
+        choices=PROTOCOLS,
+        required=False
     )
     META_SITE_TYPE = forms.SelectField(
         'Site type',
-        choices=OBJECT_TYPES
+        choices=OBJECT_TYPES,
+        required=False
     )
     META_SITE_NAME = forms.CharField('Site name', required=False)
     META_USE_OG_PROPERTIES = forms.CheckboxField(
