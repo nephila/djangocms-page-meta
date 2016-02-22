@@ -4,6 +4,13 @@
 History
 *******
 
+
+0.5.8 (2016-02-23)
+==================
+
+* Improve Aldryn support
+* Catch AttributeError in get_page_meta
+
 0.5.7 (2016-01-09)
 ==================
 
