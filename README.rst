@@ -2,21 +2,33 @@
 djangocms-page-meta
 ===================
 
-.. image:: https://img.shields.io/pypi/v/djangocms-page-meta.svg
-        :target: https://pypi.python.org/pypi/djangocms-page-meta
-        :alt: Latest PyPI version
+.. image:: https://img.shields.io/pypi/v/djangocms-page-meta.svg?style=flat-square
+    :target: https://pypi.python.org/pypi/djangocms-page-meta
+    :alt: Latest PyPI version
 
-.. image:: https://img.shields.io/travis/nephila/djangocms-page-meta.svg
-        :target: https://travis-ci.org/nephila/djangocms-page-meta
-        :alt: Latest Travis CI build status
+.. image:: https://img.shields.io/pypi/dm/djangocms-page-meta.svg?style=flat-square
+    :target: https://pypi.python.org/pypi/djangocms-page-meta
+    :alt: Monthly downloads
 
-.. image:: https://img.shields.io/pypi/dm/djangocms-page-meta.svg
-        :target: https://pypi.python.org/pypi/djangocms-page-meta
-        :alt: Monthly downloads
+.. image:: https://img.shields.io/pypi/pyversions/djangocms-page-meta.svg?style=flat-square
+    :target: https://pypi.python.org/pypi/djangocms-page-meta
+    :alt: Python versions
 
-.. image:: https://coveralls.io/repos/nephila/djangocms-page-meta/badge.png
-        :target: https://coveralls.io/r/nephila/djangocms-page-meta
-        :alt: Test coverage
+.. image:: https://img.shields.io/travis/nephila/djangocms-page-meta.svg?style=flat-square
+    :target: https://travis-ci.org/nephila/djangocms-page-meta
+    :alt: Latest Travis CI build status
+
+.. image:: https://img.shields.io/coveralls/nephila/djangocms-page-meta/master.svg?style=flat-square
+    :target: https://coveralls.io/r/nephila/djangocms-page-meta?branch=master
+    :alt: Test coverage
+
+.. image:: https://img.shields.io/codecov/c/github/nephila/djangocms-page-meta/develop.svg?style=flat-square
+    :target: https://codecov.io/github/nephila/djangocms-page-meta
+    :alt: Test coverage
+
+.. image:: https://codeclimate.com/github/nephila/djangocms-page-meta/badges/gpa.svg?style=flat-square
+   :target: https://codeclimate.com/github/nephila/djangocms-page-meta
+   :alt: Code Climate
 
 Meta tag information for django CMS 3 pages
 
