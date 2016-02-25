@@ -81,7 +81,7 @@ Quickstart
 
 #. Configuration:
 
-    There is no special configuration for djangocms-page-meta, but make sure you set the necessary configuration for `django-meta`_.
+   There is no special configuration for djangocms-page-meta, but make sure you set the necessary configuration for `django-meta`_.
 
 #. That's all!
 
