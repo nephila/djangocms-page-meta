@@ -86,7 +86,7 @@ class PageMeta(PageExtension):
     )
     gplus_author = models.CharField(
         _('Author Google+ URL'), max_length=255, default='', blank=True,
-        help_text=_('Use the Google+ Name (together with '+') or the complete path to the page.')
+        help_text=_('Use the Google+ Name (together with "+")')
     )
     gplus_type = models.CharField(
         _('Resource type'), max_length=255, choices=GPLUS_TYPE_CHOICES,
