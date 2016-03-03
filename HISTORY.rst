@@ -4,7 +4,7 @@
 History
 *******
 
-0.5.10 (unreleased)
+0.5.10 (2016-03-03)
 ===================
 
 * Fix handling Google+ author URL
