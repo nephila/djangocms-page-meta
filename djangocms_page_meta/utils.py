@@ -92,6 +92,11 @@ def get_page_meta(page, language):
             meta.twitter_author = pagemeta.twitter_author
             meta.gplus_type = pagemeta.gplus_type
             meta.gplus_author = pagemeta.gplus_author
+            if not meta.gplus_author.startswith('http'):
+                if not meta.gplus_author.startswith('/'):
+                    meta.gplus_author = 'https://plus.google.com/{0}'.format(meta.gplus_author)
+                else:
+                    meta.gplus_author = 'https://plus.google.com{0}'.format(meta.gplus_author)
             if page.publication_date:
                 meta.published_time = page.publication_date.isoformat()
             if page.changed_date:

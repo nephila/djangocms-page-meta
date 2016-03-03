@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, print_function, unicode_literals
 
+from copy import copy
+
 from django.conf import settings
 from django.utils.functional import SimpleLazyObject
 
@@ -74,8 +76,26 @@ class PageMetaUtilsTest(BaseTest):
         page.reload()
 
         meta = get_page_meta(page, 'en')
-        self.assertEqual(meta.gplus_author, self.gplus_data['gplus_author'])
+        self.assertEqual(meta.gplus_author, 'https://plus.google.com/{0}'.format(self.gplus_data['gplus_author']))
         self.assertEqual(meta.gplus_type, self.gplus_data['gplus_type'])
+
+        new_data = copy(self.gplus_data)
+        new_data['gplus_author'] = 'https://plus.google.com/+SomeUser'
+        for key, val in new_data.items():
+            setattr(page_meta, key, val)
+        page_meta.save()
+        page.reload()
+        meta = get_page_meta(page, 'en')
+        self.assertEqual(meta.gplus_author, new_data['gplus_author'])
+
+        new_data = copy(self.gplus_data)
+        new_data['gplus_author'] = '/SomePage'
+        for key, val in new_data.items():
+            setattr(page_meta, key, val)
+        page_meta.save()
+        page.reload()
+        meta = get_page_meta(page, 'en')
+        self.assertEqual(meta.gplus_author, 'https://plus.google.com{0}'.format(new_data['gplus_author']))
 
     def test_none_page(self):
         meta = get_page_meta(None, 'en')
