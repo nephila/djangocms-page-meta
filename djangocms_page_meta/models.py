@@ -54,7 +54,7 @@ class PageMeta(PageExtension):
         help_text=_('Used if title image is empty.')
     )
     og_type = models.CharField(
-        _('Resource type'), max_length=255, choices=OG_TYPE_CHOICES,
+        _('Resource type'), max_length=255, choices=OG_TYPE_CHOICES, blank=True,
         help_text=_('Use Article for generic pages.')
     )
     og_author = models.ForeignKey(
@@ -82,14 +82,14 @@ class PageMeta(PageExtension):
         help_text=_('\'@\' characther not required.')
     )
     twitter_type = models.CharField(
-        _('Resource type'), max_length=255, choices=TWITTER_TYPE_CHOICES
+        _('Resource type'), max_length=255, choices=TWITTER_TYPE_CHOICES, blank=True
     )
     gplus_author = models.CharField(
         _('Author Google+ URL'), max_length=255, default='', blank=True,
         help_text=_('Use the Google+ Name (together with "+")')
     )
     gplus_type = models.CharField(
-        _('Resource type'), max_length=255, choices=GPLUS_TYPE_CHOICES,
+        _('Resource type'), max_length=255, choices=GPLUS_TYPE_CHOICES, blank=True,
         help_text=_('Use Article for generic pages.')
     )
 
