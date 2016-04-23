@@ -37,7 +37,7 @@ setup(
     include_package_data=True,
     install_requires=(
         'django-cms>=3.0',
-        'django-meta>=1.3',
+        'django-meta>=1.3b1',
         'django-filer>=0.9.5',
     ),
     license='BSD',
