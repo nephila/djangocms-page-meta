@@ -23,8 +23,6 @@ except:
     registry = None
 
 
-
-
 @python_2_unicode_compatible
 class PageMeta(PageExtension):
     image = FilerFileField(
