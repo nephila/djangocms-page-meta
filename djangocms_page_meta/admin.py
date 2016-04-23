@@ -7,11 +7,22 @@ from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
 from .forms import TitleMetaAdminForm
-from .models import PageMeta, TitleMeta
+from .models import GenericMetaAttribute, PageMeta, TitleMeta
+
+
+class GenericAttributePageInline(admin.TabularInline):
+    model = GenericMetaAttribute
+    fields = ('page', 'attribute', 'name', 'value')
+
+
+class GenericAttributeTitleInline(admin.TabularInline):
+    model = GenericMetaAttribute
+    fields = ('title', 'attribute', 'name', 'value')
 
 
 class PageMetaAdmin(PageExtensionAdmin):
     raw_id_fields = ('og_author',)
+    inlines = (GenericAttributePageInline,)
     fieldsets = (
         (None, {'fields': ('image',)}),
         (_('OpenGraph'), {
@@ -48,6 +59,7 @@ admin.site.register(PageMeta, PageMetaAdmin)
 
 class TitleMetaAdmin(TitleExtensionAdmin):
     form = TitleMetaAdminForm
+    inlines = (GenericAttributeTitleInline,)
 
     class Media:
         css = {

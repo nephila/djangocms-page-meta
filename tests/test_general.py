@@ -142,3 +142,25 @@ class PageMetaUtilsTest(BaseTest):
             self.assertTrue(tag in meta1.tag)
         for tag in tags2:
             self.assertTrue(tag in meta2.tag)
+
+    def test_custom_extra(self):
+        page1, __ = self.get_pages()
+        page_meta = models.PageMeta.objects.create(extended_object=page1)
+        page_meta.save()
+        title_meta = models.TitleMeta.objects.create(extended_object=page1.get_title_obj('en'))
+        title_meta.save()
+
+        models.GenericMetaAttribute.objects.create(
+            page=page_meta, attribute='custom', name='attr', value='foo'
+        )
+        models.GenericMetaAttribute.objects.create(
+            title=title_meta, attribute='custom', name='attr', value='bar'
+        )
+
+        page1.reload()
+
+        meta = get_page_meta(page1, 'en')
+        self.assertEqual(meta.extra_custom_props, [('custom', 'attr', 'bar'), ('custom', 'attr', 'foo')])
+
+        meta = get_page_meta(page1, 'it')
+        self.assertEqual(meta.extra_custom_props, [ ('custom', 'attr', 'foo')])

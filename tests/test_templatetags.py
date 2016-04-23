@@ -3,7 +3,7 @@ from __future__ import absolute_import, print_function, unicode_literals
 
 from datetime import timedelta
 
-from djangocms_page_meta.models import PageMeta, TitleMeta
+from djangocms_page_meta.models import GenericMetaAttribute, PageMeta, TitleMeta
 
 from . import BaseTest
 
@@ -19,6 +19,10 @@ class TemplateMetaTest(BaseTest):
         for key, val in self.og_data.items():
             setattr(page_ext, key, val)
         page_ext.save()
+
+        GenericMetaAttribute.objects.create(
+            page=page_ext, attribute='custom', name='attr', value='foo'
+        )
         page1.publication_end_date = page1.publication_date + timedelta(days=1)
         page1.publish('it')
         page1.publish('en')
@@ -28,6 +32,7 @@ class TemplateMetaTest(BaseTest):
         self.assertContains(response, '<meta itemprop="datePublished" content="%s">' % page1.publication_date.isoformat())
         self.assertContains(response, '<meta property="article:expiration_time" content="%s">' % page1.publication_end_date.isoformat())
         self.assertContains(response, '<meta property="article:publisher" content="https://facebook.com/FakeUser">')
+        self.assertContains(response, '<meta custom="attr" content="foo">')
 
     def test_title_meta(self):
         """
@@ -40,10 +45,16 @@ class TemplateMetaTest(BaseTest):
         for key, val in self.title_data.items():
             setattr(title_ext, key, val)
         title_ext.save()
+        GenericMetaAttribute.objects.create(
+            title=title_ext, attribute='custom', name='attr', value='foo-en'
+        )
         title_ext = TitleMeta.objects.create(extended_object=title_it)
         for key, val in self.title_data_it.items():
             setattr(title_ext, key, val)
         title_ext.save()
+        GenericMetaAttribute.objects.create(
+            title=title_ext, attribute='custom', name='attr', value='foo-it'
+        )
         page1.publish('it')
         page1.publish('en')
 
@@ -55,6 +66,7 @@ class TemplateMetaTest(BaseTest):
         self.assertContains(response, '<meta property="og:description" content="opengraph - lorem ipsum - italian">')
         self.assertContains(response, '<meta property="og:title" content="pagina uno">')
         self.assertContains(response, '<meta property="og:url" content="http://example.com/it/">')
+        self.assertContains(response, '<meta custom="attr" content="foo-it">')
 
         # English language
         response = self.client.get('/en/')
@@ -63,6 +75,7 @@ class TemplateMetaTest(BaseTest):
         self.assertContains(response, '<meta property="og:description" content="opengraph - lorem ipsum - english">')
         self.assertContains(response, '<meta property="og:title" content="page one">')
         self.assertContains(response, '<meta property="og:url" content="http://example.com/en/">')
+        self.assertContains(response, '<meta custom="attr" content="foo-en">')
 
     def test_fallbacks(self):
         """

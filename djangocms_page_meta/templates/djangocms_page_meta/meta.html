@@ -47,5 +47,6 @@
 		{% if meta.gplus_description %}{% googleplus_prop 'description' meta.gplus_description %}{% endif %}
 		{% if meta.image %}{% googleplus_prop 'image' meta.image %}{% endif %}
 	{% endif %}
+    {% custom_meta_extras meta.extra_custom_props %}
     {% endautoescape %}
 {% endif %}
