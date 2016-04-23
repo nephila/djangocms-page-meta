@@ -8,7 +8,8 @@ History
 ================
 
 * Let settings be used as defaults
-
+* Add support for fb_pages attribute
+* Add support for generic meta attributes
 
 0.5.11 (2016-03-17)
 ===================

@@ -47,10 +47,12 @@ def get_page_meta(page, language):
         meta_key = get_cache_key(page, language)
     except AttributeError:
         return None
+    gplus_server = 'https://plus.google.com'
     meta = cache.get(meta_key)
     if not meta:
         meta = Meta()
         title = page.get_title_obj(language)
+        meta.extra_custom_props = []
 
         meta.title = page.get_page_title(language)
         if not meta.title:
@@ -76,13 +78,14 @@ def get_page_meta(page, language):
                 meta.gplus_description = meta.description
             if titlemeta.image:
                 meta.image = title.titlemeta.image.url
+            for item in titlemeta.extra.all():
+                meta.extra_custom_props.append((item.attribute, item.name, item.value))
         except (TitleMeta.DoesNotExist, AttributeError):
+            # Skipping title-level metas
             if meta.description:
                 meta.og_description = meta.description
                 meta.twitter_description = meta.description
                 meta.gplus_description = meta.description
-            # Skipping title-level metas
-            pass
         defaults = {
             'object_type': meta_settings.FB_TYPE,
             'og_type': meta_settings.FB_TYPE,
@@ -111,9 +114,9 @@ def get_page_meta(page, language):
             meta.gplus_author = pagemeta.gplus_author
             if not meta.gplus_author.startswith('http'):
                 if not meta.gplus_author.startswith('/'):
-                    meta.gplus_author = 'https://plus.google.com/{0}'.format(meta.gplus_author)
+                    meta.gplus_author = '{0}/{1}'.format(gplus_server, meta.gplus_author)
                 else:
-                    meta.gplus_author = 'https://plus.google.com{0}'.format(meta.gplus_author)
+                    meta.gplus_author = '{0}{1}'.format(gplus_server, meta.gplus_author)
             if page.publication_date:
                 meta.published_time = page.publication_date.isoformat()
             if page.changed_date:
@@ -133,6 +136,8 @@ def get_page_meta(page, language):
                     pass
             if not meta.image and pagemeta.image:
                 meta.image = pagemeta.image.url
+            for item in pagemeta.extra.all():
+                meta.extra_custom_props.append((item.attribute, item.name, item.value))
         except PageMeta.DoesNotExist:
             pass
         for attr, val in defaults.items():

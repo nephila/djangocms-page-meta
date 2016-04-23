@@ -76,7 +76,17 @@ class PageMeta(PageExtension):
         verbose_name = _('Page meta info (all languages)')
 
     def __str__(self):
-        return 'Page meta for %s' % self.extended_object
+        return _('Page Meta for {0}').format(self.extended_object)
+
+    def copy_relations(self, oldinstance, language):
+        for item in oldinstance.extra.all():
+            if not item.__class__.objects.filter(
+                attribute=item.attribute, name=item.name, value=item.value, page=self
+            ).exists():
+                item.pk = None
+                item.page = self
+                item.save()
+
 extension_pool.register(PageMeta)
 
 
@@ -106,7 +116,7 @@ class TitleMeta(TitleExtension):
         verbose_name = _('Page meta info (language-dependent)')
 
     def __str__(self):
-        return 'Title Meta for %s' % self.extended_object
+        return _('Title Meta for {0}').format(self.extended_object)
 
     @property
     def locale(self):
@@ -115,7 +125,41 @@ class TitleMeta(TitleExtension):
         else:
             return None
 
+    def copy_relations(self, oldinstance, language):
+        for item in oldinstance.extra.all():
+            item.pk = None
+            item.title = self
+            item.save()
+
 extension_pool.register(TitleMeta)
+
+
+@python_2_unicode_compatible
+class GenericMetaAttribute(models.Model):
+    page = models.ForeignKey(PageMeta, null=True, blank=True, related_name='extra')
+    title = models.ForeignKey(TitleMeta, null=True, blank=True, related_name='extra')
+    attribute = models.CharField(
+        _('attribute'), max_length=200, default='name', help_text=_('Custom attribute'),
+    )
+    name = models.CharField(
+        _('name'), max_length=200, help_text=_('Meta attribute name'),
+    )
+    value = models.CharField(
+        _('value'), max_length=2000, help_text=_('Meta attribute value'),
+    )
+
+    class Meta:
+        verbose_name = _('Page meta info (language-dependent)')
+        unique_together = (
+            ('page', 'attribute', 'name', 'value'),
+            ('title', 'attribute', 'name', 'value'),
+        )
+
+    def __str__(self):
+        if self.page:
+            return _('Attribute {0} for page {1}').format(self.name, self.page)
+        if self.title:
+            return _('Attribute {0} for title {1}').format(self.name, self.title)
 
 
 # Cache cleanup when deleting pages / editing page extensions

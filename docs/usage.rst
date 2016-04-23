@@ -51,7 +51,7 @@ Supported attributes
 ********************
 
 ``djangocms-page-meta`` currently offers partial support for `OpenGraph`_,
-`Twitter Cards`_ and `Google+ Snippets`_. As a generic application 
+`Twitter Cards`_ and `Google+ Snippets`_. As a generic application
 ``djangocms-page-meta`` cannot cover every use case while still being
 useful to most people.
 
@@ -85,6 +85,7 @@ The following properties are supported:
 * article:tag
 * fb:app_id
 * fb:profile_id
+* fb:pages
 
 See `Facebook OpenGraph documentation`_ for more information
 about each property.
@@ -134,6 +135,25 @@ and ``djangocms-page-meta`` offers limited support for the attributes
 required by some accepted types.
 
 ``Article`` or ``Blog`` type should be sensible for most use cases.
+
+************
+Generic meta
+************
+
+If different metas are needed, a generic model exists that allows to add
+custom metas.
+
+Both ``PageMeta`` and ``TitleMeta`` provides an inline model that allows to
+define custom metas; model provides three fields:
+
+* attribute: meta attribute
+* name: name of the meta
+* value: value of the meta
+
+Each inline will be rendered as::
+
+    <meta {{ attribute }}="{{ name }}" content="{{ value }}" />
+
 
 ************
 Templatetags
