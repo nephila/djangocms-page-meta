@@ -5,6 +5,8 @@ import django
 from django.utils.safestring import mark_safe
 from django.utils.translation import get_language_from_request
 
+from meta import settings as meta_settings
+
 if django.get_version() >= '1.8':
     from django.template.loader import render_to_string
 else:
@@ -81,6 +83,19 @@ def get_page_meta(page, language):
                 meta.gplus_description = meta.description
             # Skipping title-level metas
             pass
+        defaults = {
+            'object_type': meta_settings.FB_TYPE,
+            'og_type': meta_settings.FB_TYPE,
+            'og_app_id': meta_settings.FB_APPID,
+            'og_profile_id': meta_settings.FB_PROFILE_ID,
+            'og_publisher': meta_settings.FB_PUBLISHER,
+            'og_author_url': meta_settings.FB_AUTHOR_URL,
+            'twitter_type': meta_settings.TWITTER_TYPE,
+            'twitter_site': meta_settings.TWITTER_SITE,
+            'twitter_author': meta_settings.TWITTER_AUTHOR,
+            'gplus_type': meta_settings.GPLUS_TYPE,
+            'gplus_author': meta_settings.GPLUS_AUTHOR,
+        }
         try:
             pagemeta = page.pagemeta
             meta.object_type = pagemeta.og_type
@@ -105,8 +120,7 @@ def get_page_meta(page, language):
                 meta.expiration_time = page.publication_end_date.isoformat()
             if meta.og_type == 'article':
                 meta.og_publisher = pagemeta.og_publisher
-                if pagemeta.og_author_url:
-                    meta.og_author_url = pagemeta.og_author_url
+                meta.og_author_url = pagemeta.og_author_url
                 try:
                     from djangocms_page_tags.utils import get_title_tags, get_page_tags
                     tags = list(get_title_tags(page, language))
@@ -118,8 +132,10 @@ def get_page_meta(page, language):
             if not meta.image and pagemeta.image:
                 meta.image = pagemeta.image.url
         except PageMeta.DoesNotExist:
-            # Skipping page-level metas
             pass
+        for attr, val in defaults.items():
+            if not getattr(meta, attr, '') and val:
+                setattr(meta, attr, val)
         meta.url = page.get_absolute_url(language)
     return meta
 

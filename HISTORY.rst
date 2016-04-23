@@ -4,6 +4,12 @@
 History
 *******
 
+0.6 (unreleased)
+================
+
+* Let settings be used as defaults
+
+
 0.5.11 (2016-03-17)
 ===================
 
