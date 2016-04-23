@@ -1,5 +1,4 @@
 {% load meta_extra %}
-
 {% if meta %}
     {% autoescape off %}
 	{% if meta.description %}{% meta 'description' meta.description %}{% endif %}
@@ -23,6 +22,7 @@
 		{% if meta.og_publisher %}{% generic_prop 'article' 'publisher' meta.og_publisher %}{% endif %}
 		{% if meta.og_app_id %}{% generic_prop 'fb' 'app_id' meta.og_app_id %}{% endif %}
 		{% if meta.og_profile_id %}{% generic_prop 'fb' 'profile_id' meta.og_profile_id %}{% endif %}
+		{% if meta.fb_pages %}{% generic_prop 'fb' 'pages' meta.fb_pages %}{% endif %}
 		{% if meta.tag %}{% generic_prop 'article' 'tag' meta.tag %}{% endif %}
 		{% if meta.locale %}{% og_prop 'locale' meta.locale %}{% endif %}
 	{% endif %}

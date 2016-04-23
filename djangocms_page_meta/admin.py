@@ -17,7 +17,7 @@ class PageMetaAdmin(PageExtensionAdmin):
         (_('OpenGraph'), {
             'fields': (
                 'og_type', ('og_author', 'og_author_url', 'og_author_fbid'),
-                ('og_publisher', 'og_app_id')
+                ('og_publisher', 'og_app_id', 'fb_pages')
             ),
             'classes': ('collapse',)
         }),
