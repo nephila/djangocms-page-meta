@@ -12,6 +12,7 @@ from django.dispatch import receiver
 from django.utils.six import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 from filer.fields.file import FilerFileField
+from meta import settings as meta_settings
 
 from .utils import get_metatags  # noqa
 from .utils import get_cache_key
@@ -22,31 +23,6 @@ except:
     registry = None
 
 
-OG_TYPE_CHOICES = (
-    ('article', _('Article')),
-    ('website', _('Website')),
-)
-TWITTER_TYPE_CHOICES = (
-    ('summary', _('Summary')),
-    ('summary_large_image', _('Summary large image')),
-    ('product', _('Product')),
-    ('photo', _('Photo')),
-    ('player', _('Player')),
-    ('app', _('App')),
-)
-GPLUS_TYPE_CHOICES = (
-    ('Article', _('Article')),
-    ('Blog', _('Blog')),
-    ('Book', _('Book')),
-    ('Event', _('Event')),
-    ('LocalBusiness', _('LocalBusiness')),
-    ('Organization', _('Organization')),
-    ('Person', _('Person')),
-    ('Product', _('Product')),
-    ('Review', _('Review')),
-)
-
-
 @python_2_unicode_compatible
 class PageMeta(PageExtension):
     image = FilerFileField(
@@ -54,7 +30,7 @@ class PageMeta(PageExtension):
         help_text=_('Used if title image is empty.')
     )
     og_type = models.CharField(
-        _('Resource type'), max_length=255, choices=OG_TYPE_CHOICES, blank=True,
+        _('Resource type'), max_length=255, choices=meta_settings.FB_TYPES, blank=True,
         help_text=_('Use Article for generic pages.')
     )
     og_author = models.ForeignKey(
@@ -82,14 +58,14 @@ class PageMeta(PageExtension):
         help_text=_('\'@\' characther not required.')
     )
     twitter_type = models.CharField(
-        _('Resource type'), max_length=255, choices=TWITTER_TYPE_CHOICES, blank=True
+        _('Resource type'), max_length=255, choices=meta_settings.TWITTER_TYPES, blank=True
     )
     gplus_author = models.CharField(
         _('Author Google+ URL'), max_length=255, default='', blank=True,
         help_text=_('Use the Google+ Name (together with "+")')
     )
     gplus_type = models.CharField(
-        _('Resource type'), max_length=255, choices=GPLUS_TYPE_CHOICES, blank=True,
+        _('Resource type'), max_length=255, choices=meta_settings.GPLUS_TYPES, blank=True,
         help_text=_('Use Article for generic pages.')
     )
 
