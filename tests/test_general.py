@@ -34,6 +34,7 @@ class PageMetaUtilsTest(BaseTest):
         self.assertEqual(meta.og_profile_id, self.og_data['og_author_fbid'])
         self.assertEqual(meta.og_publisher, self.og_data['og_publisher'])
         self.assertEqual(meta.og_app_id, self.og_data['og_app_id'])
+        self.assertEqual(meta.fb_pages, self.og_data['fb_pages'])
         self.assertEqual(meta.published_time, page.publication_date.isoformat())
         self.assertEqual(meta.modified_time, page.changed_date.isoformat())
         if page.publication_end_date:

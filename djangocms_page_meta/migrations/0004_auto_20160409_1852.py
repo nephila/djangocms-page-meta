@@ -4,6 +4,8 @@ from __future__ import unicode_literals
 
 from django.db import migrations, models
 
+from meta import settings
+
 
 class Migration(migrations.Migration):
 
@@ -20,7 +22,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='pagemeta',
             name='gplus_type',
-            field=models.CharField(blank=True, choices=[('Article', 'Article'), ('Blog', 'Blog'), ('Book', 'Book'), ('Event', 'Event'), ('LocalBusiness', 'LocalBusiness'), ('Organization', 'Organization'), ('Person', 'Person'), ('Product', 'Product'), ('Review', 'Review')], help_text='Use Article for generic pages.', max_length=255, verbose_name='Resource type'),
+            field=models.CharField(blank=True, choices=settings.GPLUS_TYPES, help_text='Use Article for generic pages.', max_length=255, verbose_name='Resource type'),
         ),
         migrations.AlterField(
             model_name='pagemeta',
@@ -45,12 +47,12 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='pagemeta',
             name='og_type',
-            field=models.CharField(blank=True, choices=[('article', 'Article'), ('website', 'Website')], help_text='Use Article for generic pages.', max_length=255, verbose_name='Resource type'),
+            field=models.CharField(blank=True, choices=settings.FB_TYPES, help_text='Use Article for generic pages.', max_length=255, verbose_name='Resource type'),
         ),
         migrations.AlterField(
             model_name='pagemeta',
             name='twitter_type',
-            field=models.CharField(blank=True, choices=[('summary', 'Summary'), ('summary_large_image', 'Summary large image'), ('product', 'Product'), ('photo', 'Photo'), ('player', 'Player'), ('app', 'App')], max_length=255, verbose_name='Resource type'),
+            field=models.CharField(blank=True, choices=settings.TWITTER_TYPES, max_length=255, verbose_name='Resource type'),
         ),
         migrations.AlterField(
             model_name='titlemeta',

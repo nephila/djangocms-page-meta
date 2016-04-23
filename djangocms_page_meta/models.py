@@ -49,6 +49,9 @@ class PageMeta(PageExtension):
     og_app_id = models.CharField(
         _('Facebook App ID'), max_length=255, default='', blank=True
     )
+    fb_pages = models.CharField(
+        _('Facebook Pages ID'), max_length=255, default='', blank=True
+    )
     twitter_author = models.CharField(
         _('Author Twitter Account'), max_length=255, default='', blank=True,
         help_text=_('\'@\' character not required.')

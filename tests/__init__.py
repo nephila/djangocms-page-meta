@@ -37,6 +37,7 @@ class BaseTest(BaseTestCase):
         'og_author_fbid': '123456789',
         'og_publisher': 'https://facebook.com/FakeUser',
         'og_app_id': '123456789',
+        'fb_pages': 'PAGES123456789',
     }
     twitter_data = {
         'twitter_author': 'fake_user',

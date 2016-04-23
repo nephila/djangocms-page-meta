@@ -87,6 +87,7 @@ def get_page_meta(page, language):
             'object_type': meta_settings.FB_TYPE,
             'og_type': meta_settings.FB_TYPE,
             'og_app_id': meta_settings.FB_APPID,
+            'fb_pages': meta_settings.FB_PAGES,
             'og_profile_id': meta_settings.FB_PROFILE_ID,
             'og_publisher': meta_settings.FB_PUBLISHER,
             'og_author_url': meta_settings.FB_AUTHOR_URL,
@@ -101,6 +102,7 @@ def get_page_meta(page, language):
             meta.object_type = pagemeta.og_type
             meta.og_type = pagemeta.og_type
             meta.og_app_id = pagemeta.og_app_id
+            meta.fb_pages = pagemeta.fb_pages
             meta.og_profile_id = pagemeta.og_author_fbid
             meta.twitter_type = pagemeta.twitter_type
             meta.twitter_site = pagemeta.twitter_site
