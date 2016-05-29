@@ -51,6 +51,9 @@ Supported django CMS versions:
 
 * django CMS 3.x
 
+.. warning:: Version 0.6 will be the last one supporting Python 2.6, Python 3.3,
+             Django<1.8 and django CMS<3.2.
+
 
 **********
 Quickstart
