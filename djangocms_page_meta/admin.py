@@ -6,18 +6,22 @@ from django.conf import settings
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
-from .forms import TitleMetaAdminForm
+from .forms import GenericAttributeInlineForm, TitleMetaAdminForm
 from .models import GenericMetaAttribute, PageMeta, TitleMeta
 
 
 class GenericAttributePageInline(admin.TabularInline):
     model = GenericMetaAttribute
+    form = GenericAttributeInlineForm
     fields = ('page', 'attribute', 'name', 'value')
+    extra = 1
 
 
 class GenericAttributeTitleInline(admin.TabularInline):
     model = GenericMetaAttribute
+    form = GenericAttributeInlineForm
     fields = ('title', 'attribute', 'name', 'value')
+    extra = 1
 
 
 class PageMetaAdmin(PageExtensionAdmin):

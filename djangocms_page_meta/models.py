@@ -74,6 +74,7 @@ class PageMeta(PageExtension):
 
     class Meta:
         verbose_name = _('Page meta info (all languages)')
+        verbose_name_plural = _('Page meta info (all languages)')
 
     def __str__(self):
         return _('Page Meta for {0}').format(self.extended_object)
@@ -114,6 +115,7 @@ class TitleMeta(TitleExtension):
 
     class Meta:
         verbose_name = _('Page meta info (language-dependent)')
+        verbose_name_plural = _('Page meta info (language-dependent)')
 
     def __str__(self):
         return _('Title Meta for {0}').format(self.extended_object)
@@ -136,10 +138,11 @@ extension_pool.register(TitleMeta)
 
 @python_2_unicode_compatible
 class GenericMetaAttribute(models.Model):
+    DEFAULT_ATTRIBUTE = 'name'
     page = models.ForeignKey(PageMeta, null=True, blank=True, related_name='extra')
     title = models.ForeignKey(TitleMeta, null=True, blank=True, related_name='extra')
     attribute = models.CharField(
-        _('attribute'), max_length=200, default='name', help_text=_('Custom attribute'),
+        _('attribute'), max_length=200, help_text=_('Custom attribute'), default='', blank=True,
     )
     name = models.CharField(
         _('name'), max_length=200, help_text=_('Meta attribute name'),
@@ -150,6 +153,7 @@ class GenericMetaAttribute(models.Model):
 
     class Meta:
         verbose_name = _('Page meta info (language-dependent)')
+        verbose_name_plural = _('Page meta info (language-dependent)')
         unique_together = (
             ('page', 'attribute', 'name', 'value'),
             ('title', 'attribute', 'name', 'value'),

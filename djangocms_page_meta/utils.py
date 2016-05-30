@@ -79,7 +79,10 @@ def get_page_meta(page, language):
             if titlemeta.image:
                 meta.image = title.titlemeta.image.url
             for item in titlemeta.extra.all():
-                meta.extra_custom_props.append((item.attribute, item.name, item.value))
+                attribute = item.attribute
+                if not attribute:
+                    attribute = item.DEFAULT_ATTRIBUTE
+                meta.extra_custom_props.append((attribute, item.name, item.value))
         except (TitleMeta.DoesNotExist, AttributeError):
             # Skipping title-level metas
             if meta.description:
@@ -137,7 +140,10 @@ def get_page_meta(page, language):
             if not meta.image and pagemeta.image:
                 meta.image = pagemeta.image.url
             for item in pagemeta.extra.all():
-                meta.extra_custom_props.append((item.attribute, item.name, item.value))
+                attribute = item.attribute
+                if not attribute:
+                    attribute = item.DEFAULT_ATTRIBUTE
+                meta.extra_custom_props.append((attribute, item.name, item.value))
         except PageMeta.DoesNotExist:
             pass
         for attr, val in defaults.items():
