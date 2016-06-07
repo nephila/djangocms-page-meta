@@ -147,8 +147,8 @@ class GenericMetaAttribute(models.Model):
     name = models.CharField(
         _('name'), max_length=200, help_text=_('Meta attribute name'),
     )
-    value = models.CharField(
-        _('value'), max_length=2000, help_text=_('Meta attribute value'),
+    value = models.TextField(
+        _('value'), help_text=_('Meta attribute value'),
     )
 
     class Meta:

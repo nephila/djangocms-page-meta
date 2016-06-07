@@ -37,6 +37,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='genericmetaattribute',
             name='value',
-            field=models.CharField(help_text='Meta attribute value', max_length=2000, verbose_name='value'),
+            field=models.TextField(help_text='Meta attribute value', verbose_name='value'),
         ),
     ]

@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('attribute', models.CharField(default='name', max_length=200, verbose_name='attribute')),
                 ('name', models.CharField(max_length=200, verbose_name='name')),
-                ('value', models.CharField(max_length=2000, verbose_name='value')),
+                ('value', models.TextField(help_text='Meta attribute value', verbose_name='value')),
                 ('page', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='extra', to='djangocms_page_meta.PageMeta')),
                 ('title', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='extra', to='djangocms_page_meta.TitleMeta')),
             ],
