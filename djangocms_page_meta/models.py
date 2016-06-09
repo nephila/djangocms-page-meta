@@ -154,10 +154,6 @@ class GenericMetaAttribute(models.Model):
     class Meta:
         verbose_name = _('Page meta info (language-dependent)')
         verbose_name_plural = _('Page meta info (language-dependent)')
-        unique_together = (
-            ('page', 'attribute', 'name', 'value'),
-            ('title', 'attribute', 'name', 'value'),
-        )
 
     def __str__(self):
         if self.page:

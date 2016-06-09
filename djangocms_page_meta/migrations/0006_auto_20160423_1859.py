@@ -27,8 +27,4 @@ class Migration(migrations.Migration):
                 'verbose_name': 'Page meta info (language-dependent)',
             },
         ),
-        migrations.AlterUniqueTogether(
-            name='genericmetaattribute',
-            unique_together=set([('title', 'attribute', 'name', 'value'), ('page', 'attribute', 'name', 'value')]),
-        ),
     ]
