@@ -83,7 +83,7 @@ Quickstart
 
 #. Configuration:
 
-   There is no special configuration for djangocms-page-meta, but make sure you set the necessary configuration for `django-meta`_.
+   There is no special configuration for djangocms-page-meta, but make sure you set the necessary configuration for `django-meta`_, especially the `template setup`_ section
 
 #. That's all!
 
@@ -95,6 +95,7 @@ Dependencies
 
 .. _django-filer: https://pypi.python.org/pypi/django-filer
 .. _django-meta: https://pypi.python.org/pypi/django-meta
+.. _template setup: https://django-meta.readthedocs.io/en/latest/models.html#reference-template
 
 *************
 Documentation
