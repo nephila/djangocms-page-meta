@@ -101,5 +101,5 @@ Dependencies
 Documentation
 *************
 
-For package documentation see http://djangocms-page-meta.readthedocs.org/.
+For package documentation see https://djangocms-page-meta.readthedocs.io/.
 
