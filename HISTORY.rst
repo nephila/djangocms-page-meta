@@ -4,6 +4,11 @@
 History
 *******
 
+0.6.1 (2016-06-20)
+==================
+
+* Drop unique index on generic meta attributes
+
 0.6 (2016-06-05)
 ================
 
