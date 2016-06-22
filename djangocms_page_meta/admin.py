@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, print_function, unicode_literals
 
-from cms.admin import pageadmin
+from cms.admin.pageadmin import PageAdmin
 from cms.extensions import PageExtensionAdmin, TitleExtensionAdmin
+from cms.models import Page
+from cms.utils import get_language_from_request
 from django.conf import settings
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
 from .forms import GenericAttributeInlineForm, TitleMetaAdminForm
 from .models import GenericMetaAttribute, PageMeta, TitleMeta
-
-admin.site.unregister(pageadmin.Page)
 
 
 class GenericAttributePageInline(admin.TabularInline):
@@ -83,16 +83,21 @@ class TitleMetaAdmin(TitleExtensionAdmin):
 admin.site.register(TitleMeta, TitleMetaAdmin)
 
 
-class PageAdmin(pageadmin.PageAdmin):
+class UpdatedPageAdmin(PageAdmin):
     """
-    Remove the meta description field from the page admin (we have this in django-cms-meta)
+    Remove the meta description field from the page admin
+
+    It's overriden by djangocms-page-meta anyway
     """
     def get_form(self, request, obj=None, **kwargs):
-        form = super(PageAdmin, self).get_form(request, obj, **kwargs)
-        try:
-            del form.base_fields['meta_description']
-        except KeyError:
-            pass
+        language = get_language_from_request(request, obj)
+        form = super(UpdatedPageAdmin, self).get_form(request, obj, **kwargs)
+        if obj and not obj.get_meta_description(language=language):
+            try:
+                del form.base_fields['meta_description']
+            except KeyError:
+                pass
 
         return form
-admin.site.register(pageadmin.Page, PageAdmin)
+admin.site.unregister(Page)
+admin.site.register(Page, UpdatedPageAdmin)
