@@ -4,6 +4,11 @@
 History
 *******
 
+0.6.2 (2016-08-01)
+==================
+
+* Conditionally show page description field if not empty
+
 0.6.1 (2016-06-20)
 ==================
 
