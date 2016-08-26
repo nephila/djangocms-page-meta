@@ -4,7 +4,6 @@ from __future__ import absolute_import, print_function, unicode_literals
 import django
 from django.utils.safestring import mark_safe
 from django.utils.translation import get_language_from_request
-
 from meta import settings as meta_settings
 
 if django.get_version() >= '1.8':
