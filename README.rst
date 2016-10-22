@@ -71,6 +71,7 @@ Quickstart
 
         'filer',
         'meta',
+        'easy_thumbnails',
         'djangocms_page_meta',
 
 #. Synchronize the database with syncdb::
