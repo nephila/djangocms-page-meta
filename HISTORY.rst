@@ -4,6 +4,13 @@
 History
 *******
 
+0.7.0 (unreleased)
+==================
+
+* Drop Django 1.7 and below
+* Drop django CMS 3.1 and below
+* Add Django 1.10 support
+
 0.6.3 (2016-10-22)
 ==================
 

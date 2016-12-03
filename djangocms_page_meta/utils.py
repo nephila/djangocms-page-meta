@@ -1,29 +1,17 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, print_function, unicode_literals
 
-import django
+from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
 from django.utils.translation import get_language_from_request
 from meta import settings as meta_settings
-
-if django.get_version() >= '1.8':
-    from django.template.loader import render_to_string
-else:
-    from django.template import loader, RequestContext
-
-    def render_to_string(template_name, context=None, request=None):
-        context_instance = RequestContext(request) if request else None
-        return loader.render_to_string(template_name, context, context_instance)
 
 
 def get_cache_key(page, language):
     """
     Create the cache key for the current page and language
     """
-    try:
-        from cms.cache import _get_cache_key
-    except ImportError:
-        from cms.templatetags.cms_tags import _get_cache_key
+    from cms.cache import _get_cache_key
     site_id = page.site_id
     return _get_cache_key('page_meta', page, language, site_id)
 

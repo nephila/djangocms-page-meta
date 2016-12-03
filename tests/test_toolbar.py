@@ -8,7 +8,7 @@ from django.core.urlresolvers import reverse
 from django.test.utils import override_settings
 from django.utils.encoding import force_text
 
-from djangocms_page_meta.cms_toolbar import PAGE_META_ITEM_TITLE, PAGE_META_MENU_TITLE
+from djangocms_page_meta.cms_toolbars import PAGE_META_ITEM_TITLE, PAGE_META_MENU_TITLE
 from djangocms_page_meta.models import PageMeta, TitleMeta
 
 from . import BaseTest
