@@ -4,7 +4,7 @@
 History
 *******
 
-0.7.0 (unreleased)
+0.7.0 (2016-12-04)
 ==================
 
 * Drop Django 1.7 and below
