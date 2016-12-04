@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# fsbraun <fsbraun@gmx.de>, 2016
 # djangoger <thomas.meitz@retailify.de>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: djangocms-page-meta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-19 18:29+0200\n"
-"PO-Revision-Date: 2015-01-24 22:33+0000\n"
-"Last-Translator: yakky <i.spalletti@nephila.it>\n"
+"PO-Revision-Date: 2016-09-19 17:30+0000\n"
+"Last-Translator: fsbraun <fsbraun@gmx.de>\n"
 "Language-Team: German (http://www.transifex.com/nephila/djangocms-page-meta/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -44,7 +45,7 @@ msgstr "Artikel"
 
 #: models.py:18
 msgid "Website"
-msgstr "Webseite"
+msgstr "Website"
 
 #: models.py:21
 msgid "Summary"
@@ -157,11 +158,11 @@ msgstr "Nutze den Google+ Namen (zusammen mit \"+\") oder den vollständigen Pfa
 
 #: models.py:74
 msgid "Page meta info (all languages)"
-msgstr "Meta Informationen der Seite (alle Sprachen)"
+msgstr "Meta-Informationen der Seite (alle Sprachen)"
 
 #: models.py:80
 msgid "If empty, page image will be used for all languages."
-msgstr "Das Seiten Bild wird für alle Sprachen genutzt, wenn nicht gesetzt."
+msgstr "Wenn nicht gesetzt, wird das Seitenbild wird für alle Sprachen genutzt."
 
 #: models.py:83
 msgid "Facebook Description"
@@ -177,4 +178,4 @@ msgstr "Google+ Beschreibung"
 
 #: models.py:95
 msgid "Page meta info (language-dependent)"
-msgstr "Meta Informationen der Seite (sprachabhängig)"
+msgstr "Meta-Informationen der Seite (sprachabhängig)"
