@@ -46,6 +46,8 @@ django CMS: 3.2 to 3.4
 Quickstart
 **********
 
+#. A working django CMS environment is required for djangocms-page-meta to work. Refer to `django CMS documentation`_ for how to install and configure django CMS.
+
 #. Install djangocms-page-meta::
 
         $ pip install djangocms-page-meta
@@ -83,6 +85,7 @@ Dependencies
 
 .. _django-filer: https://pypi.python.org/pypi/django-filer
 .. _django-meta: https://pypi.python.org/pypi/django-meta
+.. _django CMS documentation: https://django-cms.readthedocs.io/en/latest
 .. _template setup: https://django-meta.readthedocs.io/en/latest/models.html#reference-template
 
 *************
