@@ -91,3 +91,9 @@ Documentation
 
 For package documentation see https://djangocms-page-meta.readthedocs.io/.
 
+
+
+.. image:: https://d2weczhvl823v0.cloudfront.net/nephila/djangocms-page-meta/trend.png
+   :alt: Bitdeli badge
+   :target: https://bitdeli.com/free
+
