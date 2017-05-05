@@ -7,3 +7,4 @@ django-nose>=1.2
 flake8
 https://github.com/nephila/djangocms-helper/archive/develop.zip
 djangocms-page-tags
+tox
