@@ -89,7 +89,7 @@ tests, including testing other Python versions with tox::
 
 To get flake8 and tox install them into your virtualenv:
 
-    pip install -r requirements-test.txt
+    $ pip install -r requirements-test.txt
 
 6. Commit your changes and push your branch to GitHub::
 
