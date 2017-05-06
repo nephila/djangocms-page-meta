@@ -5,6 +5,7 @@ from classytags.arguments import Argument
 from classytags.core import Options, Tag
 from cms.utils import get_language_from_request
 from django import template
+from meta.views import Meta
 
 from ..utils import get_page_meta
 
@@ -20,8 +21,12 @@ class MetaFromPage(Tag):
     )
 
     def render_tag(self, context, page, varname):
-        language = get_language_from_request(context['request'])
-        meta = get_page_meta(page, language)
+        request = context.get('request')
+        if request:
+            language = get_language_from_request(request)
+            meta = get_page_meta(page, language)
+        else:
+            meta = Meta()
         context[varname] = meta
         return ''
 register.tag(MetaFromPage)
