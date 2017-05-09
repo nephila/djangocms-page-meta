@@ -3,16 +3,32 @@ from __future__ import absolute_import, print_function, unicode_literals
 
 from copy import copy
 
+from classytags.core import Options
+from classytags.tests import DummyTokens
 from django.conf import settings
+from django.template.base import Parser
 from django.utils.functional import SimpleLazyObject
 
 from djangocms_page_meta import models
+from djangocms_page_meta.templatetags.page_meta_tags import MetaFromPage
 from djangocms_page_meta.utils import get_page_meta
 
 from . import BaseTest
 
 
 class PageMetaUtilsTest(BaseTest):
+
+    def test_context_no_request(self):
+        """
+        This is a weird and limited test to ensure that if request is not in context
+        no exception is thrown. In this case MetaFromPage.render_tag does not need
+        a full environment to work
+        """
+        context = {}
+        dummy_tokens = DummyTokens('myval', 'as', 'myname')
+        tag = MetaFromPage.render_tag(MetaFromPage(Parser(dummy_tokens), dummy_tokens), context, None, 'meta')
+        self.assertFalse(tag)
+        self.assertTrue(context['meta'])
 
     def test_page_meta_og(self):
         """

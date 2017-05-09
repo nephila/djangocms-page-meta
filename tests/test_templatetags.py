@@ -24,6 +24,7 @@ class TemplateMetaTest(BaseTest):
             page=page_ext, attribute='custom', name='attr', value='foo'
         )
         page1.publication_end_date = page1.publication_date + timedelta(days=1)
+        page1.save()
         page1.publish('it')
         page1.publish('en')
 
