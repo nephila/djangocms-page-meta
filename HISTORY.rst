@@ -4,6 +4,12 @@
 History
 *******
 
+0.7.1 (unreleased)
+==================
+
+* Add support for filer canonical URL
+* Do not fail if request is not in context
+
 0.7.0 (2016-12-04)
 ==================
 
