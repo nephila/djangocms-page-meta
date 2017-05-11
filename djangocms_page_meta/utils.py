@@ -64,7 +64,7 @@ def get_page_meta(page, language):
             if not meta.gplus_description:
                 meta.gplus_description = meta.description
             if titlemeta.image:
-                meta.image = title.titlemeta.image.url
+                meta.image = title.titlemeta.image.canonical_url or title.titlemeta.image.url
             for item in titlemeta.extra.all():
                 attribute = item.attribute
                 if not attribute:
@@ -125,7 +125,7 @@ def get_page_meta(page, language):
                     # djangocms-page-tags not available
                     pass
             if not meta.image and pagemeta.image:
-                meta.image = pagemeta.image.url
+                meta.image = pagemeta.image.canonical_url or pagemeta.image.url
             for item in pagemeta.extra.all():
                 attribute = item.attribute
                 if not attribute:
