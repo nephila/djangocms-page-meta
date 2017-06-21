@@ -130,11 +130,11 @@ class TitleMeta(TitleExtension):
     def copy_relations(self, oldinstance, language):
         for item in oldinstance.extra.all():
             if item.__class__.objects.filter(
-                    attribute=item.attribute, name=item.name, value=item.value
-                ).exists():
-                    item.pk = None
-                    item.title = self
-                    item.save()
+                attribute=item.attribute, name=item.name, value=item.value
+            ).exists():
+                item.pk = None
+                item.title = self
+                item.save()
 
 extension_pool.register(TitleMeta)
 
