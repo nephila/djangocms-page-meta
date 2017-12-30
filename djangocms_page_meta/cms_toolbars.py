@@ -8,17 +8,11 @@ from cms.toolbar_base import CMSToolbar
 from cms.toolbar_pool import toolbar_pool
 from cms.utils import get_cms_setting
 from cms.utils.i18n import get_language_list, get_language_object
+from cms.utils.permissions import has_page_permission
 from django.core.urlresolvers import NoReverseMatch, reverse
 from django.utils.translation import ugettext_lazy as _
 
 from .models import PageMeta, TitleMeta
-
-try:
-    from cms.utils.permissions import has_page_permission
-    has_page_change_permission = None
-except ImportError:
-    from cms.utils.permissions import has_page_change_permission
-
 
 PAGE_META_MENU_TITLE = _('Meta-information')
 PAGE_META_ITEM_TITLE = _('Common')
@@ -36,23 +30,16 @@ class PageToolbarMeta(CMSToolbar):
 
         # check global permissions if CMS_PERMISSIONS is active
         if get_cms_setting('PERMISSION'):
-            if not has_page_change_permission:
-                has_global_current_page_change_permission = has_page_permission(
-                    self.request.user, self.request.current_page, 'change'
-                )
-            else:
-                has_global_current_page_change_permission = has_page_change_permission(
-                    self.request
-                )
+            has_global_current_page_change_permission = has_page_permission(
+                self.request.user, self.request.current_page, 'change'
+            )
         else:
             has_global_current_page_change_permission = False
             # check if user has page edit permission
-        if not has_page_change_permission:
-            can_change = (self.request.current_page and
-                          self.request.current_page.has_change_permission(self.request.user))
-        else:
-            can_change = (self.request.current_page and
-                          self.request.current_page.has_change_permission(self.request))
+        can_change = (
+            self.request.current_page and
+            self.request.current_page.has_change_permission(self.request.user)
+        )
         if has_global_current_page_change_permission or can_change:
             not_edit_mode = not self.toolbar.edit_mode
             current_page_menu = self.toolbar.get_or_create_menu('page')

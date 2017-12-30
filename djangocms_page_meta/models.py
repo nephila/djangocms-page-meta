@@ -19,7 +19,7 @@ from .utils import get_cache_key
 
 try:
     from aldryn_snake.template_api import registry
-except:
+except ImportError:
     registry = None
 
 
