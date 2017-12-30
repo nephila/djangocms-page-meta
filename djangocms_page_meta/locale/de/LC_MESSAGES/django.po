@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# fsbraun <fsbraun@gmx.de>, 2016
+# fsbraun <fsbraun@gmx.de>, 2016-2017
 # djangoger <thomas.meitz@retailify.de>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: djangocms-page-meta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-19 18:29+0200\n"
-"PO-Revision-Date: 2016-09-19 17:30+0000\n"
-"Last-Translator: fsbraun <fsbraun@gmx.de>\n"
+"POT-Creation-Date: 2017-12-30 19:56+0100\n"
+"PO-Revision-Date: 2017-12-30 18:56+0000\n"
+"Last-Translator: yakky <i.spalletti@nephila.it>\n"
 "Language-Team: German (http://www.transifex.com/nephila/djangocms-page-meta/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,163 +19,199 @@ msgstr ""
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: admin.py:14
+#: admin.py:35
 msgid "OpenGraph"
 msgstr "OpenGraph"
 
-#: admin.py:18
+#: admin.py:42
 msgid "Twitter Cards"
 msgstr "Twitter Cards"
 
-#: admin.py:20
+#: admin.py:46
 msgid "Google+ Snippets"
 msgstr "Google+ Snippets"
 
-#: cms_toolbar.py:16
+#: apps.py:10
+msgid "django CMS Page Meta"
+msgstr ""
+
+#: cms_toolbars.py:22
 msgid "Meta-information"
 msgstr "Meta-Information"
 
-#: cms_toolbar.py:17
+#: cms_toolbars.py:23
 msgid "Common"
 msgstr "Gemeinsam"
 
-#: models.py:17 models.py:29
-msgid "Article"
-msgstr "Artikel"
-
-#: models.py:18
-msgid "Website"
-msgstr "Website"
-
-#: models.py:21
-msgid "Summary"
-msgstr "Zusammenfassung"
-
-#: models.py:22
-msgid "Summary large image"
-msgstr "Zusammenfassung für grosses Bild"
-
-#: models.py:23 models.py:36
-msgid "Product"
-msgstr "Produkt"
-
-#: models.py:24
-msgid "Photo"
-msgstr "Foto"
-
-#: models.py:25
-msgid "Player"
-msgstr "Player"
-
-#: models.py:26
-msgid "App"
-msgstr "App"
-
 #: models.py:30
-msgid "Blog"
-msgstr "Blog"
-
-#: models.py:31
-msgid "Book"
-msgstr "Buch"
-
-#: models.py:32
-msgid "Event"
-msgstr "Veranstaltung"
-
-#: models.py:33
-msgid "LocalBusiness"
-msgstr "Gewerbe"
-
-#: models.py:34
-msgid "Organization"
-msgstr "Organisation"
-
-#: models.py:35
-msgid "Person"
-msgstr "Person"
-
-#: models.py:37
-msgid "Review"
-msgstr "Überprüfung"
-
-#: models.py:43
 msgid "Used if title image is empty."
 msgstr "Wird verwendet, wenn das Titelbild ist leer ist."
 
-#: models.py:44 models.py:64 models.py:69
+#: models.py:33 models.py:64 models.py:71
 msgid "Resource type"
 msgstr "Ressourcentyp"
 
-#: models.py:46 models.py:71
+#: models.py:34 models.py:72
 msgid "Use Article for generic pages."
 msgstr "Nutze Artikel für generische Seiten."
 
-#: models.py:47
+#: models.py:37
 msgid "Author account"
-msgstr "Autor Account"
+msgstr "Account des Autor"
 
-#: models.py:49
+#: models.py:40
 msgid "Author Facebook URL"
-msgstr "Autor Facebook URL"
+msgstr "Facebook-URL des Autors"
 
-#: models.py:51
+#: models.py:43
 msgid "Author Facebook ID"
-msgstr "Autor Facebook ID"
+msgstr "Facebook-ID des Autor"
+
+#: models.py:44
+msgid "Use Facebook numeric ID."
+msgstr "Nutze die numerische Facebook-ID"
+
+#: models.py:47
+msgid "Website Facebook URL"
+msgstr "Facebook-URL der Wbsite"
+
+#: models.py:50
+msgid "Facebook App ID"
+msgstr "Facebook App-ID"
 
 #: models.py:53
-msgid "Use Facebook numeric ID."
-msgstr "Nutze die numerische Facebook ID"
-
-#: models.py:54
-msgid "Website Facebook URL"
-msgstr "Webseiten Facebook URL"
+msgid "Facebook Pages ID"
+msgstr ""
 
 #: models.py:56
-msgid "Facebook App ID"
-msgstr "Facebook App ID"
-
-#: models.py:58
 msgid "Author Twitter Account"
-msgstr "Twitter Account des Autors"
+msgstr "Twitter-Account des Autors"
 
-#: models.py:60 models.py:63
-msgid "\"@\" sign not required."
-msgstr "\"@\" Zeichen wird nicht benötigt."
+#: models.py:57 models.py:61
+msgid "'@' character not required."
+msgstr ""
 
-#: models.py:61
+#: models.py:60
 msgid "Website Twitter Account"
-msgstr "Webseiten Twitter Account"
+msgstr "Twitter-Account der Website"
 
-#: models.py:66
+#: models.py:67
 msgid "Author Google+ URL"
-msgstr "Autor Google+ URL"
+msgstr "Google+ URL des Autor"
 
 #: models.py:68
-msgid ""
-"Use the Google+ Name (together with \"+\") or the complete path to the page."
-msgstr "Nutze den Google+ Namen (zusammen mit \"+\") oder den vollständigen Pfad zur Seite."
+msgid "Use the Google+ Name (together with \"+\")"
+msgstr ""
 
-#: models.py:74
+#: models.py:76 models.py:77
 msgid "Page meta info (all languages)"
 msgstr "Meta-Informationen der Seite (alle Sprachen)"
 
 #: models.py:80
+#, python-brace-format
+msgid "Page Meta for {0}"
+msgstr ""
+
+#: models.py:98
 msgid "If empty, page image will be used for all languages."
 msgstr "Wenn nicht gesetzt, wird das Seitenbild wird für alle Sprachen genutzt."
 
-#: models.py:83
+#: models.py:107
 msgid "Facebook Description"
-msgstr "Facebook Beschreibung"
+msgstr "Facebook-Beschreibung"
 
-#: models.py:84
+#: models.py:110
 msgid "Twitter Description"
-msgstr "Twitter Beschreibung"
+msgstr "Twitter-Beschreibung"
 
-#: models.py:85
+#: models.py:113
 msgid "Google+ Description"
 msgstr "Google+ Beschreibung"
 
-#: models.py:95
+#: models.py:117 models.py:118 models.py:158 models.py:159
 msgid "Page meta info (language-dependent)"
 msgstr "Meta-Informationen der Seite (sprachabhängig)"
+
+#: models.py:121
+#, python-brace-format
+msgid "Title Meta for {0}"
+msgstr ""
+
+#: models.py:148
+msgid "attribute"
+msgstr ""
+
+#: models.py:148
+msgid "Custom attribute"
+msgstr ""
+
+#: models.py:151
+msgid "name"
+msgstr ""
+
+#: models.py:151
+msgid "Meta attribute name"
+msgstr ""
+
+#: models.py:154
+msgid "value"
+msgstr ""
+
+#: models.py:154
+msgid "Meta attribute value"
+msgstr ""
+
+#: models.py:163
+#, python-brace-format
+msgid "Attribute {0} for page {1}"
+msgstr ""
+
+#: models.py:165
+#, python-brace-format
+msgid "Attribute {0} for title {1}"
+msgstr ""
+
+#~ msgid "Article"
+#~ msgstr "Article"
+
+#~ msgid "Website"
+#~ msgstr "Website"
+
+#~ msgid "Summary"
+#~ msgstr "Summary"
+
+#~ msgid "Summary large image"
+#~ msgstr "Summary large image"
+
+#~ msgid "Product"
+#~ msgstr "Product"
+
+#~ msgid "Photo"
+#~ msgstr "Photo"
+
+#~ msgid "Player"
+#~ msgstr "Player"
+
+#~ msgid "App"
+#~ msgstr "App"
+
+#~ msgid "Blog"
+#~ msgstr "Blog"
+
+#~ msgid "Book"
+#~ msgstr "Book"
+
+#~ msgid "Event"
+#~ msgstr "Event"
+
+#~ msgid "LocalBusiness"
+#~ msgstr "LocalBusiness"
+
+#~ msgid "Organization"
+#~ msgstr "Organization"
+
+#~ msgid "Person"
+#~ msgstr "Person"
+
+#~ msgid "Review"
+#~ msgstr "Review"
