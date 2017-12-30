@@ -6,7 +6,10 @@ from cms.cms_toolbars import PAGE_MENU_SECOND_BREAK
 from cms.toolbar.items import Break
 from cms.toolbar_base import CMSToolbar
 from cms.toolbar_pool import toolbar_pool
-from cms.utils import get_cms_setting
+try:
+    from cms.utils import get_cms_setting
+except ImportError:
+    from cms.utils.conf import get_cms_setting
 from cms.utils.i18n import get_language_list, get_language_object
 from django.core.urlresolvers import NoReverseMatch, reverse
 from django.utils.translation import ugettext_lazy as _
