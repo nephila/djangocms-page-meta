@@ -58,7 +58,7 @@ class PageMeta(PageExtension):
     )
     twitter_site = models.CharField(
         _('Website Twitter Account'), max_length=255, default='', blank=True,
-        help_text=_('\'@\' characther not required.')
+        help_text=_('\'@\' character not required.')
     )
     twitter_type = models.CharField(
         _('Resource type'), max_length=255, choices=meta_settings.TWITTER_TYPES, blank=True
