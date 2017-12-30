@@ -5,6 +5,7 @@ language: python
 sudo: false
 
 python:
+  - 3.6
   - 3.5
   - 3.4
   - 2.7
@@ -14,13 +15,14 @@ env:
   - TOXENV='pep8'
   - TOXENV='docs'
   - TOXENV='isort'
-  - DJANGO='django18' CMS='cms32'
-  - DJANGO='django18' CMS='cms33'
   - DJANGO='django18' CMS='cms34'
-  - DJANGO='django19' CMS='cms32'
-  - DJANGO='django19' CMS='cms33'
   - DJANGO='django19' CMS='cms34'
   - DJANGO='django110' CMS='cms34'
+  - DJANGO='django111' CMS='cms34'
+  - DJANGO='django18' CMS='cms35'
+  - DJANGO='django19' CMS='cms35'
+  - DJANGO='django110' CMS='cms35'
+  - DJANGO='django111' CMS='cms35'
 
 # command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
 install:
@@ -28,6 +30,7 @@ install:
   - "if [[ $TRAVIS_PYTHON_VERSION == '2.7' ]]; then export PYVER=py27; fi"
   - "if [[ $TRAVIS_PYTHON_VERSION == '3.4' ]]; then export PYVER=py34; fi"
   - "if [[ $TRAVIS_PYTHON_VERSION == '3.5' ]]; then export PYVER=py35; fi"
+  - "if [[ $TRAVIS_PYTHON_VERSION == '3.6' ]]; then export PYVER=py36; fi"
   - "if [[ ${DJANGO}z != 'z' ]]; then export TOXENV=$PYVER-$DJANGO-$CMS; fi"
 
 # command to run tests, e.g. python setup.py test
@@ -52,4 +55,34 @@ matrix:
   - python: 3.4
     env: TOXENV='isort'
   - python: 3.4
+    env: TOXENV='docs'
+  - python: 3.4
+    env: DJANGO='django18' CMS='cms34'
+  - python: 3.4
+    env: DJANGO='django19' CMS='cms34'
+  - python: 3.4
+    env: DJANGO='django110' CMS='cms34'
+  - python: 3.4
+    env: DJANGO='django18' CMS='cms35'
+  - python: 3.4
+    env: DJANGO='django19' CMS='cms35'
+  - python: 3.4
+    env: DJANGO='django110' CMS='cms35'
+  - python: 3.5
+    env: DJANGO='django18' CMS='cms34'
+  - python: 3.5
+    env: DJANGO='django19' CMS='cms34'
+  - python: 3.5
+    env: DJANGO='django110' CMS='cms34'
+  - python: 3.5
+    env: DJANGO='django18' CMS='cms35'
+  - python: 3.5
+    env: DJANGO='django19' CMS='cms35'
+  - python: 3.5
+    env: DJANGO='django110' CMS='cms35'
+  - python: 3.5
+    env: TOXENV='pep8'
+  - python: 3.5
+    env: TOXENV='isort'
+  - python: 3.5
     env: TOXENV='docs'
