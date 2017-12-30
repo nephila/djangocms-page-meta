@@ -12,6 +12,7 @@ from ..utils import get_page_meta
 register = template.Library()
 
 
+@register.tag(name='page_meta')
 class MetaFromPage(Tag):
     name = 'page_meta'
     options = Options(
@@ -29,4 +30,3 @@ class MetaFromPage(Tag):
             meta = Meta()
         context[varname] = meta
         return ''
-register.tag(MetaFromPage)
