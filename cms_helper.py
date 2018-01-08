@@ -64,7 +64,7 @@ HELPER_SETTINGS = dict(
         'filer.thumbnail_processors.scale_and_crop_with_subject_location',
         'easy_thumbnails.processors.filters',
     ),
-    FILE_UPLOAD_TEMP_DIR=mkdtemp()
+    FILE_UPLOAD_TEMP_DIR=mkdtemp(),
 )
 
 

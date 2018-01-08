@@ -11,6 +11,7 @@ History
 * Drop django CMS 3.2, 3.3
 * Add support for filer canonical URL
 * Do not fail if request is not in context
+* Make HTML and twitter description fields length configurable
 
 0.7.0 (2016-12-04)
 ==================

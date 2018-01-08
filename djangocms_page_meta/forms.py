@@ -2,15 +2,22 @@
 from __future__ import absolute_import, print_function, unicode_literals
 
 from django import forms
+from django.core.validators import MaxLengthValidator
 
 from .models import GenericMetaAttribute, TitleMeta
+from .settings import get_setting
 
 
 class TitleMetaAdminForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
+        self.base_fields['description'].validators = [
+            MaxLengthValidator(get_setting('DESCRIPTION_LENGTH'))
+        ]
+        self.base_fields['twitter_description'].validators = [
+            MaxLengthValidator(get_setting('TWITTER_DESCRIPTION_LENGTH'))
+        ]
         super(TitleMetaAdminForm, self).__init__(*args, **kwargs)
-        self.fields['description'].max_length = 160
 
     class Meta:
         model = TitleMeta

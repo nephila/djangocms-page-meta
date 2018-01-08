@@ -12,8 +12,9 @@ Contents:
    :maxdepth: 2
 
    readme
+   configuration
    usage
-   autodoc.rst
+   autodoc
    contributing
    authors
    history
