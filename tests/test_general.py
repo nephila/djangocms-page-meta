@@ -7,9 +7,11 @@ from classytags.core import Options
 from classytags.tests import DummyTokens
 from django.conf import settings
 from django.template.base import Parser
+from django.test import override_settings
 from django.utils.functional import SimpleLazyObject
 
 from djangocms_page_meta import models
+from djangocms_page_meta.forms import TitleMetaAdminForm
 from djangocms_page_meta.templatetags.page_meta_tags import MetaFromPage
 from djangocms_page_meta.utils import get_page_meta
 
@@ -180,3 +182,24 @@ class PageMetaUtilsTest(BaseTest):
 
         meta = get_page_meta(page1, 'it')
         self.assertEqual(meta.extra_custom_props, [ ('custom', 'attr', 'foo')])
+
+    def test_form(self):
+        page1, __ = self.get_pages()
+        page_meta = models.PageMeta.objects.create(extended_object=page1)
+        with override_settings(PAGE_META_DESCRIPTION_LENGTH=20, PAGE_META_TWITTER_DESCRIPTION_LENGTH=20):
+            form = TitleMetaAdminForm(
+                data={'description': 'major text over 20 characters long'},
+                instance=page_meta
+            )
+            self.assertFalse(form.is_valid())
+            form = TitleMetaAdminForm(
+                data={'twitter_description': 'major text over 20 characters long'},
+                instance=page_meta
+            )
+            self.assertFalse(form.is_valid())
+
+            form = TitleMetaAdminForm(data={'description': 'mini text'}, instance=page_meta)
+            self.assertTrue(form.is_valid())
+
+            form = TitleMetaAdminForm(data={'twitter_description': 'mini text'}, instance=page_meta)
+            self.assertTrue(form.is_valid())

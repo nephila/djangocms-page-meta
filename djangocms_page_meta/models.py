@@ -98,19 +98,19 @@ class TitleMeta(TitleExtension):
         help_text=_('If empty, page image will be used for all languages.')
     )
     keywords = models.CharField(
-        max_length=400, default='', blank=True
+        max_length=2000, default='', blank=True
     )
     description = models.CharField(
-        max_length=400, default='', blank=True
+        max_length=2000, default='', blank=True
     )
     og_description = models.CharField(
-        _('Facebook Description'), max_length=400, default='', blank=True
+        _('Facebook Description'), max_length=2000, default='', blank=True
     )
     twitter_description = models.CharField(
-        _('Twitter Description'), max_length=140, default='', blank=True
+        _('Twitter Description'), max_length=2000, default='', blank=True
     )
     gplus_description = models.CharField(
-        _('Google+ Description'), max_length=400, default='', blank=True
+        _('Google+ Description'), max_length=2000, default='', blank=True
     )
 
     class Meta:
