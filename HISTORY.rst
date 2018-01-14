@@ -4,10 +4,11 @@
 History
 *******
 
-0.8.0 (unreleased)
+0.8.0 (2018-01-14)
 ==================
 
 * Add Django 1.11 support
+* Add django CMS 3.5 support
 * Drop django CMS 3.2, 3.3
 * Add support for filer canonical URL
 * Do not fail if request is not in context
