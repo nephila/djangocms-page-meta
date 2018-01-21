@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
-from aldryn_client import forms
-
+try:
+    from divio_cli import forms
+except ImportError:
+    from aldryn_client import forms
 
 OBJECT_TYPES = (
     ('', '----'),
@@ -15,7 +17,6 @@ PROTOCOLS = (
 
 
 class Form(forms.BaseForm):
-
     META_SITE_PROTOCOL = forms.SelectField(
         'Site protocol',
         choices=PROTOCOLS,
