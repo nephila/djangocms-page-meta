@@ -80,13 +80,14 @@ class PageMeta(PageExtension):
         return _('Page Meta for {0}').format(self.extended_object)
 
     def copy_relations(self, oldinstance, language):
+        # Remove old refs to prep for copying
+        self.extra.all().delete()
+
+        # Copy everyting to published page instance
         for item in oldinstance.extra.all():
-            if not item.__class__.objects.filter(
-                attribute=item.attribute, name=item.name, value=item.value, page=self
-            ).exists():
-                item.pk = None
-                item.page = self
-                item.save()
+            item.pk = None
+            item.page = self
+            item.save()
 
 extension_pool.register(PageMeta)
 
@@ -128,13 +129,15 @@ class TitleMeta(TitleExtension):
             return None
 
     def copy_relations(self, oldinstance, language):
+        # Remove old refs to prep for copying
+        self.extra.all().delete()
+
+        # Copy everyting to published page instance
         for item in oldinstance.extra.all():
-            if item.__class__.objects.filter(
-                attribute=item.attribute, name=item.name, value=item.value
-            ).exists():
-                item.pk = None
-                item.title = self
-                item.save()
+            item.pk = None
+            item.title = self
+            item.save()
+
 
 extension_pool.register(TitleMeta)
 

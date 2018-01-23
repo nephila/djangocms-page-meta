@@ -183,6 +183,34 @@ class PageMetaUtilsTest(BaseTest):
         meta = get_page_meta(page1, 'it')
         self.assertEqual(meta.extra_custom_props, [ ('custom', 'attr', 'foo')])
 
+    def test_publish_extra(self):
+        """
+        Test that modified GenericMetaAttribute are not copied multiple times on page publish
+        See issue #78
+        """
+        page1, __ = self.get_pages()
+        page_meta = models.PageMeta.objects.create(extended_object=page1)
+        title_meta = models.TitleMeta.objects.create(extended_object=page1.get_title_obj('en'))
+        models.GenericMetaAttribute.objects.create(
+            page=page_meta, attribute='custom', name='attr', value='foo'
+        )
+        models.GenericMetaAttribute.objects.create(
+            title=title_meta, attribute='custom', name='attr', value='bar'
+        )
+
+        page1.publish('en')
+        page_meta.extra.first().attribute = 'new'
+        page_meta.extra.first().save()
+        title_meta.extra.first().attribute = 'new'
+        title_meta.extra.first().save()
+
+        page1.publish('en')
+        public = page1.get_public_object()
+        page_meta = models.PageMeta.objects.get(extended_object=public)
+        title_meta = models.TitleMeta.objects.get(extended_object=public.get_title_obj('en'))
+        self.assertEqual(page_meta.extra.count(), 1)
+        self.assertEqual(title_meta.extra.count(), 1)
+
     def test_form(self):
         page1, __ = self.get_pages()
         page_meta = models.PageMeta.objects.create(extended_object=page1)
