@@ -83,21 +83,26 @@ class TitleMetaAdmin(TitleExtensionAdmin):
 admin.site.register(TitleMeta, TitleMetaAdmin)
 
 
-class UpdatedPageAdmin(PageAdmin):
-    """
-    Remove the meta description field from the page admin
+# Monkey patch the PageAdmin
+_ORIGINAL_PAGEADMIN_GET_FORM = PageAdmin.get_form
 
-    It's overriden by djangocms-page-meta anyway
-    """
-    def get_form(self, request, obj=None, **kwargs):
-        language = get_language_from_request(request, obj)
-        form = super(UpdatedPageAdmin, self).get_form(request, obj, **kwargs)
-        if obj and not obj.get_meta_description(language=language):
-            try:
-                del form.base_fields['meta_description']
-            except KeyError:
-                pass
 
-        return form
+def get_form(self, request, obj=None, **kwargs):
+    '''
+    Patched method for PageAdmin.get_form.
+
+    Returns a form without the base field 'meta_description'
+    '''
+    language = get_language_from_request(request, obj)
+    form = _ORIGINAL_PAGEADMIN_GET_FORM(self, request, obj, **kwargs)
+    if obj and not obj.get_meta_description(language=language):
+        try:
+            del form.base_fields['meta_description']
+        except KeyError:
+            pass
+
+    return form
+
+PageAdmin.get_form = get_form
+
 admin.site.unregister(Page)
-admin.site.register(Page, UpdatedPageAdmin)
