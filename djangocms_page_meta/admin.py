@@ -3,7 +3,6 @@ from __future__ import absolute_import, print_function, unicode_literals
 
 from cms.admin.pageadmin import PageAdmin
 from cms.extensions import PageExtensionAdmin, TitleExtensionAdmin
-from cms.models import Page
 from cms.utils import get_language_from_request
 from django.conf import settings
 from django.contrib import admin
@@ -104,5 +103,3 @@ def get_form(self, request, obj=None, **kwargs):
     return form
 
 PageAdmin.get_form = get_form
-
-admin.site.unregister(Page)
