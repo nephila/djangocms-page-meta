@@ -87,11 +87,12 @@ _ORIGINAL_PAGEADMIN_GET_FORM = PageAdmin.get_form
 
 
 def get_form(self, request, obj=None, **kwargs):
-    '''
+    """
     Patched method for PageAdmin.get_form.
 
-    Returns a form without the base field 'meta_description'
-    '''
+    Returns a form without the base field 'meta_description', which is
+    overridden in djangocms-page-meta.
+    """
     language = get_language_from_request(request, obj)
     form = _ORIGINAL_PAGEADMIN_GET_FORM(self, request, obj, **kwargs)
     if obj and not obj.get_meta_description(language=language):
