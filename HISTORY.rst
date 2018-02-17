@@ -4,6 +4,12 @@
 History
 *******
 
+0.8.1 (2018-02-17)
+==================
+
+* Fix duplicate GenericMetaAttribute on publish
+* Fix error on Divio cloud when description fields length is not set
+
 0.8.0 (2018-01-14)
 ==================
 
