@@ -4,6 +4,11 @@
 History
 *******
 
+0.8.2 (unreleased)
+==================
+
+* Change method of patching PageAdmin for better compatibility with other addons
+
 0.8.1 (2018-02-17)
 ==================
 
