@@ -96,10 +96,7 @@ def get_form(self, request, obj=None, **kwargs):
     language = get_language_from_request(request, obj)
     form = _BASE_PAGEADMIN__GET_FORM(self, request, obj, **kwargs)
     if obj and not obj.get_meta_description(language=language):
-        try:
-            del form.base_fields['meta_description']
-        except KeyError:
-            pass
+        form.base_fields.pop('meta_description', None)
 
     return form
 
