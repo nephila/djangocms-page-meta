@@ -3,7 +3,6 @@ from __future__ import absolute_import, print_function, unicode_literals
 
 from cms.admin.pageadmin import PageAdmin
 from cms.extensions import PageExtensionAdmin, TitleExtensionAdmin
-from cms.models import Page
 from cms.utils import get_language_from_request
 from django.conf import settings
 from django.contrib import admin
@@ -83,21 +82,22 @@ class TitleMetaAdmin(TitleExtensionAdmin):
 admin.site.register(TitleMeta, TitleMetaAdmin)
 
 
-class UpdatedPageAdmin(PageAdmin):
-    """
-    Remove the meta description field from the page admin
+# Monkey patch the PageAdmin with a new get_form method
+_BASE_PAGEADMIN__GET_FORM = PageAdmin.get_form
 
-    It's overriden by djangocms-page-meta anyway
-    """
-    def get_form(self, request, obj=None, **kwargs):
-        language = get_language_from_request(request, obj)
-        form = super(UpdatedPageAdmin, self).get_form(request, obj, **kwargs)
-        if obj and not obj.get_meta_description(language=language):
-            try:
-                del form.base_fields['meta_description']
-            except KeyError:
-                pass
 
-        return form
-admin.site.unregister(Page)
-admin.site.register(Page, UpdatedPageAdmin)
+def get_form(self, request, obj=None, **kwargs):
+    """
+    Patched method for PageAdmin.get_form.
+
+    Returns a form without the base field 'meta_description', which is
+    overridden in djangocms-page-meta.
+    """
+    language = get_language_from_request(request, obj)
+    form = _BASE_PAGEADMIN__GET_FORM(self, request, obj, **kwargs)
+    if obj and not obj.get_meta_description(language=language):
+        form.base_fields.pop('meta_description', None)
+
+    return form
+
+PageAdmin.get_form = get_form
