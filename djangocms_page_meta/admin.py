@@ -82,8 +82,8 @@ class TitleMetaAdmin(TitleExtensionAdmin):
 admin.site.register(TitleMeta, TitleMetaAdmin)
 
 
-# Monkey patch the PageAdmin
-_ORIGINAL_PAGEADMIN_GET_FORM = PageAdmin.get_form
+# Monkey patch the PageAdmin with a new get_form method
+_BASE_PAGEADMIN__GET_FORM = PageAdmin.get_form
 
 
 def get_form(self, request, obj=None, **kwargs):
@@ -94,7 +94,7 @@ def get_form(self, request, obj=None, **kwargs):
     overridden in djangocms-page-meta.
     """
     language = get_language_from_request(request, obj)
-    form = _ORIGINAL_PAGEADMIN_GET_FORM(self, request, obj, **kwargs)
+    form = _BASE_PAGEADMIN__GET_FORM(self, request, obj, **kwargs)
     if obj and not obj.get_meta_description(language=language):
         try:
             del form.base_fields['meta_description']
