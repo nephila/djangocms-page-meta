@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, print_function, unicode_literals
 
-from django.contrib import admin
 from cms.models import Page
+from django.contrib import admin
 from django.forms import fields
 
 from . import BaseTest
 
-PageAdmin = admin.site._registry[Page]
+page_admin = admin.site._registry[Page]
 
 
 class AdminPageTest(BaseTest):
@@ -18,7 +18,7 @@ class AdminPageTest(BaseTest):
         when no page object is specified
         """
         request = self.get_page_request(None, self.user, '/', edit=True)
-        form = PageAdmin.get_form(request)
+        form = page_admin.get_form(request)
         self.assertIsInstance(
             form.base_fields.get('meta_description'),
             fields.CharField
@@ -31,5 +31,5 @@ class AdminPageTest(BaseTest):
         page1, _page2 = self.get_pages()
 
         request = self.get_page_request(page1, self.user, '/', edit=True)
-        form = PageAdmin.get_form(request, page1)
+        form = page_admin.get_form(request, page1)
         self.assertEqual(form.base_fields.get('meta_description'), None)
