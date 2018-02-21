@@ -25,7 +25,7 @@ HELPER_SETTINGS = dict(
     LANGUAGE_CODE='en',
     LANGUAGES=(
         ('en', gettext('English')),
-        ('fr_FR', gettext('French')),
+        ('fr-fr', gettext('French')),
         ('it', gettext('Italiano')),
     ),
     CMS_LANGUAGES={
@@ -41,7 +41,7 @@ HELPER_SETTINGS = dict(
                 'public': True,
             },
             {
-                'code': 'fr_FR',
+                'code': 'fr-fr',
                 'name': gettext('French'),
                 'public': True,
             },
