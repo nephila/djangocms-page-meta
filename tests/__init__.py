@@ -11,10 +11,10 @@ class BaseTest(BaseTestCase):
     page_data = {}
     _pages_data = (
         {'en': {'title': 'page one', 'template': 'page_meta.html', 'publish': True},
-         'fr_FR': {'title': 'page un', 'publish': True},
+         'fr-fr': {'title': 'page un', 'publish': True},
          'it': {'title': 'pagina uno', 'publish': True}},
         {'en': {'title': 'page two', 'template': 'page_meta.html', 'publish': True},
-         'fr_FR': {'title': 'page deux', 'publish': True},
+         'fr-fr': {'title': 'page deux', 'publish': True},
          'it': {'title': 'pagina due', 'publish': True}},
     )
     title_data = {
