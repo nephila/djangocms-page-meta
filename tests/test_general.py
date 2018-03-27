@@ -3,7 +3,6 @@ from __future__ import absolute_import, print_function, unicode_literals
 
 from copy import copy
 
-from classytags.core import Options
 from classytags.tests import DummyTokens
 from django.conf import settings
 from django.template.base import Parser
@@ -13,7 +12,7 @@ from django.utils.functional import SimpleLazyObject
 from djangocms_page_meta import models
 from djangocms_page_meta.forms import TitleMetaAdminForm
 from djangocms_page_meta.templatetags.page_meta_tags import MetaFromPage
-from djangocms_page_meta.utils import get_page_meta
+from djangocms_page_meta.utils import get_page_meta, meta_settings
 
 from . import BaseTest
 
@@ -115,6 +114,22 @@ class PageMetaUtilsTest(BaseTest):
         page.reload()
         meta = get_page_meta(page, 'en')
         self.assertEqual(meta.gplus_author, 'https://plus.google.com{0}'.format(new_data['gplus_author']))
+
+    def test_page_meta_no_meta(self):
+        """
+        Tests the meta if no PageMeta is set
+        """
+        meta_settings.GPLUS_AUTHOR = self.gplus_data['gplus_author']
+        page, page_2 = self.get_pages()
+
+        meta = get_page_meta(page, 'en')
+        self.assertEqual(
+            meta.gplus_author, 'https://plus.google.com/{0}'.format(self.gplus_data['gplus_author'])
+        )
+        self.assertEqual(meta.gplus_type, self.gplus_data['gplus_type'])
+        self.assertEqual(meta.published_time, page.publication_date.isoformat())
+        self.assertEqual(meta.modified_time, page.changed_date.isoformat())
+        meta_settings.GPLUS_AUTHOR = ''
 
     def test_none_page(self):
         meta = get_page_meta(None, 'en')
