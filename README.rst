@@ -51,6 +51,10 @@ Quickstart
 
 #. That's all!
 
+.. note:: Enabling this will **hide** django CMS own **Meta description** field to keep all the meta
+          information in the same part of the interface. If the django CMS field is set, it will still
+          be shown (and used by djangocms-page-meta).
+
 Dependencies
 ============
 
