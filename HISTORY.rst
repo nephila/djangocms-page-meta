@@ -4,6 +4,13 @@
 History
 *******
 
+0.8.3 (2018-04-07)
+==================
+
+* Remove description when creating a CMS page
+* Provide page dates meta if PageMeta does not exists
+* Improve compatibility with Django 3.5
+
 0.8.2 (2018-02-22)
 ==================
 

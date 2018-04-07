@@ -11,6 +11,7 @@ Contributors
 ------------
 
 * Adam Chainz
+* Balazs Szele
 * Christian Strappazzon
 * David D Lowe
 * Federico Frenguelli
