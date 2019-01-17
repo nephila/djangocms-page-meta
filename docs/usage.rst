@@ -27,11 +27,11 @@ template:
 .. code-block:: html+django
 
     {% load page_meta_tags %}
-    {% page_meta request.current_page as meta %}
+    {% page_meta request.current_page as page_meta %}
 
     [...]
     <!-- This must be in the head -->
-    {% include 'djangocms_page_meta/meta.html' with meta=meta %}
+    {% include 'djangocms_page_meta/meta.html' with meta=page_meta %}
 
 When using Google+ you must add the type attribute to the body or html tag:
 
