@@ -31,6 +31,10 @@ nosetests.xml
 .project
 .pydevproject
 .idea
+.env
+.venv
+env
+venv
 
 # Complexity
 output/*.html
