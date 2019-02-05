@@ -14,7 +14,7 @@ from .models import PageMeta, TitleMeta
 
 try:
     from django.core.urlresolvers import NoReverseMatch, reverse
-except ImportError:
+except ImportError:  # pragma: no cover
     from django.urls import NoReverseMatch, reverse
 
 try:
