@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import absolute_import, print_function, unicode_literals
-
 from cms.api import get_page_draft
 from cms.cms_toolbars import PAGE_MENU_SECOND_BREAK
 from cms.toolbar.items import Break
@@ -8,7 +5,8 @@ from cms.toolbar_base import CMSToolbar
 from cms.toolbar_pool import toolbar_pool
 from cms.utils.i18n import get_language_list, get_language_object
 from cms.utils.permissions import has_page_permission
-from django.core.urlresolvers import NoReverseMatch, reverse
+from django.urls.base import reverse
+from django.urls.exceptions import NoReverseMatch
 from django.utils.translation import ugettext_lazy as _
 
 from .models import PageMeta, TitleMeta
@@ -46,7 +44,7 @@ class PageToolbarMeta(CMSToolbar):
             self.request.current_page.has_change_permission(self.request.user)
         )
         if has_global_current_page_change_permission or can_change:
-            not_edit_mode = not self.toolbar.edit_mode
+            not_edit_mode = not self.toolbar.edit_mode_active
             current_page_menu = self.toolbar.get_or_create_menu('page')
             super_item = current_page_menu.find_first(
                 Break, identifier=PAGE_MENU_SECOND_BREAK) + 1

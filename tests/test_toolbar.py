@@ -1,10 +1,7 @@
-# -*- coding: utf-8 -*-
-from __future__ import absolute_import, print_function, unicode_literals
-
 from cms.toolbar.items import Menu, ModalItem, SubMenu
 from cms.utils.i18n import get_language_object
 from django.contrib.auth.models import Permission, User
-from django.core.urlresolvers import reverse
+from django.urls.base import reverse
 from django.test.utils import override_settings
 from django.utils.encoding import force_text
 
@@ -32,7 +29,7 @@ class ToolbarTest(BaseTest):
         Test that no page menu is present if user has no perm
         """
         from cms.toolbar.toolbar import CMSToolbar
-        page1, page2 = self.get_pages()
+        page1, _ = self.get_pages()
         request = self.get_page_request(page1, self.user_staff, '/', edit=True)
         toolbar = CMSToolbar(request)
         toolbar.get_left_items()
@@ -48,7 +45,7 @@ class ToolbarTest(BaseTest):
         Test that page meta menu is present if user has Page.change_perm
         """
         from cms.toolbar.toolbar import CMSToolbar
-        page1, page2 = self.get_pages()
+        page1, _ = self.get_pages()
         self.user_staff.user_permissions.add(Permission.objects.get(codename='change_page'))
         self.user_staff = User.objects.get(pk=self.user_staff.pk)
         request = self.get_page_request(page1, self.user_staff, '/', edit=True)
@@ -64,7 +61,7 @@ class ToolbarTest(BaseTest):
         Test that no page menu is present if user has general page Page.change_perm  but not permission on current page
         """
         from cms.toolbar.toolbar import CMSToolbar
-        page1, page2 = self.get_pages()
+        page1, _ = self.get_pages()
         self.user_staff.user_permissions.add(Permission.objects.get(codename='change_page'))
         self.user_staff = User.objects.get(pk=self.user_staff.pk)
         request = self.get_page_request(page1, self.user_staff, '/', edit=True)
@@ -100,7 +97,7 @@ class ToolbarTest(BaseTest):
             },
         }
 
-        page1, page2 = self.get_pages()
+        page1, _ = self.get_pages()
         with self.settings(CMS_LANGUAGES=NEW_CMS_LANGS):
             request = self.get_page_request(page1, self.user, '/', edit=True)
             toolbar = CMSToolbar(request)
@@ -108,14 +105,14 @@ class ToolbarTest(BaseTest):
             page_menu = toolbar.menus['page']
             meta_menu = page_menu.find_items(SubMenu, name=force_text(PAGE_META_MENU_TITLE))[0].item
             self.assertEqual(len(meta_menu.find_items(ModalItem, name="{0}...".format(force_text(PAGE_META_ITEM_TITLE)))), 1)
-            self.assertEqual(len(meta_menu.find_items(ModalItem)), len(NEW_CMS_LANGS[1])+1)
+            self.assertEqual(len(meta_menu.find_items(ModalItem)), len(NEW_CMS_LANGS[1]) + 1)
 
     def test_toolbar_with_items(self):
         """
         Test that PageMeta/TitleMeta items are present for superuser if PageMeta/TitleMeta exists for current page
         """
         from cms.toolbar.toolbar import CMSToolbar
-        page1, page2 = self.get_pages()
+        page1, _ = self.get_pages()
         page_ext = PageMeta.objects.create(extended_object=page1)
         title_meta = TitleMeta.objects.create(extended_object=page1.get_title_obj('en'))
         request = self.get_page_request(page1, self.user, '/', edit=True)

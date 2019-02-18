@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import absolute_import, print_function, unicode_literals
-
 from cms.admin.pageadmin import PageAdmin
 from cms.extensions import PageExtensionAdmin, TitleExtensionAdmin
 from cms.utils import get_language_from_request
@@ -60,6 +57,7 @@ class PageMetaAdmin(PageExtensionAdmin):
         """
         return {}
 
+
 admin.site.register(PageMeta, PageMetaAdmin)
 
 
@@ -78,6 +76,7 @@ class TitleMetaAdmin(TitleExtensionAdmin):
         Return empty perms dict thus hiding the model from admin index.
         """
         return {}
+
 
 admin.site.register(TitleMeta, TitleMetaAdmin)
 
@@ -102,5 +101,6 @@ def get_form(self, request, obj=None, **kwargs):
         form.base_fields.pop('meta_description', None)
 
     return form
+
 
 PageAdmin.get_form = get_form

@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import absolute_import, print_function, unicode_literals
-
 from copy import copy
 
 from classytags.tests import DummyTokens
@@ -35,7 +32,7 @@ class PageMetaUtilsTest(BaseTest):
         """
         Tests the OpenGraph meta tags
         """
-        page, page_2 = self.get_pages()
+        page, _ = self.get_pages()
         page_meta = models.PageMeta.objects.create(extended_object=page)
         for key, val in self.page_data.items():
             setattr(page_meta, key, val)
@@ -63,7 +60,7 @@ class PageMetaUtilsTest(BaseTest):
         """
         Tests the Twitter cards
         """
-        page, page_2 = self.get_pages()
+        page, _ = self.get_pages()
         page_meta = models.PageMeta.objects.create(extended_object=page)
         for key, val in self.page_data.items():
             setattr(page_meta, key, val)
@@ -83,7 +80,7 @@ class PageMetaUtilsTest(BaseTest):
         """
         Tests the Google+ schema data
         """
-        page, page_2 = self.get_pages()
+        page, _ = self.get_pages()
         page_meta = models.PageMeta.objects.create(extended_object=page)
         for key, val in self.page_data.items():
             setattr(page_meta, key, val)
@@ -120,7 +117,7 @@ class PageMetaUtilsTest(BaseTest):
         Tests the meta if no PageMeta is set
         """
         meta_settings.GPLUS_AUTHOR = self.gplus_data['gplus_author']
-        page, page_2 = self.get_pages()
+        page, _ = self.get_pages()
 
         meta = get_page_meta(page, 'en')
         self.assertEqual(
@@ -196,7 +193,7 @@ class PageMetaUtilsTest(BaseTest):
         self.assertEqual(meta.extra_custom_props, [('custom', 'attr', 'bar'), ('custom', 'attr', 'foo')])
 
         meta = get_page_meta(page1, 'it')
-        self.assertEqual(meta.extra_custom_props, [ ('custom', 'attr', 'foo')])
+        self.assertEqual(meta.extra_custom_props, [('custom', 'attr', 'foo')])
 
     def test_publish_extra(self):
         """
