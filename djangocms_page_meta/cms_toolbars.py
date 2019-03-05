@@ -46,7 +46,10 @@ class PageToolbarMeta(CMSToolbar):
             self.request.current_page.has_change_permission(self.request.user)
         )
         if has_global_current_page_change_permission or can_change:
-            not_edit_mode = not self.toolbar.edit_mode
+            try:
+                not_edit_mode = not self.toolbar.edit_mode  # DjangoCMS 3.4 compatibility
+            except AttributeError:
+                not_edit_mode = not self.toolbar.edit_mode_active
             current_page_menu = self.toolbar.get_or_create_menu('page')
             super_item = current_page_menu.find_first(
                 Break, identifier=PAGE_MENU_SECOND_BREAK) + 1
