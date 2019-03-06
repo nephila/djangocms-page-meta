@@ -47,9 +47,13 @@ class PageToolbarMeta(CMSToolbar):
             not_edit_mode = not self.toolbar.edit_mode
             current_page_menu = self.toolbar.get_or_create_menu('page')
             super_item = current_page_menu.find_first(
-                Break, identifier=PAGE_MENU_SECOND_BREAK) + 1
+                Break, identifier=PAGE_MENU_SECOND_BREAK
+            )
+            if super_item:
+                super_item = super_item + 1
             meta_menu = current_page_menu.get_or_create_menu(
-                'pagemeta', PAGE_META_MENU_TITLE, position=super_item)
+                'pagemeta', PAGE_META_MENU_TITLE, position=super_item
+            )
             position = 0
             # Page tags
             try:
