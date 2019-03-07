@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, print_function, unicode_literals
+
 from cms.extensions import PageExtension, TitleExtension
 from cms.extensions.extension_pool import extension_pool
 from cms.models import Page, Title
@@ -6,6 +9,7 @@ from django.core.cache import cache
 from django.db import models
 from django.db.models.signals import post_save, pre_delete
 from django.dispatch import receiver
+from django.utils.six import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 from filer.fields.file import FilerFileField
 from meta import settings as meta_settings
@@ -19,6 +23,7 @@ except ImportError:
     registry = None
 
 
+@python_2_unicode_compatible
 class PageMeta(PageExtension):
     image = FilerFileField(
         null=True, blank=True, related_name='djangocms_page_meta_page',
@@ -90,6 +95,7 @@ class PageMeta(PageExtension):
 extension_pool.register(PageMeta)
 
 
+@python_2_unicode_compatible
 class TitleMeta(TitleExtension):
     image = FilerFileField(
         null=True, blank=True, related_name='djangocms_page_meta_title',
@@ -140,6 +146,7 @@ class TitleMeta(TitleExtension):
 extension_pool.register(TitleMeta)
 
 
+@python_2_unicode_compatible
 class GenericMetaAttribute(models.Model):
     DEFAULT_ATTRIBUTE = 'name'
     page = models.ForeignKey(PageMeta, null=True, blank=True, related_name='extra',

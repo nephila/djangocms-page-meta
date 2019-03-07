@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, print_function, unicode_literals
+
 from cms.api import get_page_draft
 from cms.cms_toolbars import PAGE_MENU_SECOND_BREAK
 from cms.toolbar.items import Break
