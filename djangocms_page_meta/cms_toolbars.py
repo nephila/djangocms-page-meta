@@ -13,9 +13,9 @@ from django.utils.translation import ugettext_lazy as _
 from .models import PageMeta, TitleMeta
 
 try:
-    from django.core.urlresolvers import NoReverseMatch, reverse
-except ImportError:  # pragma: no cover
     from django.urls import NoReverseMatch, reverse
+except ImportError:  # pragma: no cover
+    from django.core.urlresolvers import NoReverseMatch, reverse
 
 try:
     from cms.utils import get_cms_setting
@@ -49,9 +49,9 @@ class PageToolbarMeta(CMSToolbar):
         can_change = self.request.current_page and permission
         if has_global_current_page_change_permission or can_change:
             try:
-                not_edit_mode = not self.toolbar.edit_mode
-            except AttributeError:
                 not_edit_mode = not self.toolbar.edit_mode_active
+            except AttributeError:
+                not_edit_mode = not self.toolbar.edit_mode
 
             current_page_menu = self.toolbar.get_or_create_menu('page')
             super_item = current_page_menu.find_first(
