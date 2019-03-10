@@ -60,6 +60,7 @@ class PageMetaAdmin(PageExtensionAdmin):
         """
         return {}
 
+
 admin.site.register(PageMeta, PageMetaAdmin)
 
 
@@ -78,6 +79,7 @@ class TitleMetaAdmin(TitleExtensionAdmin):
         Return empty perms dict thus hiding the model from admin index.
         """
         return {}
+
 
 admin.site.register(TitleMeta, TitleMetaAdmin)
 
@@ -102,5 +104,6 @@ def get_form(self, request, obj=None, **kwargs):
         form.base_fields.pop('meta_description', None)
 
     return form
+
 
 PageAdmin.get_form = get_form
