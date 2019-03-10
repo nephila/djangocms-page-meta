@@ -15,12 +15,12 @@ from .models import PageMeta, TitleMeta
 
 try:
     from django.urls import NoReverseMatch, reverse
-except ImportError:  # pragma: no cover
+except ImportError:
     from django.core.urlresolvers import NoReverseMatch, reverse
 
 try:
     from cms.utils import get_cms_setting
-except ImportError:  # pragma: no cover
+except ImportError:
     from cms.utils.conf import get_cms_setting
 
 
