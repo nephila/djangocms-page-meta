@@ -3,6 +3,5 @@ coverage
 coveralls
 mock>=1.0.1
 flake8
-https://github.com/nephila/djangocms-page-tags/archive/develop.zip
 tox
 djangocms-helper<1.1
