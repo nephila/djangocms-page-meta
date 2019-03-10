@@ -14,8 +14,7 @@ from django.utils.translation import ugettext_lazy as _
 from filer.fields.file import FilerFileField
 from meta import settings as meta_settings
 
-from .utils import get_metatags  # noqa
-from .utils import get_cache_key
+from .utils import get_cache_key, get_metatags
 
 try:
     from aldryn_snake.template_api import registry
