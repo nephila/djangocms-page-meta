@@ -3,7 +3,6 @@ from __future__ import absolute_import, print_function, unicode_literals
 
 from cms.models import Page
 from django.contrib import admin
-from django.forms import fields
 
 from . import BaseTest
 
