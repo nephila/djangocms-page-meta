@@ -26,14 +26,16 @@ except ImportError:
 class PageMeta(PageExtension):
     image = FilerFileField(
         null=True, blank=True, related_name='djangocms_page_meta_page',
-        help_text=_('Used if title image is empty.')
+        help_text=_('Used if title image is empty.'),
+        on_delete=models.CASCADE,
     )
     og_type = models.CharField(
         _('Resource type'), max_length=255, choices=meta_settings.FB_TYPES, blank=True,
         help_text=_('Use Article for generic pages.')
     )
     og_author = models.ForeignKey(
-        settings.AUTH_USER_MODEL, verbose_name=_('Author account'), null=True, blank=True
+        settings.AUTH_USER_MODEL, verbose_name=_('Author account'), null=True, blank=True,
+        on_delete=models.CASCADE,
     )
     og_author_url = models.CharField(
         _('Author Facebook URL'), max_length=255, default='', blank=True
@@ -88,6 +90,7 @@ class PageMeta(PageExtension):
             item.page = self
             item.save()
 
+
 extension_pool.register(PageMeta)
 
 
@@ -95,7 +98,8 @@ extension_pool.register(PageMeta)
 class TitleMeta(TitleExtension):
     image = FilerFileField(
         null=True, blank=True, related_name='djangocms_page_meta_title',
-        help_text=_('If empty, page image will be used for all languages.')
+        help_text=_('If empty, page image will be used for all languages.'),
+        on_delete=models.CASCADE,
     )
     keywords = models.CharField(
         max_length=2000, default='', blank=True
@@ -144,8 +148,10 @@ extension_pool.register(TitleMeta)
 @python_2_unicode_compatible
 class GenericMetaAttribute(models.Model):
     DEFAULT_ATTRIBUTE = 'name'
-    page = models.ForeignKey(PageMeta, null=True, blank=True, related_name='extra')
-    title = models.ForeignKey(TitleMeta, null=True, blank=True, related_name='extra')
+    page = models.ForeignKey(PageMeta, null=True, blank=True, related_name='extra',
+                             on_delete=models.CASCADE)
+    title = models.ForeignKey(TitleMeta, null=True, blank=True, related_name='extra',
+                              on_delete=models.CASCADE)
     attribute = models.CharField(
         _('attribute'), max_length=200, help_text=_('Custom attribute'), default='', blank=True,
     )
@@ -193,6 +199,7 @@ def cleanup_titlemeta(sender, instance, **kwargs):
     key = get_cache_key(instance.extended_object.page,
                         instance.extended_object.language)
     cache.delete(key)
+
 
 if registry:
     registry.add_to_head(get_metatags)
