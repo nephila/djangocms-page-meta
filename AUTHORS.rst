@@ -21,10 +21,13 @@ Contributors
 * Leonardo Cavallucci
 * Marco Federighi
 * Mario Colombo
+* Mark Walker
+* Matas Dailyda
 * nastya
 * Ryan Stalbow
 * Sergei Maertens
 * Tadas Dailyda
 * Vadim Sikora
 * Venelin Stoykov
+* Vladimir Kuvandjiev
 * Zan Anderle

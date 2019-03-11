@@ -4,6 +4,13 @@
 History
 *******
 
+0.8.4 (2019-03-11)
+==================
+
+* Add Django 2.0 and Django 2.1 compatibility
+* Add django CMS 3.6 compatibility
+* Fixes a crash on creating new pagetype with djangocms 3.5.2
+
 0.8.3 (2018-04-07)
 ==================
 
