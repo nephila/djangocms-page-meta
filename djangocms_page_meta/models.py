@@ -148,10 +148,12 @@ extension_pool.register(TitleMeta)
 @python_2_unicode_compatible
 class GenericMetaAttribute(models.Model):
     DEFAULT_ATTRIBUTE = 'name'
-    page = models.ForeignKey(PageMeta, null=True, blank=True, related_name='extra',
-                             on_delete=models.CASCADE)
-    title = models.ForeignKey(TitleMeta, null=True, blank=True, related_name='extra',
-                              on_delete=models.CASCADE)
+    page = models.ForeignKey(
+        PageMeta, null=True, blank=True, related_name='extra', on_delete=models.CASCADE
+    )
+    title = models.ForeignKey(
+        TitleMeta, null=True, blank=True, related_name='extra', on_delete=models.CASCADE
+    )
     attribute = models.CharField(
         _('attribute'), max_length=200, help_text=_('Custom attribute'), default='', blank=True,
     )
