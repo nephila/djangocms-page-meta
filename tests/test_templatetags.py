@@ -14,7 +14,7 @@ class TemplateMetaTest(BaseTest):
         """
         Test page-level templatetags
         """
-        page1, _ = self.get_pages()
+        page1, __ = self.get_pages()
         page_ext = PageMeta.objects.create(extended_object=page1)
         for key, val in self.og_data.items():
             setattr(page_ext, key, val)
@@ -39,7 +39,7 @@ class TemplateMetaTest(BaseTest):
         """
         Test title-level templatetags
         """
-        page1, _ = self.get_pages()
+        page1, __ = self.get_pages()
         title_en = page1.get_title_obj(language='en', fallback=False)
         title_it = page1.get_title_obj(language='it', fallback=False)
         title_ext = TitleMeta.objects.create(extended_object=title_en)

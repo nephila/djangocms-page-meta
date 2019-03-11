@@ -36,7 +36,7 @@ class ToolbarTest(BaseTest):
         Test that no page menu is present if user has no perm
         """
         from cms.toolbar.toolbar import CMSToolbar
-        page1, _ = self.get_pages()
+        page1, __ = self.get_pages()
         request = self.get_page_request(page1, self.user_staff, '/', edit=True)
         toolbar = CMSToolbar(request)
         toolbar.get_left_items()
@@ -52,7 +52,7 @@ class ToolbarTest(BaseTest):
         Test that page meta menu is present if user has Page.change_perm
         """
         from cms.toolbar.toolbar import CMSToolbar
-        page1, _ = self.get_pages()
+        page1, __ = self.get_pages()
         self.user_staff.user_permissions.add(Permission.objects.get(codename='change_page'))
         self.user_staff = User.objects.get(pk=self.user_staff.pk)
         request = self.get_page_request(page1, self.user_staff, '/', edit=True)
@@ -68,7 +68,7 @@ class ToolbarTest(BaseTest):
         Test that no page menu is present if user has general page Page.change_perm  but not permission on current page
         """
         from cms.toolbar.toolbar import CMSToolbar
-        page1, _ = self.get_pages()
+        page1, __ = self.get_pages()
         self.user_staff.user_permissions.add(Permission.objects.get(codename='change_page'))
         self.user_staff = User.objects.get(pk=self.user_staff.pk)
         request = self.get_page_request(page1, self.user_staff, '/', edit=True)
@@ -104,7 +104,7 @@ class ToolbarTest(BaseTest):
             },
         }
 
-        page1, _ = self.get_pages()
+        page1, __ = self.get_pages()
         with self.settings(CMS_LANGUAGES=NEW_CMS_LANGS):
             request = self.get_page_request(page1, self.user, '/', edit=True)
             toolbar = CMSToolbar(request)
@@ -119,7 +119,7 @@ class ToolbarTest(BaseTest):
         Test that PageMeta/TitleMeta items are present for superuser if PageMeta/TitleMeta exists for current page
         """
         from cms.toolbar.toolbar import CMSToolbar
-        page1, _ = self.get_pages()
+        page1, __ = self.get_pages()
         page_ext = PageMeta.objects.create(extended_object=page1)
         title_meta = TitleMeta.objects.create(extended_object=page1.get_title_obj('en'))
         request = self.get_page_request(page1, self.user, '/', edit=True)
