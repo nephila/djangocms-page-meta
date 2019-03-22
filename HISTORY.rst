@@ -4,6 +4,11 @@
 History
 *******
 
+0.8.5 (2019-03-22)
+==================
+
+* Fix error in migration missing on_delete argument
+
 0.8.4 (2019-03-11)
 ==================
 
