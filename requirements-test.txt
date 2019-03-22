@@ -4,4 +4,3 @@ coveralls
 mock>=1.0.1
 flake8
 tox
-djangocms-helper<1.1
