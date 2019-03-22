@@ -6,14 +6,13 @@ djangocms-page-meta
 
 Meta tag information for django CMS 3 pages
 
-Python: 2.7, 3.4, 3.5. 3.6
+Python: 2.7, 3.5. 3.6
 
-Django: 1.8 to 2.1
+Django: 1.11 to 2.1
 
-django CMS: 3.4, 3.5, 3.6
+django CMS: 3.5, 3.6
 
-.. warning:: Since version 0.7, the support for Python 2.6, Python 3.3, Django<1.8 and django CMS<3.2
-             has been dropped
+.. warning:: Since version 0.9, the support for Python 3.4, Django<1.11 and django CMS<3.4 has been dropped
 
 
 **********
