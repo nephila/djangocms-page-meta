@@ -50,7 +50,7 @@ class Migration(migrations.Migration):
                 ('gplus_description', models.CharField(default=b'', max_length=400, verbose_name='Google+ Description', blank=True)),
                 ('extended_object', models.OneToOneField(editable=False, to='cms.Title', on_delete=models.CASCADE)),
                 ('image', filer.fields.file.FilerFileField(related_name='djangocms_page_meta_title', blank=True, to='filer.File', help_text='If empty, page image will be used for all languages.', null=True, on_delete=models.CASCADE)),
-                ('public_extension', models.OneToOneField(related_name='draft_extension', null=True, editable=False, to='djangocms_page_meta.TitleMeta')),
+                ('public_extension', models.OneToOneField(related_name='draft_extension', null=True, editable=False, to='djangocms_page_meta.TitleMeta', on_delete=models.CASCADE)),
             ],
             options={
                 'verbose_name': 'Page meta info (language-dependent)',
