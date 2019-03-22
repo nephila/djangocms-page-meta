@@ -12,12 +12,16 @@ from django.views.static import serve
 admin.autodiscover()
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
     url(r'^media/(?P<path>.*)$', serve,
         {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
     url(r'^media/cms/(?P<path>.*)$', serve,
         {'document_root': get_cms_setting('MEDIA_ROOT'), 'show_indexes': True}),
 ]
+
+try:
+    urlpatterns.insert(0, url(r'^admin/', admin.site.urls)),  # NOQA
+except Exception:
+    urlpatterns.insert(0, url(r'^admin/', include(admin.site.urls))),  # NOQA
 
 urlpatterns += staticfiles_urlpatterns()
 
