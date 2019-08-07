@@ -4,6 +4,11 @@
 History
 *******
 
+0.9.0 (unreleased)
+==================
+
+* Remove support for Django < 1.11 / Python 3.4
+
 0.8.5 (2019-03-22)
 ==================
 
