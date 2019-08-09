@@ -7,15 +7,11 @@ def get_setting(name):
 
     description_length = getattr(
         settings, 'PAGE_META_DESCRIPTION_LENGTH', None
-    )
-    if not description_length:
-        description_length = 320
+    ) or 320
 
     tw_description_length = getattr(
         settings, 'PAGE_META_TWITTER_DESCRIPTION_LENGTH', None
-    )
-    if not tw_description_length:
-        tw_description_length = 280
+    ) or 320
 
     default = {
         'PAGE_META_DESCRIPTION_LENGTH': description_length,

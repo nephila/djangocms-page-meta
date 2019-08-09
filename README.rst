@@ -6,14 +6,11 @@ djangocms-page-meta
 
 Meta tag information for django CMS 3 pages
 
-Python: 2.7, 3.4, 3.5. 3.6
+Python: 2.7, 3.5. 3.6, 3.7
 
-Django: 1.8 to 2.1
+Django: 1.11 to 2.2
 
-django CMS: 3.4, 3.5, 3.6
-
-.. warning:: Since version 0.7, the support for Python 2.6, Python 3.3, Django<1.8 and django CMS<3.2
-             has been dropped
+django CMS: 3.4, 3.5, 3.6, 3.7
 
 
 **********
@@ -58,8 +55,8 @@ Quickstart
 Dependencies
 ============
 
-* `django-filer`_ >= 1.2
-* `django-meta`_  >= 1.3
+* `django-filer`_
+* `django-meta`_
 
 *************
 Documentation
