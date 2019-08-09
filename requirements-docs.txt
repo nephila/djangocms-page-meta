@@ -1,4 +1,4 @@
 -r requirements-test.txt
-Django<2.2
+Django<2.3
 djangocms-helper
 djangocms-page-tags>0.6,<0.7
