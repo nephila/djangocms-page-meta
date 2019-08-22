@@ -4,7 +4,7 @@
 History
 *******
 
-0.9.0 (unreleased)
+0.9.0 (2019-08-22)
 ==================
 
 * Add support for django CMS 3.7 / Django 2.2
