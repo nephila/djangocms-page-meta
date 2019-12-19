@@ -95,7 +95,7 @@ class PageToolbarMeta(CMSToolbar):
                 language__in=get_language_list(site_id)
             )
 
-            title_extensions = {t.id: t for t in TitleMeta.objects.filter(
+            title_extensions = {t.extended_object_id: t for t in TitleMeta.objects.filter(
                 extended_object_id__in=[title.id for title in titles]
             )}
 
