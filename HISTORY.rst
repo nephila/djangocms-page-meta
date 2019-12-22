@@ -8,6 +8,7 @@ History
 ===================
 
 * Move from djangocms-helper to django-app-helper
+* Improve toolbar performance
 
 0.9.0 (2019-08-22)
 ==================

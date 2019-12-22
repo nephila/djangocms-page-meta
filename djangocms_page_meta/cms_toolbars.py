@@ -91,20 +91,20 @@ class PageToolbarMeta(CMSToolbar):
                 site_id = self.page.node.site_id
             except AttributeError:  # CMS_3_4
                 site_id = self.page.site_id
-            for title in self.page.title_set.filter(
+            titles = self.page.title_set.filter(
                 language__in=get_language_list(site_id)
-            ):
+            )
+
+            title_extensions = {t.extended_object_id: t for t in TitleMeta.objects.filter(
+                extended_object_id__in=[title.id for title in titles]
+            )}
+
+            for title in titles:
                 try:
-                    title_extension = TitleMeta.objects.get(
-                        extended_object_id=title.pk
-                    )
-                except TitleMeta.DoesNotExist:
-                    title_extension = None
-                try:
-                    if title_extension:
+                    if title.pk in title_extensions:
                         url = reverse(
                             'admin:djangocms_page_meta_titlemeta_change',
-                            args=(title_extension.pk,)
+                            args=(title_extensions[title.pk].pk,)
                         )
                     else:
                         url = '%s?extended_object=%s' % (
