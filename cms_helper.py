@@ -69,13 +69,13 @@ HELPER_SETTINGS = dict(
 
 
 def run():
-    from djangocms_helper import runner
+    from app_helper import runner
     runner.cms('djangocms_page_meta')
 
 
 def setup():
     import sys
-    from djangocms_helper import runner
+    from app_helper import runner
     runner.setup('djangocms_page_meta', sys.modules[__name__], use_cms=True)
 
 
