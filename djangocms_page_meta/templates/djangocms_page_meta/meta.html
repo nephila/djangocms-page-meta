@@ -44,6 +44,7 @@
         {% if meta.schemaorg_image %}{% schemaorg_prop 'image' meta.schemaorg_image %}{% endif %}
         {% if meta.schemaorg_url %}{% schemaorg_prop 'url' meta.schemaorg_url %}{% endif %}
 	{% endif %}
-	{% custom_meta_extras meta.extra_custom_props %}
-	{% endautoescape %}
+    {% if meta.robots %}{% meta_list 'robots' meta.robots %}{% endif %}
+    {% custom_meta_extras meta.extra_custom_props %}
+    {% endautoescape %}
 {% endif %}

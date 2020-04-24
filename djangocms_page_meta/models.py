@@ -13,6 +13,7 @@ from django.utils.six import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 from filer.fields.file import FilerFileField
 from meta import settings as meta_settings
+from multiselectfield import MultiSelectField
 
 from .utils import get_cache_key, get_metatags
 
@@ -133,6 +134,18 @@ class TitleMeta(TitleExtension):
         _('Schemaorg Description'), max_length=255, blank=True,
         help_text=_('Description of the item.')
     )
+
+    ROBOTS_CHOICES = (
+        ("none", "none"),
+        ("noindex", "noindex"),
+        ("noimageindex", "noimageindex"),
+        ("nofollow", "nofollow"),
+        ("nosnippet", "nosnippet"),
+        ("noarchive", "noarchive"),
+        ("notranslate", "notranslate"),
+    )
+
+    robots = MultiSelectField(choices=ROBOTS_CHOICES, max_length=255, blank=True)
 
     class Meta:
         verbose_name = _("Page meta info (language-dependent)")

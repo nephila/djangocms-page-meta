@@ -12,11 +12,12 @@ def get_cache_key(page, language):
     Create the cache key for the current page and language
     """
     from cms.cache import _get_cache_key
+
     try:
         site_id = page.node.site_id
     except AttributeError:  # CMS_3_4
         site_id = page.site_id
-    return _get_cache_key('page_meta', page, language, site_id)
+    return _get_cache_key("page_meta", page, language, site_id)
 
 
 def get_page_meta(page, language):
@@ -54,7 +55,7 @@ def get_page_meta(page, language):
             if titlemeta.description:
                 meta.description = titlemeta.description.strip()
             if titlemeta.keywords:
-                meta.keywords = titlemeta.keywords.strip().split(',')
+                meta.keywords = titlemeta.keywords.strip().split(",")
             meta.locale = titlemeta.locale
             meta.og_description = titlemeta.og_description.strip()
             if not meta.og_description:
@@ -76,6 +77,8 @@ def get_page_meta(page, language):
                 if not attribute:
                     attribute = item.DEFAULT_ATTRIBUTE
                 meta.extra_custom_props.append((attribute, item.name, item.value))
+            if titlemeta.robots:
+                meta.robots = titlemeta.robots
         except (TitleMeta.DoesNotExist, AttributeError):
             # Skipping title-level metas
             if meta.description:
@@ -121,9 +124,10 @@ def get_page_meta(page, language):
                 meta.og_author_url = pagemeta.og_author_url
                 try:
                     from djangocms_page_tags.utils import get_title_tags, get_page_tags
+
                     tags = list(get_title_tags(page, language))
                     tags += list(get_page_tags(page))
-                    meta.tag = ','.join([tag.name for tag in tags])
+                    meta.tag = ",".join([tag.name for tag in tags])
                 except ImportError:
                     # djangocms-page-tags not available
                     pass
@@ -137,7 +141,7 @@ def get_page_meta(page, language):
         except PageMeta.DoesNotExist:
             pass
         for attr, val in defaults.items():
-            if not getattr(meta, attr, '') and val:
+            if not getattr(meta, attr, "") and val:
                 setattr(meta, attr, val)
         meta.url = page.get_absolute_url(language)
         meta.schemaorg_url = meta.url
@@ -150,7 +154,7 @@ def get_metatags(request):
     return mark_safe(
         render_to_string(
             request=request,
-            template_name='djangocms_page_meta/meta.html',
-            context={'meta': meta}
+            template_name="djangocms_page_meta/meta.html",
+            context={"meta": meta},
         )
     )

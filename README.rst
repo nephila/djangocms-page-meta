@@ -57,6 +57,7 @@ Dependencies
 
 * `django-filer`_
 * `django-meta`_
+* `django-multiselectfield`_
 
 *************
 Documentation
