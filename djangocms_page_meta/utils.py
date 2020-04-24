@@ -37,7 +37,6 @@ def get_page_meta(page, language):
         meta_key = get_cache_key(page, language)
     except AttributeError:
         return None
-    gplus_server = 'https://plus.google.com'
     meta = cache.get(meta_key)
     if not meta:
         meta = Meta()
@@ -63,9 +62,6 @@ def get_page_meta(page, language):
             meta.twitter_description = titlemeta.twitter_description.strip()
             if not meta.twitter_description:
                 meta.twitter_description = meta.description
-            meta.gplus_description = titlemeta.gplus_description.strip()
-            if not meta.gplus_description:
-                meta.gplus_description = meta.description
             if titlemeta.image:
                 meta.image = title.titlemeta.image.canonical_url or title.titlemeta.image.url
             for item in titlemeta.extra.all():
@@ -78,7 +74,6 @@ def get_page_meta(page, language):
             if meta.description:
                 meta.og_description = meta.description
                 meta.twitter_description = meta.description
-                meta.gplus_description = meta.description
         defaults = {
             'object_type': meta_settings.FB_TYPE,
             'og_type': meta_settings.FB_TYPE,
@@ -90,8 +85,6 @@ def get_page_meta(page, language):
             'twitter_type': meta_settings.TWITTER_TYPE,
             'twitter_site': meta_settings.TWITTER_SITE,
             'twitter_author': meta_settings.TWITTER_AUTHOR,
-            'gplus_type': meta_settings.GPLUS_TYPE,
-            'gplus_author': meta_settings.GPLUS_AUTHOR,
         }
         try:
             pagemeta = page.pagemeta
@@ -103,8 +96,6 @@ def get_page_meta(page, language):
             meta.twitter_type = pagemeta.twitter_type
             meta.twitter_site = pagemeta.twitter_site
             meta.twitter_author = pagemeta.twitter_author
-            meta.gplus_type = pagemeta.gplus_type
-            meta.gplus_author = pagemeta.gplus_author
             if meta.og_type == 'article':
                 meta.og_publisher = pagemeta.og_publisher
                 meta.og_author_url = pagemeta.og_author_url
@@ -125,11 +116,6 @@ def get_page_meta(page, language):
                 meta.extra_custom_props.append((attribute, item.name, item.value))
         except PageMeta.DoesNotExist:
             pass
-        if meta.gplus_author and not meta.gplus_author.startswith('http'):
-            if not meta.gplus_author.startswith('/'):
-                meta.gplus_author = '{0}/{1}'.format(gplus_server, meta.gplus_author)
-            else:
-                meta.gplus_author = '{0}{1}'.format(gplus_server, meta.gplus_author)
         if page.publication_date:
             meta.published_time = page.publication_date.isoformat()
         if page.changed_date:

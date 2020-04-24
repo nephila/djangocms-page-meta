@@ -33,18 +33,6 @@ template:
     <!-- This must be in the head -->
     {% include 'djangocms_page_meta/meta.html' with meta=page_meta %}
 
-When using Google+ you must add the type attribute to the body or html tag:
-
-.. code-block:: html+django
-
-    <html {% googleplus_html_scope meta.gplus_type %}>
-
-or:
-
-.. code-block:: html+django
-
-    <body {% googleplus_html_scope meta.gplus_type %}>
-
 
 ********************
 Supported attributes
