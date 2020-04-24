@@ -15,19 +15,19 @@ from .models import GenericMetaAttribute, PageMeta, TitleMeta
 class GenericAttributePageInline(admin.TabularInline):
     model = GenericMetaAttribute
     form = GenericAttributeInlineForm
-    fields = ('page', 'attribute', 'name', 'value')
+    fields = ("page", "attribute", "name", "value")
     extra = 1
 
 
 class GenericAttributeTitleInline(admin.TabularInline):
     model = GenericMetaAttribute
     form = GenericAttributeInlineForm
-    fields = ('title', 'attribute', 'name', 'value')
+    fields = ("title", "attribute", "name", "value")
     extra = 1
 
 
 class PageMetaAdmin(PageExtensionAdmin):
-    raw_id_fields = ('og_author',)
+    raw_id_fields = ("og_author",)
     inlines = (GenericAttributePageInline,)
     fieldsets = (
         (None, {'fields': ('image',)}),
@@ -50,8 +50,10 @@ class PageMetaAdmin(PageExtensionAdmin):
 
     class Media:
         css = {
-            'all': ('%sdjangocms_page_meta/css/%s' % (
-                settings.STATIC_URL, 'djangocms_page_meta_admin.css'),)
+            "all": (
+                "%sdjangocms_page_meta/css/%s"
+                % (settings.STATIC_URL, "djangocms_page_meta_admin.css"),
+            )
         }
 
     def get_model_perms(self, request):
@@ -70,8 +72,10 @@ class TitleMetaAdmin(TitleExtensionAdmin):
 
     class Media:
         css = {
-            'all': ('%sdjangocms_page_meta/css/%s' % (
-                settings.STATIC_URL, 'djangocms_page_meta_admin.css'),)
+            "all": (
+                "%sdjangocms_page_meta/css/%s"
+                % (settings.STATIC_URL, "djangocms_page_meta_admin.css"),
+            )
         }
 
     def get_model_perms(self, request):
@@ -101,7 +105,7 @@ def get_form(self, request, obj=None, **kwargs):
     language = get_language_from_request(request, obj)
     form = _BASE_PAGEADMIN__GET_FORM(self, request, obj, **kwargs)
     if not obj or not obj.get_meta_description(language=language):
-        form.base_fields.pop('meta_description', None)
+        form.base_fields.pop("meta_description", None)
 
     return form
 
