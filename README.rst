@@ -68,7 +68,8 @@ For package documentation see https://djangocms-page-meta.readthedocs.io/.
 
 .. _django-filer: https://pypi.python.org/pypi/django-filer
 .. _django-meta: https://pypi.python.org/pypi/django-meta
-.. _configuration: https://djangocms-page-meta.readthedocs.io//en/latest/configuration.html
+.. _django-multiselectfield: https://pypi.python.org/pypi/django-multiselectfield
+.. _configuration: https://djangocms-page-meta.readthedocs.io/en/latest/configuration.html
 .. _django CMS documentation: https://django-cms.readthedocs.io/en/latest
 
 
