@@ -15,6 +15,7 @@ from filer.fields.file import FilerFileField
 from meta import settings as meta_settings
 from multiselectfield import MultiSelectField
 
+from .settings import get_setting
 from .utils import get_cache_key, get_metatags
 
 try:
@@ -120,15 +121,7 @@ class TitleMeta(TitleExtension):
         help_text=_('Description of the item.')
     )
 
-    ROBOTS_CHOICES = (
-        ('none', _('none')),
-        ('noindex', _('noindex')),
-        ('noimageindex', _('noimageindex')),
-        ('nofollow', _('nofollow')),
-        ('nosnippet', _('nosnippet')),
-        ('noarchive', _('noarchive')),
-        ('notranslate', _('notranslate')),
-    )
+    ROBOTS_CHOICES = get_setting('ROBOTS_CHOICES')
 
     robots = MultiSelectField(_('Robots meta tag'), choices=ROBOTS_CHOICES, max_length=255, blank=True)
 
