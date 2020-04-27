@@ -3,7 +3,6 @@ from __future__ import absolute_import, print_function, unicode_literals
 
 from copy import copy
 
-from classytags.tests import DummyTokens
 from django.conf import settings
 from django.template.base import Parser
 from django.test import override_settings
@@ -14,7 +13,7 @@ from djangocms_page_meta.forms import TitleMetaAdminForm
 from djangocms_page_meta.templatetags.page_meta_tags import MetaFromPage
 from djangocms_page_meta.utils import get_page_meta, meta_settings
 
-from . import BaseTest
+from . import BaseTest, DummyTokens
 
 
 class PageMetaUtilsTest(BaseTest):
