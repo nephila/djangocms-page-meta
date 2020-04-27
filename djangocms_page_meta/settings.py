@@ -26,8 +26,6 @@ def get_setting(name):
         ('notranslate', _('notranslate')),
     )
 
-    print(robots_choices)
-
     default = {
         'PAGE_META_DESCRIPTION_LENGTH': description_length,
         'PAGE_META_TWITTER_DESCRIPTION_LENGTH': tw_description_length,
