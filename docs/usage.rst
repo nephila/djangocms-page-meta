@@ -123,8 +123,6 @@ See `Twitter documentation`_ for more information
 about each property.
 
 
-Schema.org microdata
-====================
 
 Support for `Schema.org microdata`_ is very basic, and limited to
 the ``<html>`` & ``<body>`` tags. You might need to further
@@ -149,6 +147,7 @@ required by some accepted types.
 
 ``Article`` or ``Blog`` type should be sensible for most use cases.
 
+=======
 ************
 Generic meta
 ************
