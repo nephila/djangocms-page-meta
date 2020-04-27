@@ -96,6 +96,12 @@ def get_page_meta(page, language):
             meta.twitter_type = pagemeta.twitter_type
             meta.twitter_site = pagemeta.twitter_site
             meta.twitter_author = pagemeta.twitter_author
+            if page.publication_date:
+                meta.published_time = page.publication_date.isoformat()
+            if page.changed_date:
+                meta.modified_time = page.changed_date.isoformat()
+            if page.publication_end_date:
+                meta.expiration_time = page.publication_end_date.isoformat()
             if meta.og_type == 'article':
                 meta.og_publisher = pagemeta.og_publisher
                 meta.og_author_url = pagemeta.og_author_url
@@ -116,12 +122,6 @@ def get_page_meta(page, language):
                 meta.extra_custom_props.append((attribute, item.name, item.value))
         except PageMeta.DoesNotExist:
             pass
-        if page.publication_date:
-            meta.published_time = page.publication_date.isoformat()
-        if page.changed_date:
-            meta.modified_time = page.changed_date.isoformat()
-        if page.publication_end_date:
-            meta.expiration_time = page.publication_end_date.isoformat()
         for attr, val in defaults.items():
             if not getattr(meta, attr, '') and val:
                 setattr(meta, attr, val)
