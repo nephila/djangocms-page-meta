@@ -4,6 +4,14 @@ from __future__ import absolute_import, print_function, unicode_literals
 from app_helper.base_test import BaseTestCase
 
 
+class DummyTokens(list):
+    def __init__(self, *tokens):
+        super(DummyTokens, self).__init__(['dummy_tag'] + list(tokens))
+
+    def split_contents(self):
+        return self
+
+
 class BaseTest(BaseTestCase):
     """
     Base class with utility function
