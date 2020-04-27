@@ -121,16 +121,16 @@ class TitleMeta(TitleExtension):
     )
 
     ROBOTS_CHOICES = (
-        ("none", "none"),
-        ("noindex", "noindex"),
-        ("noimageindex", "noimageindex"),
-        ("nofollow", "nofollow"),
-        ("nosnippet", "nosnippet"),
-        ("noarchive", "noarchive"),
-        ("notranslate", "notranslate"),
+        ('none', _('none')),
+        ('noindex', _('noindex')),
+        ('noimageindex', _('noimageindex')),
+        ('nofollow', _('nofollow')),
+        ('nosnippet', _('nosnippet')),
+        ('noarchive', _('noarchive')),
+        ('notranslate', _('notranslate')),
     )
 
-    robots = MultiSelectField(choices=ROBOTS_CHOICES, max_length=255, blank=True)
+    robots = MultiSelectField(_('Robots meta tag'), choices=ROBOTS_CHOICES, max_length=255, blank=True)
 
     class Meta:
         verbose_name = _('Page meta info (language-dependent)')
