@@ -92,7 +92,6 @@ class PageMeta(PageExtension):
 extension_pool.register(PageMeta)
 
 
-@python_2_unicode_compatible
 class TitleMeta(TitleExtension):
     image = FilerFileField(
         null=True, blank=True, related_name='djangocms_page_meta_title',
@@ -143,7 +142,6 @@ class TitleMeta(TitleExtension):
 extension_pool.register(TitleMeta)
 
 
-@python_2_unicode_compatible
 class GenericMetaAttribute(models.Model):
     DEFAULT_ATTRIBUTE = 'name'
     page = models.ForeignKey(
