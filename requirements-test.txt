@@ -2,6 +2,6 @@
 coverage==5.1
 coveralls==2.0.0
 mock>=1.0.1
-flake8
+flake8==3.8.2
 tox
 django-app-helper==2.2.2
