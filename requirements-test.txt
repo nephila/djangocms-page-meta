@@ -2,6 +2,6 @@
 coverage
 coveralls
 mock>=1.0.1
-flake8
+flake8==3.8.3
 tox
 django-app-helper
