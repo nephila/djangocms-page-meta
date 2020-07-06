@@ -32,6 +32,7 @@ class MetaFromPage(Tag):
         context[varname] = meta
         return ''
 
+
 @register.filter(name='schema_html_scope')
 def schema_html_scope(item_type):
     return 'itemscope itemtype="http://schema.org/%s"' % escape(item_type)

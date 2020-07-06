@@ -124,7 +124,7 @@ about each property.
 
 
 Schema.org microdata
-================
+====================
 
 Support for `Schema.org microdata`_ is very basic, and limited to
 the ``<html>`` & ``<body>`` tags. You might need to further

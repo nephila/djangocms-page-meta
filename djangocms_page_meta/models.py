@@ -183,7 +183,6 @@ class GenericMetaAttribute(models.Model):
             return _('Attribute {0} for title {1}').format(self.name, self.title)
 
 
-
 # Cache cleanup when deleting pages / editing page extensions
 @receiver(pre_delete, sender=Page)
 def cleanup_page(sender, instance, **kwargs):

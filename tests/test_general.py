@@ -78,16 +78,6 @@ class PageMetaUtilsTest(BaseTest):
         self.assertEqual(meta.twitter_type, self.twitter_data['twitter_type'])
         self.assertEqual(meta.get_domain(), settings.META_SITE_DOMAIN)
 
-    def test_page_meta_no_meta(self):
-        """
-        Tests the meta if no PageMeta is set
-        """
-        page, __ = self.get_pages()
-
-        meta = get_page_meta(page, 'en')
-        self.assertEqual(meta.published_time, page.publication_date.isoformat())
-        self.assertEqual(meta.modified_time, page.changed_date.isoformat())
-
     def test_none_page(self):
         meta = get_page_meta(None, 'en')
         self.assertIsNone(meta)
