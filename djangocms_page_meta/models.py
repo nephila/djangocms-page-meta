@@ -110,6 +110,7 @@ class TitleMeta(TitleExtension):
     twitter_description = models.CharField(
         _('Twitter Description'), max_length=2000, default='', blank=True
     )
+
     class Meta:
         verbose_name = _('Page meta info (language-dependent)')
         verbose_name_plural = _('Page meta info (language-dependent)')
@@ -166,7 +167,6 @@ class GenericMetaAttribute(models.Model):
             return _('Attribute {0} for page {1}').format(self.name, self.page)
         if self.title:
             return _('Attribute {0} for title {1}').format(self.name, self.title)
-
 
 
 # Cache cleanup when deleting pages / editing page extensions
