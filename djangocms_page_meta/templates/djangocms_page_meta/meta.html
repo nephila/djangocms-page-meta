@@ -1,6 +1,6 @@
 {% load meta_extra %}
 {% if meta %}
-    {% autoescape off %}
+	{% autoescape off %}
 	{% if meta.description %}{% meta 'description' meta.description %}{% endif %}
 	{% if meta.keywords %}{% meta_list 'keywords' meta.keywords %}{% endif %}
 	{% if meta.use_og %}
@@ -36,13 +36,6 @@
 		{% if meta.twitter_author %}{% twitter_prop 'creator' meta.twitter_author %}{% endif %}
 		{% if meta.twitter_site %}{% twitter_prop 'site_name' meta.twitter_site %}{% endif %}
 	{% endif %}
-	{% if meta.use_googleplus %}
-		{% if meta.title %}{% googleplus_prop 'name' meta.title %}{% endif %}
-		{% if meta.published_time %}{% googleplus_prop 'datePublished' meta.published_time %}{% endif %}
-		{% if meta.modified_time %}{% googleplus_prop 'dateModified' meta.modified_time %}{% endif %}
-		{% if meta.url %}{% googleplus_prop 'url' meta.url %}{% endif %}
-		{% if meta.image %}{% googleplus_prop 'image' meta.image %}{% endif %}
-	{% endif %}
-    {% custom_meta_extras meta.extra_custom_props %}
-    {% endautoescape %}
+	{% custom_meta_extras meta.extra_custom_props %}
+	{% endautoescape %}
 {% endif %}

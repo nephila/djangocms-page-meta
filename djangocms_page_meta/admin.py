@@ -42,6 +42,10 @@ class PageMetaAdmin(PageExtensionAdmin):
             'fields': ('twitter_type', 'twitter_author'),
             'classes': ('collapse',)
         }),
+        (_('Schema.org microdata'), {
+            'fields': ('item_type',),
+            'classes': ('collapse')
+        }),
     )
 
     class Media:

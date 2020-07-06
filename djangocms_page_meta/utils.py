@@ -85,6 +85,7 @@ def get_page_meta(page, language):
             'twitter_type': meta_settings.TWITTER_TYPE,
             'twitter_site': meta_settings.TWITTER_SITE,
             'twitter_author': meta_settings.TWITTER_AUTHOR,
+            'item_type': meta_settings.GPLUS_TYPE
         }
         try:
             pagemeta = page.pagemeta
@@ -96,6 +97,7 @@ def get_page_meta(page, language):
             meta.twitter_type = pagemeta.twitter_type
             meta.twitter_site = pagemeta.twitter_site
             meta.twitter_author = pagemeta.twitter_author
+            meta.item_type = pagemeta.item_type
             if page.publication_date:
                 meta.published_time = page.publication_date.isoformat()
             if page.changed_date:

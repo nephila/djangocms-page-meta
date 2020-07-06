@@ -35,10 +35,6 @@ class Form(forms.BaseForm):
         'Render the Twitter properties',
         required=False
     )
-    META_USE_GOOGLEPLUS_PROPERTIES = forms.CheckboxField(
-        'Render the Google properties',
-        required=False
-    )
     PAGE_META_DESCRIPTION_LENGTH = forms.CharField(
         'Max description field length (default: 320)',
         required=False
@@ -56,7 +52,6 @@ class Form(forms.BaseForm):
         settings['META_DEFAULT_KEYWORDS'] = []
         settings['META_USE_OG_PROPERTIES'] = data['META_USE_OG_PROPERTIES']
         settings['META_USE_TWITTER_PROPERTIES'] = data['META_USE_TWITTER_PROPERTIES']
-        settings['META_USE_GOOGLEPLUS_PROPERTIES'] = data['META_USE_GOOGLEPLUS_PROPERTIES']
         settings[
             'PAGE_META_TWITTER_DESCRIPTION_LENGTH'
         ] = data['PAGE_META_TWITTER_DESCRIPTION_LENGTH']

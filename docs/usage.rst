@@ -33,13 +33,29 @@ template:
     <!-- This must be in the head -->
     {% include 'djangocms_page_meta/meta.html' with meta=page_meta %}
 
+When using microdata from [Schema.org](https://schema.org/docs/gs.html#microdata_how), you must add the type attribute to the body or html tag:
+
+.. code-block:: html+django
+
+    {% autoescape off %}
+    <html {{ page_meta.item_type|schema_html_scope }}>
+    {% endautoescape %}
+
+or:
+
+.. code-block:: html+django
+
+    {% autoescape off %}
+    <body {{ page_meta.item_type|schema_html_scope }}>
+    {% endautoescape %}
+
 
 ********************
 Supported attributes
 ********************
 
 ``djangocms-page-meta`` currently offers partial support for `OpenGraph`_,
-`Twitter Cards`_ and `Google+ Snippets`_. As a generic application
+`Twitter Cards`_ and `Schema.org microdata`_. As a generic application
 ``djangocms-page-meta`` cannot cover every use case while still being
 useful to most people.
 
@@ -102,12 +118,11 @@ See `Twitter documentation`_ for more information
 about each property.
 
 
-Google+ Snippets
+Schema.org microdata
 ================
 
-Support for `Google+ Snippets`_ is very basic, and limited to the
-``<head>`` part of the page. As Google+ Snippets uses `Schema.org microdata`_
-to add meta-information to the markup, you might need to further
+Support for `Schema.org microdata`_ is very basic, and limited to
+the ``<html>`` & ``<body>`` tags. You might need to further
 customize the markup according to you specific content.
 
 As of now support is limited to the the following data:
@@ -168,4 +183,3 @@ variable that can be passed to the included template for rendering.
 .. _Twitter documentation: https://dev.twitter.com/docs/cards
 .. _Schema.org microdata: http://schema.org/docs/gs.html
 .. _Twitter Cards: https://dev.twitter.com/cards
-.. _Google+ Snippets: https://developers.google.com/+/web/snippet/
