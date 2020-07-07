@@ -37,7 +37,7 @@ setup(
     include_package_data=True,
     install_requires=(
         'django-cms>=3.4',
-        'django-meta>=1.3',
+        'django-meta @ git+https://github.com/nephila/django-meta/@8ade6cef3c0d1cae93433c7c4aefbf22ba964f61#egg=django-meta',
         'django-filer>=1.2',
     ),
     license='BSD',

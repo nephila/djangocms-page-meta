@@ -38,7 +38,7 @@ When using microdata from [Schema.org](https://schema.org/docs/gs.html#microdata
 .. code-block:: html+django
 
     {% autoescape off %}
-    <html {{ page_meta.item_type|schema_html_scope }}>
+    <html {% schemaorg_html_scope page_meta.schemaorg_type %}>
     {% endautoescape %}
 
 or:
@@ -46,9 +46,14 @@ or:
 .. code-block:: html+django
 
     {% autoescape off %}
-    <body {{ page_meta.item_type|schema_html_scope }}>
+    <body {% schemaorg_html_scope page_meta.schemaorg_type %}>
     {% endautoescape %}
 
+Don't forget to load ``meta`` in your template!
+
+.. code-block:: html+django
+
+    {% load cms_tags menu_tags sekizai_tags page_meta_tags meta %}
 
 ********************
 Supported attributes

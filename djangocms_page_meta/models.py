@@ -65,7 +65,7 @@ class PageMeta(PageExtension):
         _('Resource type'), max_length=255, choices=meta_settings.TWITTER_TYPES, blank=True
     )
 
-    item_type = models.CharField(
+    schemaorg_type = models.CharField(
         _('Resource type'), max_length=255, blank=True,
         help_text=_('Use Article for generic pages.')
     )

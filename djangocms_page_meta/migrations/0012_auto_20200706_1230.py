@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='pagemeta',
-            name='item_type',
+            name='schemaorg_type',
             field=models.CharField(blank=True, help_text='Use Article for generic pages.', max_length=255, verbose_name='Resource type'),
         ),
     ]
