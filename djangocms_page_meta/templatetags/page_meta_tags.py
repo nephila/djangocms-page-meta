@@ -5,7 +5,6 @@ from classytags.arguments import Argument
 from classytags.core import Options, Tag
 from cms.utils import get_language_from_request
 from django import template
-from django.utils.html import escape
 from meta.views import Meta
 
 from ..utils import get_page_meta
@@ -31,8 +30,3 @@ class MetaFromPage(Tag):
             meta = Meta()
         context[varname] = meta
         return ''
-
-
-@register.filter(name='schema_html_scope')
-def schema_html_scope(item_type):
-    return 'itemscope itemtype="http://schema.org/%s"' % escape(item_type)
