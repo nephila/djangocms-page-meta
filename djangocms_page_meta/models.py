@@ -123,7 +123,11 @@ class TitleMeta(TitleExtension):
 
     ROBOTS_CHOICES = get_setting('ROBOTS_CHOICES')
 
-    robots = MultiSelectField(_('Robots meta tag'), choices=ROBOTS_CHOICES, max_length=255, blank=True)
+    robots = MultiSelectField(
+        _('Robots meta tag'),
+        choices=ROBOTS_CHOICES,
+        max_length=255,
+        blank=True)
 
     class Meta:
         verbose_name = _('Page meta info (language-dependent)')

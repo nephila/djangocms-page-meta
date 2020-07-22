@@ -47,4 +47,7 @@
     {% if meta.robots %}{% meta_list 'robots' meta.robots %}{% endif %}
     {% custom_meta_extras meta.extra_custom_props %}
     {% endautoescape %}
+	{% if meta.robots %}{% meta_list 'robots' meta.robots %}{% endif %}
+	{% custom_meta_extras meta.extra_custom_props %}
+	{% endautoescape %}
 {% endif %}

@@ -149,7 +149,6 @@ required by some accepted types.
 
 ``Article`` or ``Blog`` type should be sensible for most use cases.
 
-=======
 ************
 Generic meta
 ************
