@@ -89,7 +89,7 @@ def get_page_meta(page, language):
             'schemaorg_datePublished':
                 page.publication_date.isoformat() if page.publication_date else None,
             'schemaorg_dateModified':
-                page.changed_date.isoformat() if page.changed_date else None
+                page.changed_date.isoformat() if page.changed_date else None,
         }
         try:
             pagemeta = page.pagemeta
@@ -102,10 +102,12 @@ def get_page_meta(page, language):
             meta.twitter_site = pagemeta.twitter_site
             meta.twitter_author = pagemeta.twitter_author
             meta.schemaorg_type = pagemeta.schemaorg_type
-            meta.schemaorg_name = pagemeta.schemaorg_name
-            meta.schemaorg_description = pagemeta.schemaorg_description
-            meta.schemaorg_url = pagemeta.schemaorg_url
-            meta.schemaorg_image = pagemeta.schemaorg_image
+            meta.schemaorg_description = meta.description
+            if titlemeta.schemaorg_description:
+                meta.schemaorg_description = titlemeta.schemaorg_description
+            meta.schemaorg_name = meta.title
+            if titlemeta.schemaorg_name:
+                meta.schemaorg_name = titlemeta.schemaorg_name
             if page.publication_date:
                 meta.published_time = page.publication_date.isoformat()
             if page.changed_date:
@@ -125,6 +127,7 @@ def get_page_meta(page, language):
                     pass
             if not meta.image and pagemeta.image:
                 meta.image = pagemeta.image.canonical_url or pagemeta.image.url
+            meta.schemaorg_image = meta.image
             for item in pagemeta.extra.all():
                 attribute = item.attribute
                 if not attribute:
@@ -136,6 +139,7 @@ def get_page_meta(page, language):
             if not getattr(meta, attr, '') and val:
                 setattr(meta, attr, val)
         meta.url = page.get_absolute_url(language)
+        meta.schemaorg_url = meta.url
     return meta
 
 

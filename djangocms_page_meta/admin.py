@@ -43,13 +43,7 @@ class PageMetaAdmin(PageExtensionAdmin):
             'classes': ('collapse',)
         }),
         (_('Schema.org microdata'), {
-            'fields': (
-                'schemaorg_type',
-                'schemaorg_name',
-                'schemaorg_description',
-                'schemaorg_url',
-                'schemaorg_image'
-            ),
+            'fields': ('schemaorg_type',),
             'classes': ('collapse')
         }),
     )

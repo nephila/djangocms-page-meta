@@ -70,26 +70,6 @@ class PageMeta(PageExtension):
         help_text=_('Use Article for generic pages.')
     )
 
-    schemaorg_name = models.CharField(
-        _('Name'), max_length=255, blank=True,
-        help_text=_('Name of the item.')
-    )
-
-    schemaorg_description = models.CharField(
-        _('Description'), max_length=255, blank=True,
-        help_text=_('A description of the item.')
-    )
-
-    schemaorg_url = models.CharField(
-        _('URL'), max_length=255, blank=True,
-        help_text=_('URL of the item.')
-    )
-
-    schemaorg_image = models.CharField(
-        _('Image'), max_length=255, blank=True,
-        help_text=_('A URL image of the item.')
-    )
-
     class Meta:
         verbose_name = _('Page meta info (all languages)')
         verbose_name_plural = _('Page meta info (all languages)')
@@ -129,6 +109,14 @@ class TitleMeta(TitleExtension):
     )
     twitter_description = models.CharField(
         _('Twitter Description'), max_length=2000, default='', blank=True
+    )
+    schemaorg_name = models.CharField(
+        _('Schemaorg Name'), max_length=255, blank=True,
+        help_text=_('Name of the item.')
+    )
+    schemaorg_description = models.CharField(
+        _('Schemaorg Description'), max_length=255, blank=True,
+        help_text=_('Description of the item.')
     )
 
     class Meta:
