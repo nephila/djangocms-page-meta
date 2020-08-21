@@ -64,6 +64,12 @@ def get_page_meta(page, language):
                 meta.twitter_description = meta.description
             if titlemeta.image:
                 meta.image = title.titlemeta.image.canonical_url or title.titlemeta.image.url
+                meta.schemaorg_image = meta.image
+            if titlemeta.schemaorg_description:
+                meta.schemaorg_description = titlemeta.schemaorg_description
+            meta.schemaorg_name = meta.title
+            if titlemeta.schemaorg_name:
+                meta.schemaorg_name = titlemeta.schemaorg_name
             for item in titlemeta.extra.all():
                 attribute = item.attribute
                 if not attribute:
@@ -103,11 +109,6 @@ def get_page_meta(page, language):
             meta.twitter_author = pagemeta.twitter_author
             meta.schemaorg_type = pagemeta.schemaorg_type
             meta.schemaorg_description = meta.description
-            if titlemeta.schemaorg_description:
-                meta.schemaorg_description = titlemeta.schemaorg_description
-            meta.schemaorg_name = meta.title
-            if titlemeta.schemaorg_name:
-                meta.schemaorg_name = titlemeta.schemaorg_name
             if page.publication_date:
                 meta.published_time = page.publication_date.isoformat()
             if page.changed_date:
@@ -127,7 +128,6 @@ def get_page_meta(page, language):
                     pass
             if not meta.image and pagemeta.image:
                 meta.image = pagemeta.image.canonical_url or pagemeta.image.url
-            meta.schemaorg_image = meta.image
             for item in pagemeta.extra.all():
                 attribute = item.attribute
                 if not attribute:

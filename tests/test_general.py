@@ -96,10 +96,6 @@ class PageMetaUtilsTest(BaseTest):
         self.assertEqual(meta.schemaorg_datePublished, page.publication_date.isoformat())
         self.assertEqual(meta.schemaorg_dateModified, page.changed_date.isoformat())
         self.assertEqual(meta.schemaorg_type, self.schemaorg_data['schemaorg_type'])
-        self.assertEqual(meta.schemaorg_name, self.schemaorg_data['schemaorg_name'])
-        self.assertEqual(meta.schemaorg_description, self.schemaorg_data['schemaorg_description'])
-        self.assertEqual(meta.schemaorg_image, self.schemaorg_data['schemaorg_image'])
-        self.assertEqual(meta.schemaorg_url, self.schemaorg_data['schemaorg_url'])
 
     def test_none_page(self):
         meta = get_page_meta(None, 'en')

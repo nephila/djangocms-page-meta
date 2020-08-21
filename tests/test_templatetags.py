@@ -132,12 +132,16 @@ class TemplateMetaTest(BaseTest):
         title_ext_en = title_en.titlemeta
         title_ext_en.twitter_description = 'twitter custom description'
         title_ext_en.og_description = 'og custom description'
+        title_ext_en.schemaorg_name = 'schemaorg name'
+        title_ext_en.schemaorg_description = 'schemaorg description'
         title_ext_en.save()
         page1.publish('en')
         response = self.client.get(page1.get_public_url('en'))
         self.assertContains(response, '<meta name="description" content="custom description">')
         self.assertContains(response, '<meta name="twitter:description" content="twitter custom description">')
         self.assertContains(response, '<meta property="og:description" content="og custom description">')
+        self.assertContains(response, '<meta itemprop="name" content="schemaorg name">')
+        self.assertContains(response, '<meta itemprop="description" content="schemaorg description">')
 
         title2_en = page2.get_title_obj(language='en', fallback=False)
         title2_en.meta_description = self.title_data['description']
