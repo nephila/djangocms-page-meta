@@ -86,8 +86,10 @@ def get_page_meta(page, language):
             'twitter_site': meta_settings.TWITTER_SITE,
             'twitter_author': meta_settings.TWITTER_AUTHOR,
             'schemaorg_type': meta_settings.SCHEMAORG_TYPE,
-            'schemaorg_datePublished': page.publication_date.isoformat() if page.publication_date else None,
-            'schemaorg_dateModified': page.changed_date.isoformat() if page.changed_date else None
+            'schemaorg_datePublished':
+                page.publication_date.isoformat() if page.publication_date else None,
+            'schemaorg_dateModified':
+                page.changed_date.isoformat() if page.changed_date else None
         }
         try:
             pagemeta = page.pagemeta
