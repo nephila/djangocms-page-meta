@@ -85,7 +85,9 @@ def get_page_meta(page, language):
             'twitter_type': meta_settings.TWITTER_TYPE,
             'twitter_site': meta_settings.TWITTER_SITE,
             'twitter_author': meta_settings.TWITTER_AUTHOR,
-            'schemaorg_type': meta_settings.SCHEMAORG_TYPE
+            'schemaorg_type': meta_settings.SCHEMAORG_TYPE,
+            'schemaorg_datePublished': page.publication_date.isoformat() if page.publication_date else None,
+            'schemaorg_dateModified': page.changed_date.isoformat() if page.changed_date else None
         }
         try:
             pagemeta = page.pagemeta
@@ -98,6 +100,10 @@ def get_page_meta(page, language):
             meta.twitter_site = pagemeta.twitter_site
             meta.twitter_author = pagemeta.twitter_author
             meta.schemaorg_type = pagemeta.schemaorg_type
+            meta.schemaorg_name = pagemeta.schemaorg_name
+            meta.schemaorg_description = pagemeta.schemaorg_description
+            meta.schemaorg_url = pagemeta.schemaorg_url
+            meta.schemaorg_image = pagemeta.schemaorg_image
             if page.publication_date:
                 meta.published_time = page.publication_date.isoformat()
             if page.changed_date:

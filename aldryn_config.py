@@ -43,6 +43,10 @@ class Form(forms.BaseForm):
         'Max twitter description field length (default: 280)',
         required=False
     )
+    META_USE_SCHEMAORG_PROPERTIES = forms.CheckboxField(
+        'Render the Schema.org properties',
+        required=False
+    )
 
     def to_settings(self, data, settings):
         settings['META_SITE_PROTOCOL'] = data['META_SITE_PROTOCOL']
@@ -58,4 +62,5 @@ class Form(forms.BaseForm):
         settings['PAGE_META_DESCRIPTION_LENGTH'] = data['PAGE_META_DESCRIPTION_LENGTH']
         settings['META_USE_TITLE_TAG'] = False
         settings['META_USE_SITES'] = True
+        settings['META_USE_SCHEMAORG_PROPERTIES'] = data['META_USE_SCHEMAORG_PROPERTIES']
         return settings

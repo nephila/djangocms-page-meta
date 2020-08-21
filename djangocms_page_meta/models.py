@@ -66,8 +66,28 @@ class PageMeta(PageExtension):
     )
 
     schemaorg_type = models.CharField(
-        _('Resource type'), max_length=255, blank=True,
+        _('Resource type'), max_length=255, choices=meta_settings.SCHEMAORG_TYPES, blank=True,
         help_text=_('Use Article for generic pages.')
+    )
+
+    schemaorg_name = models.CharField(
+        _('Name'), max_length=255, blank=True,
+        help_text=_('Name of the item.')
+    )
+
+    schemaorg_description = models.CharField(
+        _('Description'), max_length=255, blank=True,
+        help_text=_('A description of the item.')
+    )
+
+    schemaorg_url = models.CharField(
+        _('URL'), max_length=255, blank=True,
+        help_text=_('URL of the item.')
+    )
+
+    schemaorg_image = models.CharField(
+        _('Image'), max_length=255, blank=True,
+        help_text=_('A URL image of the item.')
     )
 
     class Meta:
