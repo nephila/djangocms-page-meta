@@ -50,3 +50,12 @@ class BaseTest(BaseTestCase):
         'twitter_site': 'fake_site',
         'twitter_type': 'summary',
     }
+    schemaorg_data = {
+        'schemaorg_datePublished': 'fake_user',
+        'schemaorg_dateModified': 'fake_site',
+        'schemaorg_type': 'Article',
+        'schemaorg_name': 'schemaorg name - lorem ipsum',
+        'schemaorg_description': 'schemaorg description - lorem ipsum',
+        'schemaorg_image': 'https://example.com/image.png',
+        'schemaorg_url': 'https://example.com',
+    }
