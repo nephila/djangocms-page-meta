@@ -78,58 +78,6 @@ class PageMetaUtilsTest(BaseTest):
         self.assertEqual(meta.twitter_type, self.twitter_data['twitter_type'])
         self.assertEqual(meta.get_domain(), settings.META_SITE_DOMAIN)
 
-    def test_page_meta_gplus(self):
-        """
-        Tests the Google+ schema data
-        """
-        page, __ = self.get_pages()
-        page_meta = models.PageMeta.objects.create(extended_object=page)
-        for key, val in self.page_data.items():
-            setattr(page_meta, key, val)
-        for key, val in self.gplus_data.items():
-            setattr(page_meta, key, val)
-        page_meta.save()
-
-        page.reload()
-
-        meta = get_page_meta(page, 'en')
-        self.assertEqual(meta.gplus_author, 'https://plus.google.com/{0}'.format(self.gplus_data['gplus_author']))
-        self.assertEqual(meta.gplus_type, self.gplus_data['gplus_type'])
-
-        new_data = copy(self.gplus_data)
-        new_data['gplus_author'] = 'https://plus.google.com/+SomeUser'
-        for key, val in new_data.items():
-            setattr(page_meta, key, val)
-        page_meta.save()
-        page.reload()
-        meta = get_page_meta(page, 'en')
-        self.assertEqual(meta.gplus_author, new_data['gplus_author'])
-
-        new_data = copy(self.gplus_data)
-        new_data['gplus_author'] = '/SomePage'
-        for key, val in new_data.items():
-            setattr(page_meta, key, val)
-        page_meta.save()
-        page.reload()
-        meta = get_page_meta(page, 'en')
-        self.assertEqual(meta.gplus_author, 'https://plus.google.com{0}'.format(new_data['gplus_author']))
-
-    def test_page_meta_no_meta(self):
-        """
-        Tests the meta if no PageMeta is set
-        """
-        meta_settings.GPLUS_AUTHOR = self.gplus_data['gplus_author']
-        page, __ = self.get_pages()
-
-        meta = get_page_meta(page, 'en')
-        self.assertEqual(
-            meta.gplus_author, 'https://plus.google.com/{0}'.format(self.gplus_data['gplus_author'])
-        )
-        self.assertEqual(meta.gplus_type, self.gplus_data['gplus_type'])
-        self.assertEqual(meta.published_time, page.publication_date.isoformat())
-        self.assertEqual(meta.modified_time, page.changed_date.isoformat())
-        meta_settings.GPLUS_AUTHOR = ''
-
     def test_none_page(self):
         meta = get_page_meta(None, 'en')
         self.assertIsNone(meta)

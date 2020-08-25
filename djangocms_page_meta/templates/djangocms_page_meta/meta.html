@@ -1,6 +1,6 @@
 {% load meta_extra %}
 {% if meta %}
-    {% autoescape off %}
+	{% autoescape off %}
 	{% if meta.description %}{% meta 'description' meta.description %}{% endif %}
 	{% if meta.keywords %}{% meta_list 'keywords' meta.keywords %}{% endif %}
 	{% if meta.use_og %}
@@ -36,17 +36,14 @@
 		{% if meta.twitter_author %}{% twitter_prop 'creator' meta.twitter_author %}{% endif %}
 		{% if meta.twitter_site %}{% twitter_prop 'site_name' meta.twitter_site %}{% endif %}
 	{% endif %}
-	{% if meta.use_googleplus %}
-		{% if meta.gplus_author %}
-			<link rel="author" href="{{ meta.gplus_author }}"/>
-		{% endif %}
-		{% if meta.title %}{% googleplus_prop 'name' meta.title %}{% endif %}
-		{% if meta.published_time %}{% googleplus_prop 'datePublished' meta.published_time %}{% endif %}
-		{% if meta.modified_time %}{% googleplus_prop 'dateModified' meta.modified_time %}{% endif %}
-		{% if meta.url %}{% googleplus_prop 'url' meta.url %}{% endif %}
-		{% if meta.gplus_description %}{% googleplus_prop 'description' meta.gplus_description %}{% endif %}
-		{% if meta.image %}{% googleplus_prop 'image' meta.image %}{% endif %}
+	{% if meta.use_schemaorg %}
+        {% if meta.schemaorg_name %}{% schemaorg_prop 'name' meta.schemaorg_name %}{% endif %}
+        {% if meta.schemaorg_datePublished %}{% schemaorg_prop 'datePublished' meta.schemaorg_datePublished %}{% endif %}
+        {% if meta.schemaorg_dateModified %}{% schemaorg_prop 'dateModified' meta.schemaorg_dateModified %}{% endif %}
+        {% if meta.schemaorg_description %}{% schemaorg_prop 'description' meta.schemaorg_description %}{% endif %}
+        {% if meta.schemaorg_image %}{% schemaorg_prop 'image' meta.schemaorg_image %}{% endif %}
+        {% if meta.schemaorg_url %}{% schemaorg_prop 'url' meta.schemaorg_url %}{% endif %}
 	{% endif %}
-    {% custom_meta_extras meta.extra_custom_props %}
-    {% endautoescape %}
+	{% custom_meta_extras meta.extra_custom_props %}
+	{% endautoescape %}
 {% endif %}

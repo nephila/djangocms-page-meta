@@ -68,28 +68,41 @@ Ready to contribute? Here's how to set up `djangocms-page-meta` for local develo
 
     $ git clone git@github.com:your_name_here/djangocms-page-meta.git
 
-3. Install your local copy into a virtualenv. Assuming you have virtualenvwrapper installed, this is how you set up your fork for local development::
+3. Install your local copy into a virtualenv. This is how you set up your fork for local development:
 
-    $ mkvirtualenv djangocms-page-meta
-    $ cd djangocms-page-meta/
-    $ python setup.py develop
+   a. Python 2 version (assuming you have virtualenvwrapper installed)::
+
+      $ mkvirtualenv djangocms-page-meta
+      $ cd djangocms-page-meta/
+      $ pip install -r requirements-test.txt
+      $ python setup.py develop
+
+   b. Python 3 version (assuming you have venv installed)::
+
+      $ cd djangocms-page-meta/
+      $ python3 -m venv .venv
+      $ . .venv/bin/activate
+      $ python3 setup.py develop
+      $ python3 -m pip install -r requirements-test.txt
 
 4. Create a branch for local development::
 
     $ git checkout -b name-of-your-bugfix-or-feature
 
-Now you can make your changes locally.
+   Now you can make your changes locally.
 
-5. When you're done making changes, check that your changes pass flake8 and the
-tests, including testing other Python versions with tox::
+5. When you're done making changes, check that your changes pass flake8 and the tests, including testing other Python versions with tox.
 
-    $ flake8 djangocms_page_meta tests
-    $ python setup.py test
-    $ tox
+   a. Python 2 version::
 
-To get flake8 and tox install them into your virtualenv:
+      $ flake8 djangocms_page_meta tests
+      $ python setup.py test
+      $ tox
 
-    $ pip install -r requirements-test.txt
+   b. Python 3 version::
+
+      $ python3 -m flake8 djangocms_page_meta tests
+      $ python3 -m tox
 
 6. Commit your changes and push your branch to GitHub::
 

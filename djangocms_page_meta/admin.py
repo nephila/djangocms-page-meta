@@ -42,9 +42,9 @@ class PageMetaAdmin(PageExtensionAdmin):
             'fields': ('twitter_type', 'twitter_author'),
             'classes': ('collapse',)
         }),
-        (_('Google+ Snippets'), {
-            'fields': ('gplus_type', 'gplus_author'),
-            'classes': ('collapse',)
+        (_('Schema.org microdata'), {
+            'fields': ('schemaorg_type',),
+            'classes': ('collapse')
         }),
     )
 

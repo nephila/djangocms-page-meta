@@ -45,3 +45,6 @@ docs/_build
 
 *.sqlite
 .eggs
+
+#vscode
+.vscode
