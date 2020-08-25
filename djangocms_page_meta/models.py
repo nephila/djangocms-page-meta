@@ -64,12 +64,9 @@ class PageMeta(PageExtension):
     twitter_type = models.CharField(
         _('Resource type'), max_length=255, choices=meta_settings.TWITTER_TYPES, blank=True
     )
-    gplus_author = models.CharField(
-        _('Author Google+ URL'), max_length=255, default='', blank=True,
-        help_text=_('Use the Google+ Name (together with "+")')
-    )
-    gplus_type = models.CharField(
-        _('Resource type'), max_length=255, choices=meta_settings.GPLUS_TYPES, blank=True,
+
+    schemaorg_type = models.CharField(
+        _('Resource type'), max_length=255, choices=meta_settings.SCHEMAORG_TYPES, blank=True,
         help_text=_('Use Article for generic pages.')
     )
 
@@ -113,8 +110,13 @@ class TitleMeta(TitleExtension):
     twitter_description = models.CharField(
         _('Twitter Description'), max_length=2000, default='', blank=True
     )
-    gplus_description = models.CharField(
-        _('Google+ Description'), max_length=2000, default='', blank=True
+    schemaorg_name = models.CharField(
+        _('Schemaorg Name'), max_length=255, blank=True,
+        help_text=_('Name of the item.')
+    )
+    schemaorg_description = models.CharField(
+        _('Schemaorg Description'), max_length=255, blank=True,
+        help_text=_('Description of the item.')
     )
 
     class Meta:

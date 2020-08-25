@@ -30,14 +30,14 @@ class BaseTest(BaseTestCase):
         'description': 'base lorem ipsum - english',
         'og_description': 'opengraph - lorem ipsum - english',
         'twitter_description': 'twitter - lorem ipsum - english',
-        'gplus_description': 'gplus - lorem ipsum - english',
+        'schemaorg_description': 'gplus - lorem ipsum - english',
     }
     title_data_it = {
         'keywords': 'parola1, parola2, parola3',
         'description': 'base lorem ipsum - italian',
         'og_description': 'opengraph - lorem ipsum - italian',
         'twitter_description': 'twitter - lorem ipsum - italian',
-        'gplus_description': 'gplus - lorem ipsum - italian',
+        'schemaorg_description': 'gplus - lorem ipsum - italian',
     }
     og_data = {
         'og_type': 'article',
@@ -51,8 +51,4 @@ class BaseTest(BaseTestCase):
         'twitter_author': 'fake_user',
         'twitter_site': 'fake_site',
         'twitter_type': 'summary',
-    }
-    gplus_data = {
-        'gplus_author': '+FakeUser',
-        'gplus_type': 'Article',
     }

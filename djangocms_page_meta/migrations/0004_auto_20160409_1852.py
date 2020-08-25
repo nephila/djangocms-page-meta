@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='pagemeta',
             name='gplus_type',
-            field=models.CharField(blank=True, choices=settings.GPLUS_TYPES, help_text='Use Article for generic pages.', max_length=255, verbose_name='Resource type'),
+            field=models.CharField(blank=True, choices=(""), help_text='Use Article for generic pages.', max_length=255, verbose_name='Resource type'),
         ),
         migrations.AlterField(
             model_name='pagemeta',
