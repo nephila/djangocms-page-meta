@@ -78,25 +78,6 @@ class PageMetaUtilsTest(BaseTest):
         self.assertEqual(meta.twitter_type, self.twitter_data['twitter_type'])
         self.assertEqual(meta.get_domain(), settings.META_SITE_DOMAIN)
 
-    def test_page_meta_schemaorg(self):
-        """
-        Tests the Schema.org properties
-        """
-        page, __ = self.get_pages()
-        page_meta = models.PageMeta.objects.create(extended_object=page)
-        for key, val in self.page_data.items():
-            setattr(page_meta, key, val)
-        for key, val in self.schemaorg_data.items():
-            setattr(page_meta, key, val)
-        page_meta.save()
-
-        page.reload()
-
-        meta = get_page_meta(page, 'en')
-        self.assertEqual(meta.schemaorg_datePublished, page.publication_date.isoformat())
-        self.assertEqual(meta.schemaorg_dateModified, page.changed_date.isoformat())
-        self.assertEqual(meta.schemaorg_type, self.schemaorg_data['schemaorg_type'])
-
     def test_none_page(self):
         meta = get_page_meta(None, 'en')
         self.assertIsNone(meta)

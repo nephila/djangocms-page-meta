@@ -30,7 +30,7 @@ class TemplateMetaTest(BaseTest):
 
         response = self.client.get(page1.get_public_url('en'))
         self.assertContains(response, '<meta name="twitter:domain" content="example.com">')
-        self.assertContains(response, '<meta property="article:published_time" content="%s">' % page1.publication_date.isoformat())
+        self.assertContains(response, '<meta itemprop="datePublished" content="%s">' % page1.publication_date.isoformat())
         self.assertContains(response, '<meta property="article:expiration_time" content="%s">' % page1.publication_end_date.isoformat())
         self.assertContains(response, '<meta property="article:publisher" content="https://facebook.com/FakeUser">')
         self.assertContains(response, '<meta custom="attr" content="foo">')
@@ -63,7 +63,7 @@ class TemplateMetaTest(BaseTest):
         response = self.client.get(page1.get_public_url('it'))
         response.render()
         self.assertContains(response, '<meta name="twitter:description" content="twitter - lorem ipsum - italian">')
-        self.assertContains(response, '<meta name="description" content="base lorem ipsum - italian">')
+        self.assertContains(response, '<meta itemprop="description" content="gplus - lorem ipsum - italian">')
         self.assertContains(response, '<meta property="og:description" content="opengraph - lorem ipsum - italian">')
         self.assertContains(response, '<meta property="og:title" content="pagina uno">')
         self.assertContains(response, '<meta property="og:url" content="http://example.com%s">' % page1.get_public_url('it'))
@@ -72,7 +72,7 @@ class TemplateMetaTest(BaseTest):
         # English language
         response = self.client.get(page1.get_public_url('en'))
         self.assertContains(response, '<meta name="twitter:description" content="twitter - lorem ipsum - english">')
-        self.assertContains(response, '<meta name="description" content="base lorem ipsum - english">')
+        self.assertContains(response, '<meta itemprop="description" content="gplus - lorem ipsum - english">')
         self.assertContains(response, '<meta property="og:description" content="opengraph - lorem ipsum - english">')
         self.assertContains(response, '<meta property="og:title" content="page one">')
         self.assertContains(response, '<meta property="og:url" content="http://example.com%s">' % page1.get_public_url('en'))
@@ -105,7 +105,7 @@ class TemplateMetaTest(BaseTest):
         response.render()
         self.assertContains(response, '<meta name="description" content="base lorem ipsum - italian">')
         self.assertContains(response, '<meta name="twitter:description" content="base lorem ipsum - italian">')
-        self.assertContains(response, '<meta name="description" content="base lorem ipsum - italian">')
+        self.assertContains(response, '<meta itemprop="description" content="base lorem ipsum - italian">')
         self.assertContains(response, '<meta property="og:description" content="base lorem ipsum - italian">')
         self.assertContains(response, '<meta property="og:title" content="pagina uno">')
         self.assertContains(response, '<meta property="og:url" content="http://example.com%s">' % page1.get_public_url('it'))
@@ -114,7 +114,7 @@ class TemplateMetaTest(BaseTest):
         response = self.client.get(page1.get_public_url('en'))
         self.assertContains(response, '<meta name="description" content="base lorem ipsum - english">')
         self.assertContains(response, '<meta name="twitter:description" content="base lorem ipsum - english">')
-        self.assertContains(response, '<meta name="description" content="base lorem ipsum - english">')
+        self.assertContains(response, '<meta itemprop="description" content="base lorem ipsum - english">')
         self.assertContains(response, '<meta property="og:description" content="base lorem ipsum - english">')
         self.assertContains(response, '<meta property="og:title" content="page one">')
         self.assertContains(response, '<meta property="og:url" content="http://example.com%s">' % page1.get_public_url('en'))
@@ -125,23 +125,19 @@ class TemplateMetaTest(BaseTest):
         response = self.client.get(page1.get_public_url('en'))
         self.assertContains(response, '<meta name="description" content="custom description">')
         self.assertContains(response, '<meta name="twitter:description" content="custom description">')
-        self.assertContains(response, '<meta name="description" content="custom description">')
+        self.assertContains(response, '<meta itemprop="description" content="custom description">')
 
         page1 = page1.get_draft_object()
         title_en = page1.get_title_obj(language='en', fallback=False)
         title_ext_en = title_en.titlemeta
         title_ext_en.twitter_description = 'twitter custom description'
         title_ext_en.og_description = 'og custom description'
-        title_ext_en.schemaorg_name = 'schemaorg name'
-        title_ext_en.schemaorg_description = 'schemaorg description'
         title_ext_en.save()
         page1.publish('en')
         response = self.client.get(page1.get_public_url('en'))
         self.assertContains(response, '<meta name="description" content="custom description">')
         self.assertContains(response, '<meta name="twitter:description" content="twitter custom description">')
         self.assertContains(response, '<meta property="og:description" content="og custom description">')
-        self.assertContains(response, '<meta itemprop="name" content="schemaorg name">')
-        self.assertContains(response, '<meta itemprop="description" content="schemaorg description">')
 
         title2_en = page2.get_title_obj(language='en', fallback=False)
         title2_en.meta_description = self.title_data['description']
@@ -152,7 +148,7 @@ class TemplateMetaTest(BaseTest):
         response = self.client.get(page2.get_public_url('en'))
         self.assertContains(response, '<meta name="description" content="base lorem ipsum - english">')
         self.assertContains(response, '<meta name="twitter:description" content="base lorem ipsum - english">')
-        self.assertContains(response, '<meta name="description" content="base lorem ipsum - english">')
+        self.assertContains(response, '<meta itemprop="description" content="base lorem ipsum - english">')
         self.assertContains(response, '<meta property="og:description" content="base lorem ipsum - english">')
         self.assertNotContains(response, '<meta property="og:title" content="page one">')
         self.assertNotContains(response, '<meta property="og:url" content="http://example.com%s">' % page1.get_public_url('en'))

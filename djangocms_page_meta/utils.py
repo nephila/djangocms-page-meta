@@ -65,11 +65,12 @@ def get_page_meta(page, language):
             if titlemeta.image:
                 meta.image = title.titlemeta.image.canonical_url or title.titlemeta.image.url
                 meta.schemaorg_image = meta.image
-            if titlemeta.schemaorg_description:
-                meta.schemaorg_description = titlemeta.schemaorg_description
-            meta.schemaorg_name = meta.title
-            if titlemeta.schemaorg_name:
-                meta.schemaorg_name = titlemeta.schemaorg_name
+            meta.schemaorg_description = titlemeta.schemaorg_description.strip()
+            if not meta.schemaorg_description:
+                meta.schemaorg_description = meta.description
+            meta.schemaorg_name = titlemeta.schemaorg_name
+            if not meta.schemaorg_name:
+                meta.schemaorg_name = meta.title
             for item in titlemeta.extra.all():
                 attribute = item.attribute
                 if not attribute:
@@ -79,6 +80,7 @@ def get_page_meta(page, language):
             # Skipping title-level metas
             if meta.description:
                 meta.og_description = meta.description
+                meta.schemaorg_description = meta.description
                 meta.twitter_description = meta.description
         defaults = {
             'object_type': meta_settings.FB_TYPE,
@@ -108,7 +110,6 @@ def get_page_meta(page, language):
             meta.twitter_site = pagemeta.twitter_site
             meta.twitter_author = pagemeta.twitter_author
             meta.schemaorg_type = pagemeta.schemaorg_type
-            meta.schemaorg_description = meta.description
             if page.publication_date:
                 meta.published_time = page.publication_date.isoformat()
             if page.changed_date:
