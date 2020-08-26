@@ -44,7 +44,7 @@ Quickstart
 
 #. Configuration:
 
-   See `configuration`_ section in the documentation.
+   See `usage`_ and `configuration`_ section in the documentation.
 
 #. That's all!
 
@@ -67,7 +67,8 @@ For package documentation see https://djangocms-page-meta.readthedocs.io/.
 
 .. _django-filer: https://pypi.python.org/pypi/django-filer
 .. _django-meta: https://pypi.python.org/pypi/django-meta
-.. _configuration: https://djangocms-page-meta.readthedocs.io//en/latest/configuration.html
+.. _configuration: https://djangocms-page-meta.readthedocs.io/en/latest/configuration.html
+.. _usage: https://djangocms-page-meta.readthedocs.io/en/latest/usage.html
 .. _django CMS documentation: https://django-cms.readthedocs.io/en/latest
 
 
