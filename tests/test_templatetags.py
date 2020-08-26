@@ -78,6 +78,23 @@ class TemplateMetaTest(BaseTest):
         self.assertContains(response, '<meta property="og:url" content="http://example.com%s">' % page1.get_public_url('en'))
         self.assertContains(response, '<meta custom="attr" content="foo-en">')
 
+    def test_robots_data(self):
+        """
+        Test meta robots templatetag
+        """
+        page1, __ = self.get_pages()
+        title_en = page1.get_title_obj(language='en', fallback=False)
+        title_ext = TitleMeta.objects.create(extended_object=title_en)
+        for key, val in self.robots_data.items():
+            setattr(title_ext, key, val)
+        title_ext.save()
+
+        page1.save()
+        page1.publish('en')
+
+        response = self.client.get(page1.get_public_url('en'))
+        self.assertContains(response, '<meta name="robots" content="noindex, nofollow">')
+
     def test_fallbacks(self):
         """
         Test title-level templatetags
@@ -152,10 +169,3 @@ class TemplateMetaTest(BaseTest):
         self.assertContains(response, '<meta property="og:description" content="base lorem ipsum - english">')
         self.assertNotContains(response, '<meta property="og:title" content="page one">')
         self.assertNotContains(response, '<meta property="og:url" content="http://example.com%s">' % page1.get_public_url('en'))
-
-        # Robots meta tag
-        title_ext_en.robots = 'noindex, nofollow'
-        title_ext_en.save()
-        page1.publish('en')
-        response = self.client.get(page1.get_public_url('en'))
-        self.assertContains(response, '<meta name="robots" content="noindex, nofollow">')

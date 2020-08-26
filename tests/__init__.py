@@ -52,3 +52,6 @@ class BaseTest(BaseTestCase):
         'twitter_site': 'fake_site',
         'twitter_type': 'summary',
     }
+    robots_data = {
+        'robots': 'noindex, nofollow'
+    }
