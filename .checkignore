@@ -1,2 +1,3 @@
 tests/*
 docs/*
+djangocms_page_meta/migrations/*

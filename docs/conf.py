@@ -1,5 +1,5 @@
 #
-# djangocms-blog documentation build configuration file, created by
+# djangocms-page-meta documentation build configuration file, created by
 # sphinx-quickstart on Sun Jun  5 23:27:04 2016.
 #
 # This file is execfile()d with the current directory set to its
