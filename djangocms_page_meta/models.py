@@ -184,17 +184,22 @@ def cleanup_title(sender, instance, **kwargs):
     cache.delete(key)
 
 
-@receiver(post_save, sender=PageMeta)
 def cleanup_pagemeta(sender, instance, **kwargs):
     for language in instance.extended_object.get_languages():
         key = get_cache_key(instance.extended_object, language)
         cache.delete(key)
 
 
-@receiver(post_save, sender=TitleMeta)
 def cleanup_titlemeta(sender, instance, **kwargs):
     key = get_cache_key(instance.extended_object.page, instance.extended_object.language)
     cache.delete(key)
+
+
+post_save.connect(cleanup_pagemeta, sender=PageMeta)
+pre_delete.connect(cleanup_pagemeta, sender=PageMeta)
+
+post_save.connect(cleanup_titlemeta, sender=TitleMeta)
+pre_delete.connect(cleanup_titlemeta, sender=TitleMeta)
 
 
 if registry:

@@ -7,7 +7,7 @@ from django.utils.functional import SimpleLazyObject
 from djangocms_page_meta import models
 from djangocms_page_meta.forms import TitleMetaAdminForm
 from djangocms_page_meta.templatetags.page_meta_tags import MetaFromPage
-from djangocms_page_meta.utils import get_page_meta, get_cache_key
+from djangocms_page_meta.utils import get_cache_key, get_page_meta
 
 from . import BaseTest, DummyTokens
 
@@ -167,17 +167,21 @@ class PageMetaUtilsTest(BaseTest):
         page1, __ = self.get_pages()
         page_meta = models.PageMeta.objects.create(extended_object=page1)
         title_meta = models.TitleMeta.objects.create(extended_object=page1.get_title_obj("en"))
-        page_attr = models.GenericMetaAttribute.objects.create(page=page_meta, attribute="custom", name="attr", value="foo")
-        title_attr = models.GenericMetaAttribute.objects.create(title=title_meta, attribute="custom", name="attr", value="bar")
+        page_attr = models.GenericMetaAttribute.objects.create(
+            page=page_meta, attribute="custom", name="attr", value="foo"
+        )
+        title_attr = models.GenericMetaAttribute.objects.create(
+            title=title_meta, attribute="custom", name="attr", value="bar"
+        )
 
         self.assertEqual(str(page_meta), f"Page Meta for {page1}")
         self.assertEqual(str(title_meta), f"Title Meta for {page1.get_title_obj('en')}")
         self.assertEqual(str(page_attr), f"Attribute {page_attr.name} for {page_meta}")
         self.assertEqual(str(title_attr), f"Attribute {title_attr.name} for {title_meta}")
 
-    def test_cache_cleanup_on_delete(self):
+    def test_cache_cleanup_on_update_delete_meta(self):
         """
-        Models str are created
+        Meta caches are emptied when updating / deleting a meta
         """
         page1, __ = self.get_pages()
         page_meta = models.PageMeta.objects.create(extended_object=page1)
@@ -186,9 +190,60 @@ class PageMetaUtilsTest(BaseTest):
         # cache objects
         for language in page1.get_languages():
             get_page_meta(page1, language)
-
         title_key = get_cache_key(title_meta.extended_object.page, title_meta.extended_object.language)
         self.assertTrue(cache.get(title_key))
+
+        # Title update check
+        title_meta.description = "Something"
+        title_meta.save()
+        self.assertIsNone(cache.get(title_key))
+
+        # Refreshing cache
+        get_page_meta(page1, title_meta.extended_object.language)
+        self.assertTrue(cache.get(title_key))
+
+        # Page update check
+        page_meta.og_author_url = "Something"
+        page_meta.save()
+        self.assertIsNone(cache.get(title_key))
+
+        # Refreshing cache
+        get_page_meta(page1, title_meta.extended_object.language)
+        self.assertTrue(cache.get(title_key))
+
+        # Check deleting objects
+        title_meta.delete()
+        self.assertIsNone(cache.get(title_key))
+
+        page_meta.delete()
+        for language in page1.get_languages():
+            title_key = get_cache_key(page1, language)
+            self.assertIsNone(cache.get(title_key))
+
+    def test_cache_cleanup_on_update_delete_page(self):
+        """
+        Meta caches are emptied when deleting a page.
+        """
+        page1, __ = self.get_pages()
+        page_meta = models.PageMeta.objects.create(extended_object=page1)
+        title_meta = models.TitleMeta.objects.create(extended_object=page1.get_title_obj("en"))
+
+        # cache objects - cache keys must be pre calculated as the page will not exist anymore when running the
+        # asserts
+        meta_cache_keys = []
+        for language in page1.get_languages():
+            get_page_meta(page1, language)
+            meta_cache_keys.append(get_cache_key(page1, language))
+        title_key = get_cache_key(title_meta.extended_object.page, title_meta.extended_object.language)
+        self.assertTrue(cache.get(title_key))
+
+        # Check deleting objects
+        title_meta.extended_object.delete()
+        self.assertIsNone(cache.get(title_key))
+
+        page_meta.delete()
+        for title_key in meta_cache_keys:
+            self.assertIsNone(cache.get(title_key))
 
     def test_form(self):
         page1, __ = self.get_pages()
