@@ -40,10 +40,7 @@ class PageToolbarMeta(CMSToolbar):
         permission = self.request.current_page.has_change_permission(self.request.user)
         can_change = self.request.current_page and permission
         if has_global_current_page_change_permission or can_change:
-            try:
-                not_edit_mode = not self.toolbar.edit_mode_active
-            except AttributeError:
-                not_edit_mode = not self.toolbar.edit_mode
+            not_edit_mode = not self.toolbar.edit_mode_active
 
             current_page_menu = self.toolbar.get_or_create_menu("page")
             super_item = current_page_menu.find_first(Break, identifier=PAGE_MENU_SECOND_BREAK)
@@ -69,10 +66,7 @@ class PageToolbarMeta(CMSToolbar):
             else:
                 meta_menu.add_modal_item(PAGE_META_ITEM_TITLE, url=url, disabled=not_edit_mode, position=position)
             # Title tags
-            try:
-                site_id = self.page.node.site_id
-            except AttributeError:  # CMS_3_4
-                site_id = self.page.site_id
+            site_id = self.page.node.site_id
             titles = self.page.title_set.filter(language__in=get_language_list(site_id))
 
             title_extensions = {

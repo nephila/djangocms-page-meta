@@ -113,11 +113,6 @@ You can test your project using any specific combination of python, django and d
 
 For example ``tox -epy3.7-django30-cms37`` runs the tests on python 3.7, Django 3.0 and django CMS 3.7.
 
-As the project uses `pytest <https://pytest.org/>`_ as test runner, you can pass any pytest option by setting the
-``PYTEST_ARGS`` environment variable, usually by prepending to the ``tox`` command. Example::
-
-    PYTEST_ARGS=" -s  tests/test_plugins.py::PluginTest -p no:warnings" tox -epy3.7-django30-cms37
-
 
 Pull Request Guidelines
 =======================
