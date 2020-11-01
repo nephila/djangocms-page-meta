@@ -1,3 +1,2 @@
 tests/*
-djangocms_page_meta/migrations/*
-djangocms_page_meta/south_migrations/*
+docs/*

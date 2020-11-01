@@ -6,11 +6,11 @@ djangocms-page-meta
 
 Meta tag information for django CMS 3 pages
 
-Python: 2.7, 3.5. 3.6, 3.7
+Python: 3.6, 3.7, 3.8
 
-Django: 1.11 to 2.2
+Django: 2.2, 3.0
 
-django CMS: 3.4, 3.5, 3.6, 3.7
+django CMS: 3.7
 
 
 **********
