@@ -1,30 +1,8 @@
----
-engines:
-  csslint:
-    enabled: true
-  duplication:
-    enabled: true
-    config:
-      languages:
-      - ruby
-      - javascript
-      - python
-      - php
-  fixme:
-    enabled: true
-  radon:
-    enabled: true
-ratings:
-  paths:
-  - "**.css"
-  - "**.inc"
-  - "**.js"
-  - "**.jsx"
-  - "**.module"
-  - "**.php"
-  - "**.py"
-  - "**.rb"
+languages:
+  Ruby: false
+  JavaScript: false
+  PHP: false
+  Python: true
 exclude_paths:
  - 'djangocms_page_meta/migrations/*'
- - 'djangocms_page_meta/south_migrations/*'
- - tests/
+ - 'tests/*'

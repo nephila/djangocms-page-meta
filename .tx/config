@@ -5,4 +5,3 @@ host = https://www.transifex.com
 file_filter = djangocms_page_meta/locale/<lang>/LC_MESSAGES/django.po
 source_file = djangocms_page_meta/locale/en/LC_MESSAGES/django.po
 source_lang = en
-

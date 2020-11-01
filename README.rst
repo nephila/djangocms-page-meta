@@ -2,15 +2,15 @@
 djangocms-page-meta
 ===================
 
-|Gitter| |PyPiVersion| |PyVersion| |Status| |TestCoverage| |CodeClimate| |License|
+|Gitter| |PyPiVersion| |PyVersion| |GAStatus| |TestCoverage| |CodeClimate| |License|
 
 Meta tag information for django CMS 3 pages
 
-Python: 2.7, 3.5. 3.6, 3.7
+Python: 3.6, 3.7, 3.8
 
-Django: 1.11 to 2.2
+Django: 2.2, 3.0, 3.1
 
-django CMS: 3.4, 3.5, 3.6, 3.7
+django CMS: 3.7, 3.8
 
 
 **********
@@ -76,26 +76,26 @@ For package documentation see https://djangocms-page-meta.readthedocs.io/.
     :target: https://gitter.im/nephila/applications
     :alt: Join the Gitter chat
 
-.. |PyPiVersion| image:: https://img.shields.io/pypi/v/djangocms-page-meta.svg?style=flat-square
-    :target: https://pypi.python.org/pypi/djangocms-page-meta
+.. |PyPiVersion| image:: https://img.shields.io/pypi/v/djangocms-redirect.svg?style=flat-square
+    :target: https://pypi.python.org/pypi/djangocms-redirect
     :alt: Latest PyPI version
 
-.. |PyVersion| image:: https://img.shields.io/pypi/pyversions/djangocms-page-meta.svg?style=flat-square
-    :target: https://pypi.python.org/pypi/djangocms-page-meta
+.. |PyVersion| image:: https://img.shields.io/pypi/pyversions/djangocms-redirect.svg?style=flat-square
+    :target: https://pypi.python.org/pypi/djangocms-redirect
     :alt: Python versions
 
-.. |Status| image:: https://img.shields.io/travis/nephila/djangocms-page-meta.svg?style=flat-square
-    :target: https://travis-ci.org/nephila/djangocms-page-meta
-    :alt: Latest Travis CI build status
+.. |GAStatus| image:: https://github.com/nephila/djangocms-redirect/workflows/Tox%20tests/badge.svg
+    :target: https://github.com/nephila/djangocms-redirect
+    :alt: Latest CI build status
 
-.. |TestCoverage| image:: https://img.shields.io/coveralls/nephila/djangocms-page-meta/master.svg?style=flat-square
-    :target: https://coveralls.io/r/nephila/djangocms-page-meta?branch=master
+.. |TestCoverage| image:: https://img.shields.io/coveralls/nephila/djangocms-redirect/master.svg?style=flat-square
+    :target: https://coveralls.io/r/nephila/djangocms-redirect?branch=master
     :alt: Test coverage
 
-.. |License| image:: https://img.shields.io/github/license/nephila/djangocms-page-meta.svg?style=flat-square
-   :target: https://pypi.python.org/pypi/djangocms-page-meta/
+.. |License| image:: https://img.shields.io/github/license/nephila/djangocms-redirect.svg?style=flat-square
+   :target: https://pypi.python.org/pypi/djangocms-redirect/
     :alt: License
 
-.. |CodeClimate| image:: https://codeclimate.com/github/nephila/djangocms-page-meta/badges/gpa.svg?style=flat-square
-   :target: https://codeclimate.com/github/nephila/djangocms-page-meta
+.. |CodeClimate| image:: https://codeclimate.com/github/nephila/djangocms-redirect/badges/gpa.svg?style=flat-square
+   :target: https://codeclimate.com/github/nephila/djangocms-redirect
    :alt: Code Climate
