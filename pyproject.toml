@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [tool.black]
 line-length = 119
 target-version = ["py36"]
-include = 'meta/*py'
+include = 'djangocms_page_meta/*py'
 
 [tool.towncrier]
 package = "djangocms-page-meta"
