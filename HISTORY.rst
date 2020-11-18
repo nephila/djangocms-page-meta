@@ -4,10 +4,23 @@
 History
 *******
 
-Unreleased
-===================
+.. towncrier release notes start
 
-* Nothing yet
+1.0.0 (2020-11-18)
+==================
+
+Features
+--------
+
+- Update tooling and drop Python 2 / Django < 2.2 compatibility (#135)
+- Add support for django CMS 3.8 / Django 3.1
+- Add support for django-meta 2.0
+
+
+Bugfixes
+--------
+
+- Fix setup.cfg and pyproject.toml package name (#138)
 
 0.10.0 (2019-12-27)
 ===================

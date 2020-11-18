@@ -8,7 +8,7 @@ target-version = ["py36"]
 include = 'djangocms_page_meta/*py'
 
 [tool.towncrier]
-package = "djangocms-page-meta"
+package = "djangocms_page_meta"
 directory = "changes"
 filename = "HISTORY.rst"
 title_format = "{version} ({project_date})"
