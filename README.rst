@@ -52,6 +52,21 @@ Quickstart
           information in the same part of the interface. If the django CMS field is set, it will still
           be shown (and used by djangocms-page-meta).
 
+**************************
+django-app-enabler support
+**************************
+
+`django-app-enabler`_ is supported.
+
+You can either
+
+* Installation & configuration: ``python -mapp_enabler install djangocms-page-meta``
+* Autoconfiguration: ``python -mapp_enabler enable djangocms-page-meta``
+
+Fully using this package will require some template changes that cannot be modified by ``django-app-enabler``.
+
+Check `usage`_ documentation for details.
+
 Dependencies
 ============
 
@@ -70,6 +85,7 @@ For package documentation see https://djangocms-page-meta.readthedocs.io/.
 .. _configuration: https://djangocms-page-meta.readthedocs.io/en/latest/configuration.html
 .. _usage: https://djangocms-page-meta.readthedocs.io/en/latest/usage.html
 .. _django CMS documentation: https://django-cms.readthedocs.io/en/latest
+.. _django-app-enabler: https://github.com/nephila/django-app-enabler
 
 
 .. |Gitter| image:: https://img.shields.io/badge/GITTER-join%20chat-brightgreen.svg?style=flat-square

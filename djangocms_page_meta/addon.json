@@ -1,0 +1,19 @@
+{
+    "package-name": "djangocms-page-meta",
+    "installed-apps": [
+        "filer",
+        "meta",
+        "easy_thumbnails",
+        "djangocms_page_meta"
+    ],
+    "settings": {
+        "META_SITE_PROTOCOL": "https",
+        "META_USE_SITES": true,
+        "META_USE_OG_PROPERTIES": true,
+        "META_USE_TWITTER_PROPERTIES": true,
+        "META_USE_SCHEMAORG_PROPERTIES": true
+    },
+    "urls": [
+    ],
+    "message": "Installation completed, please setup your templates according to the documentation: https://djangocms-page-meta.readthedocs.io/en/latest/usage.html"
+}
