@@ -7,61 +7,62 @@ msgid ""
 msgstr ""
 "Project-Id-Version: djangocms-page-meta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-11 22:18+0200\n"
+"POT-Creation-Date: 2020-12-20 13:10+0100\n"
 "PO-Revision-Date: 2017-12-30 18:56+0000\n"
 "Last-Translator: yakky <i.spalletti@nephila.it>\n"
-"Language-Team: English (http://www.transifex.com/nephila/djangocms-page-meta/language/en/)\n"
+"Language-Team: English (http://www.transifex.com/nephila/djangocms-page-meta/"
+"language/en/)\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: admin.py:34
+#: admin.py:32
 msgid "OpenGraph"
 msgstr "OpenGraph"
 
-#: admin.py:41
+#: admin.py:42
 msgid "Twitter Cards"
 msgstr "Twitter Cards"
 
-#: admin.py:45
-msgid "Google+ Snippets"
-msgstr "Google+ Snippets"
+#: admin.py:43
+msgid "Schema.org microdata"
+msgstr ""
 
-#: apps.py:10
+#: apps.py:7
 msgid "django CMS Page Meta"
 msgstr "django CMS Page Meta"
 
-#: cms_toolbars.py:22
+#: cms_toolbars.py:19
 msgid "Meta-information"
 msgstr "Meta-information"
 
-#: cms_toolbars.py:23
+#: cms_toolbars.py:20
 msgid "Common"
 msgstr "Common"
 
-#: models.py:29
+#: models.py:26
 msgid "Used if title image is empty."
 msgstr "Used if title image is empty."
 
-#: models.py:33 models.py:65 models.py:72
+#: models.py:30 models.py:61 models.py:65
 msgid "Resource type"
 msgstr "Resource type"
 
-#: models.py:34 models.py:73
+#: models.py:34 models.py:69
 msgid "Use Article for generic pages."
 msgstr "Use Article for generic pages."
 
-#: models.py:37
+#: models.py:38
 msgid "Author account"
 msgstr "Author account"
 
-#: models.py:41
+#: models.py:43
 msgid "Author Facebook URL"
 msgstr "Author Facebook URL"
 
-#: models.py:44
+#: models.py:45
 msgid "Author Facebook ID"
 msgstr "Author Facebook ID"
 
@@ -69,105 +70,122 @@ msgstr "Author Facebook ID"
 msgid "Use Facebook numeric ID."
 msgstr "Use Facebook numeric ID"
 
-#: models.py:48
+#: models.py:47
 msgid "Website Facebook URL"
 msgstr "Website Facebook URL"
 
-#: models.py:51
+#: models.py:48
 msgid "Facebook App ID"
 msgstr "Facebook App ID"
 
-#: models.py:54
+#: models.py:49
 msgid "Facebook Pages ID"
 msgstr "Facebook Pages ID"
 
-#: models.py:57
+#: models.py:51
 msgid "Author Twitter Account"
 msgstr "Author Twitter Account"
 
-#: models.py:58 models.py:62
+#: models.py:51 models.py:58
 msgid "'@' character not required."
 msgstr "\"@\" character not required."
 
-#: models.py:61
+#: models.py:54
 msgid "Website Twitter Account"
 msgstr "Website Twitter Account"
 
-#: models.py:68
-msgid "Author Google+ URL"
-msgstr "Author Google+ URL"
-
-#: models.py:69
-msgid "Use the Google+ Name (together with \"+\")"
-msgstr "Use the Google+ Name (together with \"+\")"
-
-#: models.py:77 models.py:78
+#: models.py:73 models.py:74
 msgid "Page meta info (all languages)"
 msgstr "Page meta info (all languages)"
 
-#: models.py:81
+#: models.py:77
 #, python-brace-format
 msgid "Page Meta for {0}"
 msgstr "Page Meta for {0}"
 
-#: models.py:101
+#: models.py:98
 msgid "If empty, page image will be used for all languages."
 msgstr "If empty, page image will be used for all languages."
 
-#: models.py:111
+#: models.py:103
 msgid "Facebook Description"
 msgstr "Facebook Description"
 
-#: models.py:114
+#: models.py:104
 msgid "Twitter Description"
 msgstr "Twitter Description"
 
-#: models.py:117
-msgid "Google+ Description"
-msgstr "Google+ Description"
+#: models.py:106
+msgid "Schemaorg Name"
+msgstr ""
 
-#: models.py:121 models.py:122 models.py:168 models.py:169
+#: models.py:106
+msgid "Name of the item."
+msgstr ""
+
+#: models.py:109
+#, fuzzy
+#| msgid "Facebook Description"
+msgid "Schemaorg Description"
+msgstr "Facebook Description"
+
+#: models.py:109
+msgid "Description of the item."
+msgstr ""
+
+#: models.py:113 models.py:114 models.py:163 models.py:164
 msgid "Page meta info (language-dependent)"
 msgstr "Page meta info (language-dependent)"
 
-#: models.py:125
+#: models.py:117
 #, python-brace-format
 msgid "Title Meta for {0}"
 msgstr "Title Meta for {0}"
 
-#: models.py:158
+#: models.py:145
 msgid "attribute"
 msgstr "attribute"
 
-#: models.py:158
+#: models.py:147
 msgid "Custom attribute"
 msgstr "Custom attribute"
 
-#: models.py:161
+#: models.py:152
 msgid "name"
 msgstr "name"
 
-#: models.py:161
+#: models.py:154
 msgid "Meta attribute name"
 msgstr "Meta attribute name"
 
-#: models.py:164
+#: models.py:157
 msgid "value"
 msgstr "value"
 
-#: models.py:164
+#: models.py:159
 msgid "Meta attribute value"
 msgstr "Meta attribute value"
 
-#: models.py:173
-#, python-brace-format
-msgid "Attribute {0} for page {1}"
+#: models.py:168 models.py:170
+#, fuzzy, python-brace-format
+#| msgid "Attribute {0} for page {1}"
+msgid "Attribute {0} for {1}"
 msgstr "Attribute {0} for page {1}"
 
-#: models.py:175
-#, python-brace-format
-msgid "Attribute {0} for title {1}"
-msgstr "Attribute {0} for title {1}"
+#~ msgid "Google+ Snippets"
+#~ msgstr "Google+ Snippets"
+
+#~ msgid "Author Google+ URL"
+#~ msgstr "Author Google+ URL"
+
+#~ msgid "Use the Google+ Name (together with \"+\")"
+#~ msgstr "Use the Google+ Name (together with \"+\")"
+
+#~ msgid "Google+ Description"
+#~ msgstr "Google+ Description"
+
+#~ msgid "Attribute {0} for title {1}"
+#~ msgstr "Attribute {0} for title {1}"
 
 #~ msgid "Article"
 #~ msgstr "Article"
