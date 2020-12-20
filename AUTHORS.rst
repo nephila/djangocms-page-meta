@@ -13,6 +13,7 @@ Contributors
 * Adam Chainz
 * Balazs Szele
 * Christian Strappazzon
+* Corentin Bettiol
 * David D Lowe
 * Federico Frenguelli
 * Grant Eagon
@@ -24,6 +25,7 @@ Contributors
 * Mark Walker
 * Matas Dailyda
 * nastya
+* Peter Farrell
 * Ryan Stalbow
 * Sergei Maertens
 * Tadas Dailyda
