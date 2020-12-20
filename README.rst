@@ -34,7 +34,7 @@ Quickstart
         'easy_thumbnails',
         'djangocms_page_meta',
 
-#. Synchronize the database with syncdb::
+#. Synchronize the database::
 
         $ python manage.py syncdb
 
@@ -61,9 +61,12 @@ django-app-enabler support
 You can either
 
 * Installation & configuration: ``python -mapp_enabler install djangocms-page-meta``
-* Autoconfiguration: ``python -mapp_enabler enable djangocms-page-meta``
+* Autoconfiguration: ``python -mapp_enabler enable djangocms_page_meta``
 
-Fully using this package will require some template changes that cannot be modified by ``django-app-enabler``.
+Fully using this package will require some template changes that cannot be modified by ``django-app-enabler``:
+
+* Load template tag in the page like outlined in `usage`_ page;
+* Run migrations: ``python manage.py migrate``
 
 Check `usage`_ documentation for details.
 

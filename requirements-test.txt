@@ -1,6 +1,6 @@
 -r requirements.txt
-coverage
-coveralls
+coverage>5
+coveralls>2
 mock>=1.0.1
 flake8
 tox
