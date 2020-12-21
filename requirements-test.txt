@@ -1,7 +1,5 @@
--r requirements.txt
-coverage
-coveralls
+-e .[docs]
+coverage>5
+coveralls>2
 mock>=1.0.1
-flake8
-tox
-django-app-helper
+django-app-helper>=2.0.0
