@@ -93,7 +93,7 @@ def get_page_meta(page, language):
             "twitter_site": meta_settings.TWITTER_SITE,
             "twitter_author": meta_settings.TWITTER_AUTHOR,
             "schemaorg_type": meta_settings.SCHEMAORG_TYPE,
-            "schemaorg_datePublished": page.publication_date.isoformat() if page.publication_date else None,
+            "schemaorg_datePublished": page.creation_date.isoformat() if page.creation_date else None,
             "schemaorg_dateModified": page.changed_date.isoformat() if page.changed_date else None,
         }
         try:
@@ -107,12 +107,12 @@ def get_page_meta(page, language):
             meta.twitter_site = pagemeta.twitter_site
             meta.twitter_author = pagemeta.twitter_author
             meta.schemaorg_type = pagemeta.schemaorg_type
-            if page.publication_date:
-                meta.published_time = page.publication_date.isoformat()
+            if page.creation_date:
+                meta.published_time = page.creation_date.isoformat()
             if page.changed_date:
                 meta.modified_time = page.changed_date.isoformat()
-            if page.publication_end_date:
-                meta.expiration_time = page.publication_end_date.isoformat()
+            # if page.publication_end_date:
+            #     meta.expiration_time = page.publication_end_date.isoformat()
             if meta.og_type == "article":
                 meta.og_publisher = pagemeta.og_publisher
                 meta.og_author_url = pagemeta.og_author_url

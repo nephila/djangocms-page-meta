@@ -167,7 +167,7 @@ class Migration(migrations.Migration):
                     "gplus_description",
                     models.CharField(default=b"", max_length=400, verbose_name="Google+ Description", blank=True),
                 ),
-                ("extended_object", models.OneToOneField(editable=False, to="cms.Title", on_delete=models.CASCADE)),
+                ("extended_object", models.OneToOneField(editable=False, to="cms.PageContent", on_delete=models.CASCADE)),
                 (
                     "image",
                     filer.fields.file.FilerFileField(
