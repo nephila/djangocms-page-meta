@@ -12,6 +12,7 @@ from djangocms_page_meta.utils import get_cache_key, get_page_meta
 from . import BaseTest, DummyTokens
 
 from cms.api import create_page
+from cms.test_utils.testcases import CMSTestCase
 
 
 class PageMetaUtilsTest(BaseTest):
@@ -33,15 +34,6 @@ class PageMetaUtilsTest(BaseTest):
         """
         Tests the OpenGraph meta tags
         """
-        # page, __ = self.get_pages()
-        # page_meta = models.PageMeta.objects.create(extended_object=page)
-        # for key, val in self.page_data.items():
-        #     setattr(page_meta, key, val)
-        # for key, val in self.og_data.items():
-        #     setattr(page_meta, key, val)
-        # page_meta.save()
-        #
-        # page.reload()
         language = "en"
         page = create_page(title='test', template="page_meta.html", language=language)
         page_meta = models.PageMeta.objects.create(extended_object=page)
@@ -58,27 +50,12 @@ class PageMetaUtilsTest(BaseTest):
         self.assertEqual(meta.og_publisher, self.og_data["og_publisher"])
         self.assertEqual(meta.og_app_id, self.og_data["og_app_id"])
         self.assertEqual(meta.fb_pages, self.og_data["fb_pages"])
-        # self.assertEqual(meta.published_time, page.publication_date.isoformat())
         self.assertEqual(meta.modified_time, page.changed_date.isoformat())
-        # if page.publication_end_date:
-        #     self.assertEqual(meta.expiration_time, page.publication_end_date.isoformat())
-        # else:
-        #     self.assertFalse(hasattr(meta, "expiration_time"))
-    #
+
     def test_page_meta_twitter(self):
         """
         Tests the Twitter cards
         """
-    #     page, __ = self.get_pages()
-    #     page_meta = models.PageMeta.objects.create(extended_object=page)
-    #     for key, val in self.page_data.items():
-    #         setattr(page_meta, key, val)
-    #     for key, val in self.twitter_data.items():
-    #         setattr(page_meta, key, val)
-    #     page_meta.save()
-    #
-    #     page.reload()
-
         language = "en"
         page = create_page(title='test', template="page_meta.html", language=language)
         page_meta = models.PageMeta.objects.create(extended_object=page)
@@ -109,7 +86,6 @@ class PageMetaUtilsTest(BaseTest):
             from djangocms_page_tags.models import PageTags, TitleTags
         except ImportError:
             self.skipTest("djangocms_page_tags not installed")
-        # page1, page2 = self.get_pages()
         language = 'en'
         page1 = create_page(title='test', template="page_meta.html", language=language)
         page2 = create_page(title='test', template="page_meta.html", language=language)
@@ -129,12 +105,6 @@ class PageMetaUtilsTest(BaseTest):
             page_meta.save()
             page.reload()
 
-        # for lang in self.languages:
-        #     page1.publish(lang)
-        #     page2.publish(lang)
-        # page1 = page1.get_public_object()
-        # page2 = page2.get_public_object()
-
         meta1 = get_page_meta(page1, "en")
         meta2 = get_page_meta(page2, "en")
         for tag in tags2 + tags1:
@@ -143,7 +113,6 @@ class PageMetaUtilsTest(BaseTest):
             self.assertTrue(tag in meta2.tag)
 
     def test_custom_extra(self):
-        # page1, __ = self.get_pages()
         language = 'en'
         page1 = create_page(title='test', template="page_meta.html", language=language)
         page_meta = models.PageMeta.objects.create(extended_object=page1)
@@ -159,15 +128,11 @@ class PageMetaUtilsTest(BaseTest):
         meta = get_page_meta(page1, "en")
         self.assertEqual(meta.extra_custom_props, [("custom", "attr", "bar"), ("custom", "attr", "foo")])
 
-        # meta = get_page_meta(page1, "it")
-        # self.assertEqual(meta.extra_custom_props, [("custom", "attr", "foo")])
-
     def test_publish_extra(self):
         """
         Test that modified GenericMetaAttribute are not copied multiple times on page publish
         See issue #78
         """
-        # page1, __ = self.get_pages()
         language = 'en'
         page1 = create_page(title='test', template="page_meta.html", language=language)
         page_meta = models.PageMeta.objects.create(extended_object=page1)
@@ -175,14 +140,11 @@ class PageMetaUtilsTest(BaseTest):
         models.GenericMetaAttribute.objects.create(page=page_meta, attribute="custom", name="attr", value="foo")
         models.GenericMetaAttribute.objects.create(title=title_meta, attribute="custom", name="attr", value="bar")
 
-        # page1.publish("en")
         page_meta.extra.first().attribute = "new"
         page_meta.extra.first().save()
         title_meta.extra.first().attribute = "new"
         title_meta.extra.first().save()
 
-        # page1.publish("en")
-        # public = page1.get_public_object()
         page_meta = models.PageMeta.objects.get(extended_object=page1)
         title_meta = models.TitleMeta.objects.get(extended_object=page1.get_title_obj("en"))
         self.assertEqual(page_meta.extra.count(), 1)
@@ -192,7 +154,6 @@ class PageMetaUtilsTest(BaseTest):
         """
         Models str are created
         """
-        # page1, __ = self.get_pages()
         language = 'en'
         page1 = create_page(title='test', template="page_meta.html", language=language)
         page_meta = models.PageMeta.objects.create(extended_object=page1)
@@ -213,7 +174,6 @@ class PageMetaUtilsTest(BaseTest):
         """
         Meta caches are emptied when updating / deleting a meta
         """
-        # page1, __ = self.get_pages()
         language = 'en'
         page1 = create_page(title='test', template="page_meta.html", language=language)
         page_meta = models.PageMeta.objects.create(extended_object=page1)
@@ -256,7 +216,6 @@ class PageMetaUtilsTest(BaseTest):
         """
         Meta caches are emptied when deleting a page.
         """
-        # page1, __ = self.get_pages()
         language = 'en'
         page1 = create_page(title='test', template="page_meta.html", language=language)
         page_meta = models.PageMeta.objects.create(extended_object=page1)
@@ -280,7 +239,6 @@ class PageMetaUtilsTest(BaseTest):
             self.assertIsNone(cache.get(title_key))
 
     def test_form(self):
-        # page1, __ = self.get_pages()
         language = 'en'
         page1 = create_page(title='test', template="page_meta.html", language=language)
         page_meta = models.PageMeta.objects.create(extended_object=page1)

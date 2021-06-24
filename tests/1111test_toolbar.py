@@ -11,9 +11,6 @@ from djangocms_page_meta.cms_toolbars import PAGE_META_ITEM_TITLE, PAGE_META_MEN
 from djangocms_page_meta.models import PageMeta, TitleMeta
 
 
-from . import BaseTest
-
-
 class ToolbarTest(CMSTestCase):
     def test_no_page(self):
         """
@@ -22,7 +19,6 @@ class ToolbarTest(CMSTestCase):
         from cms.toolbar.toolbar import CMSToolbar
 
         superuser = self.get_superuser()
-        # request = self.get_page_request(None, self.user, "/", edit=True)
         request = self.get_page_request(None, superuser, "/")
         toolbar = CMSToolbar(request)
         toolbar.get_left_items()
@@ -35,7 +31,6 @@ class ToolbarTest(CMSTestCase):
         """
         from cms.toolbar.toolbar import CMSToolbar
 
-        # page1, __ = self.get_pages()
         language = "en"
         staff_no_permission = self._create_user("staff", is_staff=True, is_superuser=False)
         page1 = create_page(title='test', template="page_meta.html", language=language)
@@ -66,7 +61,7 @@ class ToolbarTest(CMSTestCase):
         toolbar = CMSToolbar(request)
         toolbar.get_left_items()
         page_menu = toolbar.menus["page"]
-        meta_menu = page_menu.find_items(SubMenu, name=force_text(PAGE_META_MENU_TITLE))[0].item
+        meta_menu = page_menu.find_items(SubMenu, name=force_text(PAGE_META_MENU_TITLE))
         self.assertEqual(
             len(meta_menu.find_items(ModalItem, name="{}...".format(force_text(PAGE_META_ITEM_TITLE)))), 1
         )
@@ -78,10 +73,13 @@ class ToolbarTest(CMSTestCase):
     #     """
     #     from cms.toolbar.toolbar import CMSToolbar
     #
-    #     page1, __ = self.get_pages()
-    #     self.user_staff.user_permissions.add(Permission.objects.get(codename="change_page"))
-    #     self.user_staff = User.objects.get(pk=self.user_staff.pk)
-    #     request = self.get_page_request(page1, self.user_staff, "/", edit=True)
+    #     # page1, __ = self.get_pages()
+    #     language = "en"
+    #     page1 = create_page(title="test", template="page_meta.html", language=language)
+    #     staff_no_permission = self._create_user("staff", is_staff=True, is_superuser=False)
+    #     staff_no_permission.user_permissions.add(Permission.objects.get(codename="change_page"))
+    #     staff_no_permission = User.objects.get(pk=staff_no_permission.pk)
+    #     request = self.get_page_request(page1, staff_no_permission, "/")
     #     toolbar = CMSToolbar(request)
     #     toolbar.get_left_items()
     #     page_menu = toolbar.find_items(Menu, name="Page")
@@ -90,7 +88,7 @@ class ToolbarTest(CMSTestCase):
     #     except AssertionError:
     #         meta_menu = page_menu[0].item.find_items(SubMenu, name=force_text(PAGE_META_MENU_TITLE))
     #         self.assertEqual(meta_menu, [])
-    #
+    # #
     # def test_toolbar(self):
     #     """
     #     Test that PageMeta/TitleMeta items are present for superuser
@@ -133,10 +131,13 @@ class ToolbarTest(CMSTestCase):
     #     """
     #     from cms.toolbar.toolbar import CMSToolbar
     #
-    #     page1, __ = self.get_pages()
+    #     # page1, __ = self.get_pages()
+    #     language = "en"
+    #     superuser = self.get_superuser()
+    #     page1 = create_page(title="test", template="page_meta.html", language=language)
     #     page_ext = PageMeta.objects.create(extended_object=page1)
     #     title_meta = TitleMeta.objects.create(extended_object=page1.get_title_obj("en"))
-    #     request = self.get_page_request(page1, self.user, "/", edit=True)
+    #     request = self.get_page_request(page1, superuser, "/")
     #     toolbar = CMSToolbar(request)
     #     toolbar.get_left_items()
     #     page_menu = toolbar.menus["page"]
@@ -169,3 +170,4 @@ class ToolbarTest(CMSTestCase):
     #             )
     #             url_add = True
     #     self.assertTrue(url_change and url_add)
+

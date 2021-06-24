@@ -24,7 +24,6 @@ class AdminPageTest(CMSTestCase):
         """
         Test that the returned form has been modified by the meta patch
         """
-        # page1, _page2 = self.get_pages()
         language = "en"
         superuser = self.get_superuser()
         page1 = create_page(title='test', template="page_meta.html", language=language)
@@ -37,7 +36,6 @@ class AdminPageTest(CMSTestCase):
         """
         Test that the returned form has been modified by the meta patch
         """
-        # page1, _page2 = self.get_pages()
         language = "en"
         superuser = self.get_superuser()
         page1 = create_page(title='test', template="page_meta.html", language=language)
