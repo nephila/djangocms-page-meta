@@ -1,7 +1,5 @@
 -e .[docs]
-https://github.com/divio/django-cms/tarball/66c70394c9e144281a0b47d93e3784d06318acf9#egg=django-cms
 coverage>5
 coveralls>2
 mock>=1.0.1
 django-app-helper==3.0.1
-
