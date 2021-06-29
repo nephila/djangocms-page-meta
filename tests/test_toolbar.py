@@ -25,6 +25,29 @@ class ToolbarTest(CMSTestCase):
         page_menu = toolbar.find_items(Menu, name="Page")
         self.assertEqual(page_menu, [])
 
+    @override_settings(CMS_PERMISSION=True)
+    def test_perm_permissions(self):
+        """
+        Test that no page menu is present if user has general page Page.change_perm  but not permission on current page
+        """
+        from cms.toolbar.toolbar import CMSToolbar
+
+        language = "en"
+        page1 = create_page(title='test', template="page_meta.html", language=language)
+        staff_no_permission = self._create_user("staff", is_staff=True, is_superuser=False)
+        staff_no_permission.user_permissions.add(Permission.objects.get(codename="change_page"))
+        staff_no_permission = User.objects.get(pk=staff_no_permission.pk)
+
+        request = self.get_page_request(page1, staff_no_permission, "/")
+        toolbar = CMSToolbar(request)
+        toolbar.get_left_items()
+        page_menu = toolbar.find_items(Menu, name="Page")
+        try:
+            self.assertEqual(page_menu, [])
+        except AssertionError:
+            meta_menu = page_menu[0].item.find_items(SubMenu, name=force_text(PAGE_META_MENU_TITLE))
+            self.assertEqual(meta_menu, [])
+
     def test_no_perm(self):
         """
         Test that no page menu is present if user has no perm
