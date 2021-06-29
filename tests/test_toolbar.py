@@ -111,7 +111,6 @@ class ToolbarTest(CMSTestCase):
         """
         from cms.toolbar.toolbar import CMSToolbar
 
-        # page1, __ = self.get_pages()
         language = "en"
         staff_no_permission = self._create_user("staff", is_staff=True, is_superuser=False)
         page1 = create_page(title='test', template="page_meta.html", language=language)
@@ -126,8 +125,9 @@ class ToolbarTest(CMSTestCase):
         toolbar.get_left_items()
         page_menu = toolbar.menus["page"]
         meta_menu = page_menu.find_items(SubMenu, name=force_text(PAGE_META_MENU_TITLE))
+        # test = meta_menu[0].item.find_items(ModalItem, name="{}...".format(force_text(PAGE_META_ITEM_TITLE)))
         self.assertEqual(
-            len(meta_menu[0].find_items(ModalItem, name="{}...".format(force_text(PAGE_META_ITEM_TITLE)))), 1
+            len(meta_menu[0].item.find_items(ModalItem, name="{}...".format(force_text(PAGE_META_ITEM_TITLE)))), 1
         )
 
 
