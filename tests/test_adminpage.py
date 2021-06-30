@@ -15,8 +15,7 @@ class AdminPageTest(CMSTestCase):
         Test that the returned form has not been modified by the meta patch
         when no page object is specified
         """
-        superuser = self.get_superuser()
-        request = self.get_page_request(None, superuser, "/")
+        request = self.get_page_request(None, self.get_superuser(), "/")
         form = page_admin.get_form(request)
         self.assertEqual(form.base_fields.get("meta_description"), None)
 
@@ -36,13 +35,18 @@ class AdminPageTest(CMSTestCase):
         """
         Test that the returned form has been modified by the meta patch
         """
+        from cms.toolbar.toolbar import CMSToolbar
+
         language = "en"
-        superuser = self.get_superuser()
         page1 = create_page(title='test', template="page_meta.html", language=language)
+        request = self.get_page_request(page1, self.get_superuser(), "/")
+        toolbar = CMSToolbar(request)
+        toolbar.edit_mode_active = True
         title = page1.get_title_obj("en")
         title.meta_description = "something"
         title.save()
 
-        request = self.get_page_request(page1, superuser, "/")
+        request = self.get_page_request(page1, self.get_superuser(), "/")
         form = page_admin.get_form(request, page1)
+        test = form.base_fields.get("meta_description")
         self.assertNotEqual(form.base_fields.get("meta_description"), None)

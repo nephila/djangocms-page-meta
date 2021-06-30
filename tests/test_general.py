@@ -12,7 +12,6 @@ from djangocms_page_meta.utils import get_cache_key, get_page_meta
 from . import BaseTest, DummyTokens
 
 from cms.api import create_page
-from cms.test_utils.testcases import CMSTestCase
 
 
 class PageMetaUtilsTest(BaseTest):
@@ -76,6 +75,7 @@ class PageMetaUtilsTest(BaseTest):
     #     self.assertIsNone(meta)
     #
     #     request = self.get_page_request(SimpleLazyObject(lambda: None), self.user, "/")
+    #
     #     meta = get_page_meta(request.current_page, "en")
     #     self.assertIsNone(meta)
 
