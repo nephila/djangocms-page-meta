@@ -5,6 +5,13 @@ import filer.fields.file
 from django.conf import settings
 from django.db import migrations, models
 
+page_content_model = 'cms.Title'
+try:
+    if MigrationRecorder.Migration.objects.filter(app="cms", name="0032_remove_title_to_pagecontent").count():
+        page_content_model = "cms.PageContent"
+except DatabaseError as error:
+    page_content_model = "cms.PageContent"
+
 
 class Migration(migrations.Migration):
 
@@ -72,7 +79,8 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="titlemeta",
             name="extended_object",
-            field=models.OneToOneField(editable=False, on_delete=django.db.models.deletion.CASCADE, to="cms.PageContent"),
+            field=models.OneToOneField(editable=False, on_delete=django.db.models.deletion.CASCADE,
+                                       to=page_content_model),
         ),
         migrations.AlterField(
             model_name="titlemeta",

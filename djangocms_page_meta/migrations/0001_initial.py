@@ -1,6 +1,14 @@
 import filer.fields.file
 from django.conf import settings
 from django.db import migrations, models
+from django.db.migrations.recorder import MigrationRecorder
+
+page_content_model = 'cms.Title'
+try:
+    if MigrationRecorder.Migration.objects.filter(app="cms", name="0032_remove_title_to_pagecontent").count():
+        page_content_model = "cms.PageContent"
+except DatabaseError as error:
+    page_content_model = "cms.PageContent"
 
 
 class Migration(migrations.Migration):
@@ -167,7 +175,8 @@ class Migration(migrations.Migration):
                     "gplus_description",
                     models.CharField(default=b"", max_length=400, verbose_name="Google+ Description", blank=True),
                 ),
-                ("extended_object", models.OneToOneField(editable=False, to="cms.PageContent", on_delete=models.CASCADE)),
+                ("extended_object", models.OneToOneField(editable=False, to=page_content_model,
+                                                         on_delete=models.CASCADE)),
                 (
                     "image",
                     filer.fields.file.FilerFileField(
