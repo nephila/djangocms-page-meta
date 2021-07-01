@@ -3,7 +3,8 @@
 import django.db.models.deletion
 import filer.fields.file
 from django.conf import settings
-from django.db import migrations, models
+from django.db import migrations, models, DatabaseError
+from django.db.migrations.recorder import MigrationRecorder
 
 page_content_model = 'cms.Title'
 try:
