@@ -80,7 +80,7 @@ class TemplateMetaTest(BaseTest):
     #         response, '<meta property="og:url" content="http://example.com%s">' % page_en.get_absolute_url('en')
     #     )
     #     self.assertContains(response, '<meta custom="attr" content="foo-en">')
-    # #
+
     def test_fallbacks(self):
         """
         Test title-level templatetags
@@ -117,8 +117,8 @@ class TemplateMetaTest(BaseTest):
         # self.assertContains(
         #     response, '<meta property="og:url" content="http://example.com%s">' % page_it.get_absolute_url('it')
         # )
-    #
-    #     # English language
+
+        # English language
         page_url_en = page_en.get_absolute_url('en')
 
         with self.login_user_context(self.user):
@@ -161,7 +161,6 @@ class TemplateMetaTest(BaseTest):
 
         # English language
         # A page with no title meta, and yet the meta description is there
-        # response = self.client.get(page_url_en)
         page_url_en = page_en.get_absolute_url('en')
         with self.login_user_context(self.user):
             response = self.client.get(page_url_en)
