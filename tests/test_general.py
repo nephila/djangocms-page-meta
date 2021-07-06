@@ -32,8 +32,7 @@ class PageMetaUtilsTest(BaseTest):
         """
         Tests the OpenGraph meta tags
         """
-        language = "en"
-        page = create_page(title="test", template="page_meta.html", language=language)
+        page, __ = self.get_pages()
         page_meta = models.PageMeta.objects.create(extended_object=page)
 
         for key, val in self.page_data.items():
@@ -55,7 +54,7 @@ class PageMetaUtilsTest(BaseTest):
         Tests the Twitter cards
         """
         language = "en"
-        page = create_page(title="test", template="page_meta.html", language=language)
+        page, __ = self.get_pages()
         page_meta = models.PageMeta.objects.create(extended_object=page)
 
         for key, val in self.page_data.items():
@@ -86,8 +85,7 @@ class PageMetaUtilsTest(BaseTest):
         except ImportError:
             self.skipTest("djangocms_page_tags not installed")
         language = "en"
-        page1 = create_page(title="test", template="page_meta.html", language=language)
-        page2 = create_page(title="test", template="page_meta.html", language=language)
+        page1, page2 = self.get_pages()
         page_ext = PageTags.objects.create(extended_object=page1)
         page_ext.tags.add(*tags1)
         title_ext = TitleTags.objects.create(extended_object=page1.get_title_obj("en"))
@@ -112,8 +110,7 @@ class PageMetaUtilsTest(BaseTest):
             self.assertTrue(tag in meta2.tag)
 
     def test_custom_extra(self):
-        language = "en"
-        page1 = create_page(title="test", template="page_meta.html", language=language)
+        page1, __ = self.get_pages()
         page_meta = models.PageMeta.objects.create(extended_object=page1)
         page_meta.save()
         title_meta = models.TitleMeta.objects.create(extended_object=page1.get_title_obj("en"))
@@ -132,8 +129,7 @@ class PageMetaUtilsTest(BaseTest):
         Test that modified GenericMetaAttribute are not copied multiple times on page publish
         See issue #78
         """
-        language = "en"
-        page1 = create_page(title="test", template="page_meta.html", language=language)
+        page1, __ = self.get_pages()
         page_meta = models.PageMeta.objects.create(extended_object=page1)
         title_meta = models.TitleMeta.objects.create(extended_object=page1.get_title_obj("en"))
         models.GenericMetaAttribute.objects.create(page=page_meta, attribute="custom", name="attr", value="foo")
@@ -153,8 +149,7 @@ class PageMetaUtilsTest(BaseTest):
         """
         Models str are created
         """
-        language = "en"
-        page1 = create_page(title="test", template="page_meta.html", language=language)
+        page1, __ = self.get_pages()
         page_meta = models.PageMeta.objects.create(extended_object=page1)
         title_meta = models.TitleMeta.objects.create(extended_object=page1.get_title_obj("en"))
         page_attr = models.GenericMetaAttribute.objects.create(
@@ -173,8 +168,7 @@ class PageMetaUtilsTest(BaseTest):
         """
         Meta caches are emptied when updating / deleting a meta
         """
-        language = "en"
-        page1 = create_page(title="test", template="page_meta.html", language=language)
+        page1, __ = self.get_pages()
         page_meta = models.PageMeta.objects.create(extended_object=page1)
         title_meta = models.TitleMeta.objects.create(extended_object=page1.get_title_obj("en"))
 
@@ -215,8 +209,7 @@ class PageMetaUtilsTest(BaseTest):
         """
         Meta caches are emptied when deleting a page.
         """
-        language = "en"
-        page1 = create_page(title="test", template="page_meta.html", language=language)
+        page1, __ = self.get_pages()
         page_meta = models.PageMeta.objects.create(extended_object=page1)
         title_meta = models.TitleMeta.objects.create(extended_object=page1.get_title_obj("en"))
 
@@ -238,8 +231,7 @@ class PageMetaUtilsTest(BaseTest):
             self.assertIsNone(cache.get(title_key))
 
     def test_form(self):
-        language = "en"
-        page1 = create_page(title="test", template="page_meta.html", language=language)
+        page1, __ = self.get_pages()
         page_meta = models.PageMeta.objects.create(extended_object=page1)
         with override_settings(PAGE_META_DESCRIPTION_LENGTH=20, PAGE_META_TWITTER_DESCRIPTION_LENGTH=20):
             form = TitleMetaAdminForm(data={"description": "major text over 20 characters long"}, instance=page_meta)

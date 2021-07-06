@@ -12,8 +12,7 @@ class TemplateMetaTest(BaseTest):
         """
         Test page-level templatetags
         """
-        language = "en"
-        page = create_page(title="test", template="page_meta.html", language=language)
+        page, __ = self.get_pages()
         page_ext = PageMeta.objects.create(extended_object=page)
         for key, val in self.og_data.items():
             setattr(page_ext, key, val)
@@ -23,7 +22,7 @@ class TemplateMetaTest(BaseTest):
         page.publication_end_date = page.creation_date + timedelta(days=1)
         page.published_date = page.changed_date
         page.save()
-        page_url = page.get_absolute_url(language)
+        page_url = page.get_absolute_url("en")
 
         with self.login_user_context(self.user):
             response = self.client.get(page_url)
@@ -35,10 +34,9 @@ class TemplateMetaTest(BaseTest):
         """
         Test title-level templatetags
         """
-        page_en = create_page(title="test en", template="page_meta.html", language="en")
-        page_it = create_page(title="test it", template="page_meta.html", language="it")
-        title_en = page_en.get_title_obj(language="en", fallback=False)
-        title_it = page_it.get_title_obj(language="it", fallback=False)
+        page1, __ = self.get_pages()
+        title_en = page1.get_title_obj(language="en", fallback=False)
+        title_it = page1.get_title_obj(language="it", fallback=False)
         title_ext = TitleMeta.objects.create(extended_object=title_en)
         for key, val in self.title_data.items():
             setattr(title_ext, key, val)
@@ -51,7 +49,7 @@ class TemplateMetaTest(BaseTest):
         GenericMetaAttribute.objects.create(title=title_ext, attribute="custom", name="attr", value="foo-it")
 
         # Italian language
-        page_url_it = page_it.get_absolute_url("it")
+        page_url_it = page1.get_absolute_url("it")
 
         with self.login_user_context(self.user):
             response = self.client.get(page_url_it)
@@ -59,23 +57,23 @@ class TemplateMetaTest(BaseTest):
         self.assertContains(response, '<meta name="twitter:description" content="twitter - lorem ipsum - italian">')
         self.assertContains(response, '<meta itemprop="description" content="gplus - lorem ipsum - italian">')
         self.assertContains(response, '<meta property="og:description" content="opengraph - lorem ipsum - italian">')
-        self.assertContains(response, '<meta property="og:title" content="test it">')
+        self.assertContains(response, '<meta property="og:title" content="pagina uno">')
         self.assertContains(
-             response, '<meta property="og:url" content="http://example.com%s">' % page_it.get_absolute_url("it")
+             response, '<meta property="og:url" content="http://example.com%s">' % page1.get_absolute_url("it")
         )
         self.assertContains(response, '<meta custom="attr" content="foo-it">')
 
         # English language
-        page_url_en = page_en.get_absolute_url("en")
+        page_url_en = page1.get_absolute_url("en")
 
         with self.login_user_context(self.user):
             response = self.client.get(page_url_en)
         self.assertContains(response, '<meta name="twitter:description" content="twitter - lorem ipsum - english">')
         self.assertContains(response, '<meta itemprop="description" content="gplus - lorem ipsum - english">')
         self.assertContains(response, '<meta property="og:description" content="opengraph - lorem ipsum - english">')
-        self.assertContains(response, '<meta property="og:title" content="test en">')
+        self.assertContains(response, '<meta property="og:title" content="page one">')
         self.assertContains(
-            response, '<meta property="og:url" content="http://example.com%s">' % page_en.get_absolute_url("en")
+            response, '<meta property="og:url" content="http://example.com%s">' % page1.get_absolute_url("en")
         )
         self.assertContains(response, '<meta custom="attr" content="foo-en">')
 
@@ -83,14 +81,11 @@ class TemplateMetaTest(BaseTest):
         """
         Test title-level templatetags
         """
-        page1 = create_page(title="page one", template="page_meta.html", language="en")
-        page2 = create_page(title="page two", template="page_meta.html", language="en")
-        page_it = create_page(title="page it", template="page_meta.html", language="it")
+        page1, page2 = self.get_pages()
         title_en = page1.get_title_obj(language="en", fallback=False)
         title_en.meta_description = self.title_data["description"]
         title_en.save()
-
-        title_it = page_it.get_title_obj(language="it", fallback=False)
+        title_it = page1.get_title_obj(language="it", fallback=False)
         title_it.meta_description = self.title_data_it["description"]
         title_it.save()
 
@@ -103,16 +98,16 @@ class TemplateMetaTest(BaseTest):
         title_ext_en = title_en.titlemeta
 
         # Italian language
-        page_url_it = page_it.get_absolute_url("it")
+        page_url_it = page1.get_absolute_url("it")
         with self.login_user_context(self.user):
             response = self.client.get(page_url_it)
         self.assertContains(response, '<meta name="description" content="base lorem ipsum - italian">')
         self.assertContains(response, '<meta name="twitter:description" content="base lorem ipsum - italian">')
         self.assertContains(response, '<meta itemprop="description" content="base lorem ipsum - italian">')
         self.assertContains(response, '<meta property="og:description" content="base lorem ipsum - italian">')
-        self.assertContains(response, '<meta property="og:title" content="page it">')
+        self.assertContains(response, '<meta property="og:title" content="pagina uno">')
         self.assertContains(
-            response, '<meta property="og:url" content="http://example.com%s">' % page_it.get_absolute_url("it")
+            response, '<meta property="og:url" content="http://example.com%s">' % page1.get_absolute_url("it")
         )
 
         # English language
