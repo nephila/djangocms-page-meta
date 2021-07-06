@@ -1,9 +1,5 @@
 from cms.extensions import PageExtension, TitleExtension
 from cms.extensions.extension_pool import extension_pool
-try:
-    from cms.models import Page, Title
-except ImportError:
-    from cms.models import Page, PageContent as Title
 
 from django.conf import settings
 from django.core.cache import cache
@@ -20,6 +16,12 @@ try:
     from aldryn_snake.template_api import registry
 except ImportError:
     registry = None
+
+# django cms 3 backwards compatibility for the Title model.
+try:
+    from cms.models import Page, Title
+except ImportError:
+    from cms.models import Page, PageContent as Title
 
 
 class PageMeta(PageExtension):

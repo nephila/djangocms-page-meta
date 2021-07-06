@@ -106,7 +106,6 @@ class TemplateMetaTest(BaseTest):
         page_url_it = page_it.get_absolute_url('it')
         with self.login_user_context(self.user):
             response = self.client.get(page_url_it)
-        # response.render()
         self.assertContains(response, '<meta name="description" content="base lorem ipsum - italian">')
         self.assertContains(response, '<meta name="twitter:description" content="base lorem ipsum - italian">')
         self.assertContains(response, '<meta itemprop="description" content="base lorem ipsum - italian">')

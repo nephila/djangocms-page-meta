@@ -12,7 +12,7 @@ from djangocms_page_meta.utils import get_cache_key, get_page_meta
 from . import BaseTest, DummyTokens
 
 from cms.api import create_page
-
+from cms.test_utils.testcases import CMSTestCase
 
 class PageMetaUtilsTest(BaseTest):
 
@@ -70,14 +70,14 @@ class PageMetaUtilsTest(BaseTest):
         self.assertEqual(meta.twitter_type, self.twitter_data["twitter_type"])
         self.assertEqual(meta.get_domain(), settings.META_SITE_DOMAIN)
 
-    # def test_none_page(self):
-    #     meta = get_page_meta(None, "en")
-    #     self.assertIsNone(meta)
-    #
-    #     request = self.get_page_request(SimpleLazyObject(lambda: None), self.user, "/")
-    #
-    #     meta = get_page_meta(request.current_page, "en")
-    #     self.assertIsNone(meta)
+    def test_none_page(self):
+        meta = get_page_meta(None, "en")
+        self.assertIsNone(meta)
+
+        request = self.get_page_request(SimpleLazyObject(lambda: None), self.user, "/")
+
+        meta = get_page_meta(request.current_page, "en")
+        self.assertIsNone(meta)
 
     def test_tags(self):
         tags1 = ("pagetag.1", "pagetag.2")
