@@ -40,6 +40,6 @@ class AdminPageTest(CMSTestCase):
         title.meta_description = "something"
         title.save()
 
-        request = self.get_page_request(page1, self.get_superuser(), "/")
+        request = self.get_page_request(page1, self.user, "/")
         form = page_admin.get_form(request, page1)
         self.assertNotEqual(form.base_fields.get("meta_description"), None)
