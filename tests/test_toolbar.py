@@ -94,7 +94,7 @@ class ToolbarTest(CMSTestCase):
 
         language = "en"
         staff_no_permission = self._create_user("staff", is_staff=True, is_superuser=False)
-        page1 = create_page(title='test', template="page_meta.html", language=language)
+        page1 = create_page(title="test", template="page_meta.html", language=language)
         request = self.get_page_request(page1, staff_no_permission, "/")
         toolbar = CMSToolbar(request)
         toolbar.get_left_items()
