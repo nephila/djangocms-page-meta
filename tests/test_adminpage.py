@@ -23,7 +23,7 @@ class AdminPageTest(CMSTestCase):
         """
         language = "en"
         superuser = self.get_superuser()
-        page1 = create_page(title='test', template="page_meta.html", language=language)
+        page1 = create_page(title="test", template="page_meta.html", language=language)
 
         request = self.get_page_request(page1, superuser, "/")
         form = page_admin.get_form(request, page1)
@@ -36,13 +36,11 @@ class AdminPageTest(CMSTestCase):
         from cms.toolbar.toolbar import CMSToolbar
 
         language = "en"
-        page1 = create_page(title='test', template="page_meta.html", language=language)
+        page1 = create_page(title="test", template="page_meta.html", language=language)
         title = page1.get_title_obj(language="en", fallback=False)
         title.meta_description = "something"
         title.save()
 
         request = self.get_page_request(page1, self.get_superuser(), "/")
         form = page_admin.get_form(request, page1)
-        test = form.base_fields.get("meta_description")
         self.assertNotEqual(form.base_fields.get("meta_description"), None)
-
