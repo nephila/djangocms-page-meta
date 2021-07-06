@@ -73,7 +73,7 @@ class ToolbarTest(CMSTestCase):
         }
 
         language = "en"
-        page1 = create_page(title='test', template="page_meta.html", language=language)
+        page1 = create_page(title="test", template="page_meta.html", language=language)
         with self.settings(CMS_LANGUAGES=NEW_CMS_LANGS):
             request = self.get_page_request(page1, self.get_superuser(), "/")
             toolbar = CMSToolbar(request)
