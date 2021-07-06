@@ -113,7 +113,7 @@ class ToolbarTest(CMSTestCase):
 
         language = "en"
         staff_no_permission = self._create_user("staff", is_staff=True, is_superuser=False)
-        page1 = create_page(title='test', template="page_meta.html", language=language)
+        page1 = create_page(title="test", template="page_meta.html", language=language)
 
         staff_no_permission.user_permissions.add(Permission.objects.get(codename="change_page"))
         staff_no_permission = User.objects.get(pk=staff_no_permission.pk)
@@ -227,4 +227,3 @@ class ToolbarTest(CMSTestCase):
             url_change = True
 
         self.assertTrue(url_change)
-
