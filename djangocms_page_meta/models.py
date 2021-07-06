@@ -16,6 +16,7 @@ try:
 except ImportError:
     registry = None
 
+
 # django cms 3 backwards compatibility for the Title model.
 try:
     from cms.models import Page, Title
