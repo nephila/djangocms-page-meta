@@ -24,7 +24,7 @@ class AdminPageTest(CMSTestCase):
         superuser = self.get_superuser()
         page1 = create_page(title="test", template="page_meta.html", language=language)
 
-        request = self.get_page_request(page1, superuser, "/")
+        request = self.get_page_request(page1, self.user, "/")
         form = page_admin.get_form(request, page1)
         self.assertEqual(form.base_fields.get("meta_description"), None)
 
