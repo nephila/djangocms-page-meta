@@ -86,7 +86,7 @@ class PageMetaUtilsTest(BaseTest):
         except ImportError:
             self.skipTest("djangocms_page_tags not installed")
         language = "en"
-        page1 = create_page(title='test', template="page_meta.html", language=language)
+        page1 = create_page(title="test", template="page_meta.html", language=language)
         page2 = create_page(title="test", template="page_meta.html", language=language)
         page_ext = PageTags.objects.create(extended_object=page1)
         page_ext.tags.add(*tags1)
