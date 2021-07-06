@@ -12,7 +12,7 @@ class AdminPageTest(CMSTestCase):
         Test that the returned form has not been modified by the meta patch
         when no page object is specified
         """
-        request = self.get_page_request(None, self.get_superuser(), "/")
+        request = self.get_page_request(None, self.user, "/")
         form = page_admin.get_form(request)
         self.assertEqual(form.base_fields.get("meta_description"), None)
 
