@@ -33,7 +33,7 @@ class ToolbarTest(CMSTestCase):
         from cms.toolbar.toolbar import CMSToolbar
 
         language = "en"
-        page1 = create_page(title='test', template="page_meta.html", language=language)
+        page1 = create_page(title="test", template="page_meta.html", language=language)
         staff_no_permission = self._create_user("staff", is_staff=True, is_superuser=False)
         staff_no_permission.user_permissions.add(Permission.objects.get(codename="change_page"))
         staff_no_permission = User.objects.get(pk=staff_no_permission.pk)
