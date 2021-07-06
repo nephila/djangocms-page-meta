@@ -3,6 +3,8 @@ from django.conf import settings
 from django.db import migrations, models, DatabaseError
 from django.db.migrations.recorder import MigrationRecorder
 
+
+# django cms 3 backwards compatibility for the Title model.
 page_content_model = 'cms.Title'
 try:
     if MigrationRecorder.Migration.objects.filter(app="cms", name="0032_remove_title_to_pagecontent").count():
