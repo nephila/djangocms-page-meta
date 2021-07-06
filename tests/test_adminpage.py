@@ -1,8 +1,7 @@
-from cms.models import Page
-from django.contrib import admin
-
 from cms.api import create_page
+from cms.models import Page
 from cms.test_utils.testcases import CMSTestCase
+from django.contrib import admin
 
 page_admin = admin.site._registry[Page]
 

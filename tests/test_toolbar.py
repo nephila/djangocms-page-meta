@@ -1,7 +1,7 @@
 from cms.api import create_page
+from cms.test_utils.testcases import CMSTestCase
 from cms.toolbar.items import Menu, ModalItem, SubMenu
 from cms.utils.i18n import get_language_object
-from cms.test_utils.testcases import CMSTestCase
 from django.contrib.auth.models import Permission, User
 from django.test.utils import override_settings
 from django.urls import reverse
@@ -128,7 +128,6 @@ class ToolbarTest(CMSTestCase):
         self.assertEqual(
             len(meta_menu[0].item.find_items(ModalItem, name="{}...".format(force_text(PAGE_META_ITEM_TITLE)))), 1
         )
-
 
     @override_settings(CMS_PERMISSION=True)
     def test_perm_permissions(self):

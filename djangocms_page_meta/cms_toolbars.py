@@ -1,24 +1,15 @@
-from cms.api import get_page_draft
-from cms.cms_toolbars import PAGE_MENU_SECOND_BREAK
+from cms.cms_toolbars import PAGE_MENU_SECOND_BREAK, PageToolbar
 from cms.toolbar.items import Break
-from cms.cms_toolbars import (
-    ADD_PAGE_LANGUAGE_BREAK,
-    LANGUAGE_MENU_IDENTIFIER,
-    PageToolbar,
-    PlaceholderToolbar,
-)
-from cms.toolbar_base import CMSToolbar
 from cms.toolbar_pool import toolbar_pool
+from cms.utils import page_permissions
+from cms.utils.conf import get_cms_setting
 from cms.utils.i18n import get_language_list, get_language_object
 from cms.utils.permissions import has_page_permission
-from cms.utils import page_permissions
+
 from django.urls import NoReverseMatch, reverse
 from django.utils.translation import ugettext_lazy as _
 
 from .models import PageMeta, TitleMeta
-
-from cms.utils.conf import get_cms_setting
-
 
 PAGE_META_MENU_TITLE = _("Meta-information")
 PAGE_META_ITEM_TITLE = _("Common")
@@ -29,7 +20,7 @@ class PageToolbarMeta(PageToolbar):
     def populate(self):
         # request the current page
         self.page = self.request.current_page or getattr(self.toolbar.obj, "page", None)
-        self.permissions_activated = get_cms_setting('PERMISSION')
+        self.permissions_activated = get_cms_setting("PERMISSION")
 
         # check global permissions if CMS_PERMISSIONS is active
         if self.permissions_activated:

@@ -3,7 +3,7 @@
 import django.db.models.deletion
 import filer.fields.file
 from django.conf import settings
-from django.db import migrations, models, DatabaseError
+from django.db import DatabaseError, migrations, models
 from django.db.migrations.recorder import MigrationRecorder
 
 # django cms 3 backwards compatibility for the Title model.
