@@ -19,7 +19,6 @@ class ToolbarTest(BaseTest):
         """
         from cms.toolbar.toolbar import CMSToolbar
 
-        # superuser = self.get_superuser()
         request = self.get_page_request(None, self.user, "/")
         toolbar = CMSToolbar(request)
         toolbar.get_left_items()
@@ -33,13 +32,10 @@ class ToolbarTest(BaseTest):
         """
         from cms.toolbar.toolbar import CMSToolbar
 
-        language = "en"
-        page1 = create_page(title="test", template="page_meta.html", language=language)
-        staff_no_permission = self._create_user("staff", is_staff=True, is_superuser=False)
-        staff_no_permission.user_permissions.add(Permission.objects.get(codename="change_page"))
-        staff_no_permission = User.objects.get(pk=staff_no_permission.pk)
-
-        request = self.get_page_request(page1, staff_no_permission, "/")
+        page1, __ = self.get_pages()
+        self.user_staff.user_permissions.add(Permission.objects.get(codename="change_page"))
+        self.user_staff = User.objects.get(pk=self.user_staff.pk)
+        request = self.get_page_request(page1, self.user, "/")
         toolbar = CMSToolbar(request)
         toolbar.get_left_items()
         page_menu = toolbar.find_items(Menu, name="Page")
@@ -73,8 +69,7 @@ class ToolbarTest(BaseTest):
             },
         }
 
-        language = "en"
-        page1 = create_page(title="test", template="page_meta.html", language=language)
+        page1, __ = self.get_pages()
         with self.settings(CMS_LANGUAGES=NEW_CMS_LANGS):
             request = self.get_page_request(page1, self.get_superuser(), "/")
             toolbar = CMSToolbar(request)
@@ -93,9 +88,6 @@ class ToolbarTest(BaseTest):
         """
         from cms.toolbar.toolbar import CMSToolbar
 
-        # language = "en"
-        # staff_no_permission = self._create_user("staff", is_staff=True, is_superuser=False)
-        # page1 = create_page(title="test", template="page_meta.html", language=language)
         page1, __ = self.get_pages()
         request = self.get_page_request(page1, self.user_staff, "/")
         toolbar = CMSToolbar(request)

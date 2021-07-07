@@ -21,7 +21,8 @@ class AdminPageTest(BaseTest):
         """
         Test that the returned form has been modified by the meta patch
         """
-        page1, __ = self.get_pages()
+        page1, _page2 = self.get_pages()
+
         request = self.get_page_request(page1, self.user, "/")
         form = page_admin.get_form(request, page1)
         self.assertEqual(form.base_fields.get("meta_description"), None)
@@ -30,8 +31,8 @@ class AdminPageTest(BaseTest):
         """
         Test that the returned form has been modified by the meta patch
         """
-        page1, __ = self.get_pages()
-        title = page1.get_title_obj(language="en", fallback=False)
+        page1, _page2 = self.get_pages()
+        title = page1.get_title_obj(language="en")
         title.meta_description = "something"
         title.save()
 
