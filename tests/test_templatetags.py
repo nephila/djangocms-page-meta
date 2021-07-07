@@ -12,17 +12,17 @@ class TemplateMetaTest(BaseTest):
         """
         Test page-level templatetags
         """
-        page, __ = self.get_pages()
-        page_ext = PageMeta.objects.create(extended_object=page)
+        page1, __ = self.get_pages()
+        page_ext = PageMeta.objects.create(extended_object=page1)
         for key, val in self.og_data.items():
             setattr(page_ext, key, val)
         page_ext.save()
 
         GenericMetaAttribute.objects.create(page=page_ext, attribute="custom", name="attr", value="foo")
-        page.publication_end_date = page.creation_date + timedelta(days=1)
-        page.published_date = page.changed_date
-        page.save()
-        page_url = page.get_absolute_url("en")
+        page1.publication_end_date = page1.creation_date + timedelta(days=1)
+        page1.published_date = page1.changed_date
+        page1.save()
+        page_url = page1.get_absolute_url("en")
 
         with self.login_user_context(self.user):
             response = self.client.get(page_url)

@@ -53,14 +53,15 @@ class PageMetaUtilsTest(BaseTest):
         """
         Tests the Twitter cards
         """
-        language = "en"
         page, __ = self.get_pages()
         page_meta = models.PageMeta.objects.create(extended_object=page)
-
         for key, val in self.page_data.items():
             setattr(page_meta, key, val)
         for key, val in self.twitter_data.items():
             setattr(page_meta, key, val)
+        page_meta.save()
+
+        page.reload()
 
         meta = get_page_meta(page, "en")
         self.assertEqual(meta.twitter_site, self.twitter_data["twitter_site"])
@@ -73,7 +74,6 @@ class PageMetaUtilsTest(BaseTest):
         self.assertIsNone(meta)
 
         request = self.get_page_request(SimpleLazyObject(lambda: None), self.user, "/")
-
         meta = get_page_meta(request.current_page, "en")
         self.assertIsNone(meta)
 
@@ -84,7 +84,6 @@ class PageMetaUtilsTest(BaseTest):
             from djangocms_page_tags.models import PageTags, TitleTags
         except ImportError:
             self.skipTest("djangocms_page_tags not installed")
-        language = "en"
         page1, page2 = self.get_pages()
         page_ext = PageTags.objects.create(extended_object=page1)
         page_ext.tags.add(*tags1)
@@ -123,6 +122,9 @@ class PageMetaUtilsTest(BaseTest):
 
         meta = get_page_meta(page1, "en")
         self.assertEqual(meta.extra_custom_props, [("custom", "attr", "bar"), ("custom", "attr", "foo")])
+
+        meta = get_page_meta(page1, "it")
+        self.assertEqual(meta.extra_custom_props, [("custom", "attr", "foo")])
 
     def test_publish_extra(self):
         """
