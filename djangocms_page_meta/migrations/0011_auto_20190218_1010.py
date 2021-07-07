@@ -3,7 +3,16 @@
 import django.db.models.deletion
 import filer.fields.file
 from django.conf import settings
-from django.db import migrations, models
+from django.db import DatabaseError, migrations, models
+from django.db.migrations.recorder import MigrationRecorder
+
+# django cms 3 backwards compatibility for the Title model.
+page_content_model = 'cms.Title'
+try:
+    if MigrationRecorder.Migration.objects.filter(app="cms", name="0032_remove_title_to_pagecontent").count():
+        page_content_model = "cms.PageContent"
+except DatabaseError as error:
+    page_content_model = "cms.PageContent"
 
 
 class Migration(migrations.Migration):
@@ -72,7 +81,8 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="titlemeta",
             name="extended_object",
-            field=models.OneToOneField(editable=False, on_delete=django.db.models.deletion.CASCADE, to="cms.Title"),
+            field=models.OneToOneField(editable=False, on_delete=django.db.models.deletion.CASCADE,
+                                       to=page_content_model),
         ),
         migrations.AlterField(
             model_name="titlemeta",

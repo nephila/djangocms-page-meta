@@ -1,3 +1,5 @@
+from cms.api import create_page
+from cms.test_utils.testcases import CMSTestCase
 from django.conf import settings
 from django.core.cache import cache
 from django.template.base import Parser
@@ -13,6 +15,7 @@ from . import BaseTest, DummyTokens
 
 
 class PageMetaUtilsTest(BaseTest):
+
     def test_context_no_request(self):
         """
         This is a weird and limited test to ensure that if request is not in context
@@ -31,13 +34,11 @@ class PageMetaUtilsTest(BaseTest):
         """
         page, __ = self.get_pages()
         page_meta = models.PageMeta.objects.create(extended_object=page)
+
         for key, val in self.page_data.items():
             setattr(page_meta, key, val)
         for key, val in self.og_data.items():
             setattr(page_meta, key, val)
-        page_meta.save()
-
-        page.reload()
 
         meta = get_page_meta(page, "en")
         self.assertEqual(meta.og_type, self.og_data["og_type"])
@@ -46,12 +47,7 @@ class PageMetaUtilsTest(BaseTest):
         self.assertEqual(meta.og_publisher, self.og_data["og_publisher"])
         self.assertEqual(meta.og_app_id, self.og_data["og_app_id"])
         self.assertEqual(meta.fb_pages, self.og_data["fb_pages"])
-        self.assertEqual(meta.published_time, page.publication_date.isoformat())
         self.assertEqual(meta.modified_time, page.changed_date.isoformat())
-        if page.publication_end_date:
-            self.assertEqual(meta.expiration_time, page.publication_end_date.isoformat())
-        else:
-            self.assertFalse(hasattr(meta, "expiration_time"))
 
     def test_page_meta_twitter(self):
         """
@@ -105,12 +101,6 @@ class PageMetaUtilsTest(BaseTest):
             page_meta.save()
             page.reload()
 
-        for lang in self.languages:
-            page1.publish(lang)
-            page2.publish(lang)
-        page1 = page1.get_public_object()
-        page2 = page2.get_public_object()
-
         meta1 = get_page_meta(page1, "en")
         meta2 = get_page_meta(page2, "en")
         for tag in tags2 + tags1:
@@ -147,16 +137,13 @@ class PageMetaUtilsTest(BaseTest):
         models.GenericMetaAttribute.objects.create(page=page_meta, attribute="custom", name="attr", value="foo")
         models.GenericMetaAttribute.objects.create(title=title_meta, attribute="custom", name="attr", value="bar")
 
-        page1.publish("en")
         page_meta.extra.first().attribute = "new"
         page_meta.extra.first().save()
         title_meta.extra.first().attribute = "new"
         title_meta.extra.first().save()
 
-        page1.publish("en")
-        public = page1.get_public_object()
-        page_meta = models.PageMeta.objects.get(extended_object=public)
-        title_meta = models.TitleMeta.objects.get(extended_object=public.get_title_obj("en"))
+        page_meta = models.PageMeta.objects.get(extended_object=page1)
+        title_meta = models.TitleMeta.objects.get(extended_object=page1.get_title_obj("en"))
         self.assertEqual(page_meta.extra.count(), 1)
         self.assertEqual(title_meta.extra.count(), 1)
 
