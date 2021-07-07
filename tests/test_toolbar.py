@@ -12,6 +12,7 @@ from djangocms_page_meta.models import PageMeta, TitleMeta
 
 from . import BaseTest
 
+
 class ToolbarTest(BaseTest):
     def test_no_page(self):
         """

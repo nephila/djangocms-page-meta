@@ -1,10 +1,11 @@
 import warnings
+from collections import OrderedDict
+from copy import deepcopy
+
 from app_helper.base_test import BaseTestCase
 from django.core.cache import cache
 from django.test import RequestFactory, TestCase, TransactionTestCase
 
-from collections import OrderedDict
-from copy import deepcopy
 
 class DummyTokens(list):
     def __init__(self, *tokens):
