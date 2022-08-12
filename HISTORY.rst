@@ -6,6 +6,14 @@ History
 
 .. towncrier release notes start
 
+1.0.2 (2022-08-12)
+==================
+
+Features
+--------
+
+- Added Django 4.0 support
+
 1.0.1 (2020-12-21)
 ==================
 
