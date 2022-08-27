@@ -95,26 +95,26 @@ For package documentation see https://djangocms-page-meta.readthedocs.io/.
     :target: https://gitter.im/nephila/applications
     :alt: Join the Gitter chat
 
-.. |PyPiVersion| image:: https://img.shields.io/pypi/v/djangocms-redirect.svg?style=flat-square
-    :target: https://pypi.python.org/pypi/djangocms-redirect
+.. |PyPiVersion| image:: https://img.shields.io/pypi/v/djangocms-page-meta.svg?style=flat-square
+    :target: https://pypi.python.org/pypi/djangocms-page-meta
     :alt: Latest PyPI version
 
-.. |PyVersion| image:: https://img.shields.io/pypi/pyversions/djangocms-redirect.svg?style=flat-square
-    :target: https://pypi.python.org/pypi/djangocms-redirect
+.. |PyVersion| image:: https://img.shields.io/pypi/pyversions/djangocms-page-meta.svg?style=flat-square
+    :target: https://pypi.python.org/pypi/djangocms-page-meta
     :alt: Python versions
 
 .. |GAStatus| image:: https://github.com/nephila/djangocms-redirect/workflows/Tox%20tests/badge.svg
-    :target: https://github.com/nephila/djangocms-redirect
+    :target: https://github.com/nephila/djangocms-page-meta
     :alt: Latest CI build status
 
-.. |TestCoverage| image:: https://img.shields.io/coveralls/nephila/djangocms-redirect/master.svg?style=flat-square
-    :target: https://coveralls.io/r/nephila/djangocms-redirect?branch=master
+.. |TestCoverage| image:: https://img.shields.io/coveralls/nephila/djangocms-page-meta/master.svg?style=flat-square
+    :target: https://coveralls.io/r/nephila/djangocms-page-meta?branch=master
     :alt: Test coverage
 
-.. |License| image:: https://img.shields.io/github/license/nephila/djangocms-redirect.svg?style=flat-square
-   :target: https://pypi.python.org/pypi/djangocms-redirect/
+.. |License| image:: https://img.shields.io/github/license/nephila/djangocms-page-meta.svg?style=flat-square
+   :target: https://pypi.python.org/pypi/djangocms-page-meta/
     :alt: License
 
-.. |CodeClimate| image:: https://codeclimate.com/github/nephila/djangocms-redirect/badges/gpa.svg?style=flat-square
-   :target: https://codeclimate.com/github/nephila/djangocms-redirect
+.. |CodeClimate| image:: https://codeclimate.com/github/nephila/djangocms-page-meta/badges/gpa.svg?style=flat-square
+   :target: https://codeclimate.com/github/nephila/djangocms-page-meta
    :alt: Code Climate
