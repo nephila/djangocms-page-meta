@@ -3,7 +3,7 @@ from cms.utils.i18n import get_language_object
 from django.contrib.auth.models import Permission, User
 from django.test.utils import override_settings
 from django.urls import reverse
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 
 from djangocms_page_meta.cms_toolbars import PAGE_META_ITEM_TITLE, PAGE_META_MENU_TITLE
 from djangocms_page_meta.models import PageMeta, TitleMeta
@@ -38,7 +38,7 @@ class ToolbarTest(BaseTest):
         try:
             self.assertEqual(page_menu, [])
         except AssertionError:
-            meta_menu = page_menu[0].item.find_items(SubMenu, name=force_text(PAGE_META_MENU_TITLE))
+            meta_menu = page_menu[0].item.find_items(SubMenu, name=force_str(PAGE_META_MENU_TITLE))
             self.assertEqual(meta_menu, [])
 
     def test_perm(self):
@@ -54,10 +54,8 @@ class ToolbarTest(BaseTest):
         toolbar = CMSToolbar(request)
         toolbar.get_left_items()
         page_menu = toolbar.menus["page"]
-        meta_menu = page_menu.find_items(SubMenu, name=force_text(PAGE_META_MENU_TITLE))[0].item
-        self.assertEqual(
-            len(meta_menu.find_items(ModalItem, name="{}...".format(force_text(PAGE_META_ITEM_TITLE)))), 1
-        )
+        meta_menu = page_menu.find_items(SubMenu, name=force_str(PAGE_META_MENU_TITLE))[0].item
+        self.assertEqual(len(meta_menu.find_items(ModalItem, name="{}...".format(force_str(PAGE_META_ITEM_TITLE)))), 1)
 
     @override_settings(CMS_PERMISSION=True)
     def test_perm_permissions(self):
@@ -76,7 +74,7 @@ class ToolbarTest(BaseTest):
         try:
             self.assertEqual(page_menu, [])
         except AssertionError:
-            meta_menu = page_menu[0].item.find_items(SubMenu, name=force_text(PAGE_META_MENU_TITLE))
+            meta_menu = page_menu[0].item.find_items(SubMenu, name=force_str(PAGE_META_MENU_TITLE))
             self.assertEqual(meta_menu, [])
 
     def test_toolbar(self):
@@ -109,9 +107,9 @@ class ToolbarTest(BaseTest):
             toolbar = CMSToolbar(request)
             toolbar.get_left_items()
             page_menu = toolbar.menus["page"]
-            meta_menu = page_menu.find_items(SubMenu, name=force_text(PAGE_META_MENU_TITLE))[0].item
+            meta_menu = page_menu.find_items(SubMenu, name=force_str(PAGE_META_MENU_TITLE))[0].item
             self.assertEqual(
-                len(meta_menu.find_items(ModalItem, name="{}...".format(force_text(PAGE_META_ITEM_TITLE)))), 1
+                len(meta_menu.find_items(ModalItem, name="{}...".format(force_str(PAGE_META_ITEM_TITLE)))), 1
             )
             self.assertEqual(len(meta_menu.find_items(ModalItem)), len(NEW_CMS_LANGS[1]) + 1)
 
@@ -128,8 +126,8 @@ class ToolbarTest(BaseTest):
         toolbar = CMSToolbar(request)
         toolbar.get_left_items()
         page_menu = toolbar.menus["page"]
-        meta_menu = page_menu.find_items(SubMenu, name=force_text(PAGE_META_MENU_TITLE))[0].item
-        pagemeta_menu = meta_menu.find_items(ModalItem, name="{}...".format(force_text(PAGE_META_ITEM_TITLE)))
+        meta_menu = page_menu.find_items(SubMenu, name=force_str(PAGE_META_MENU_TITLE))[0].item
+        pagemeta_menu = meta_menu.find_items(ModalItem, name="{}...".format(force_str(PAGE_META_ITEM_TITLE)))
         self.assertEqual(len(pagemeta_menu), 1)
         self.assertTrue(
             pagemeta_menu[0].item.url.startswith(
