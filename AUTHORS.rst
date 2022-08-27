@@ -5,7 +5,7 @@ Credits
 Development Lead
 ----------------
 
-* Iacopo Spalletti <i.spalletti@nephila.it>
+* Iacopo Spalletti <i.spalletti@nephila.digital>
 
 Contributors
 ------------
@@ -26,6 +26,7 @@ Contributors
 * Matas Dailyda
 * nastya
 * Peter Farrell
+* Peter Wischer
 * Ryan Stalbow
 * Sergei Maertens
 * Tadas Dailyda

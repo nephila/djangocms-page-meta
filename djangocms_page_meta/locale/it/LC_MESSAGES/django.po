@@ -4,14 +4,14 @@
 #
 # Translators:
 # Translators:
-# yakky <i.spalletti@nephila.it>, 2014,2017,2019-2020
+# yakky <i.spalletti@nephila.digital>, 2014,2017,2019-2020
 msgid ""
 msgstr ""
 "Project-Id-Version: djangocms-page-meta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-20 13:10+0100\n"
 "PO-Revision-Date: 2020-12-20 12:12+0000\n"
-"Last-Translator: yakky <i.spalletti@nephila.it>\n"
+"Last-Translator: yakky <i.spalletti@nephila.digital>\n"
 "Language-Team: Italian (http://www.transifex.com/nephila/djangocms-page-meta/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
