@@ -8,7 +8,7 @@ from invoke import task
 
 DOCS_PORT = os.environ.get("DOCS_PORT", 8000)
 #: branch prefixes for which some checks are skipped
-SPECIAL_BRANCHES = ("master", "develop", "release")
+SPECIAL_BRANCHES = ("master", "develop", "release", "support/4.0.x")
 
 
 @task
@@ -109,15 +109,19 @@ def coverage(c):
 
 
 @task
-def tag_release(c, level):
+def tag_release(c, level, new_version=""):
     """Tag release version."""
-    c.run("bumpversion --list %s --no-tag" % level)
+    if new_version:
+        new_version = f" --new-version {new_version}"
+    c.run(f"bumpversion --list {level} --no-tag{new_version}")
 
 
 @task
-def tag_dev(c, level="patch"):
+def tag_dev(c, level="patch", new_version=""):
     """Tag development version."""
-    c.run("bumpversion --list %s --message='Bump develop version [ci skip]' --no-tag" % level)
+    if new_version:
+        new_version = f" --new-version {new_version}"
+    c.run(f"bumpversion --list {level} --message='Bump develop version [ci skip]' --no-tag{new_version}")
 
 
 @task(pre=[clean])

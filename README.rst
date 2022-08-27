@@ -6,11 +6,11 @@ djangocms-page-meta
 
 Meta tag information for django CMS 3 pages
 
-Python: 3.6, 3.7, 3.8
+Python: 3.7, 3.8, 3.9, 3.10
 
-Django: 2.2, 3.0, 3.1
+Django: 2.2, 3.2
 
-django CMS: 3.7, 3.8
+django CMS: 3.7 - 3.10
 
 
 **********
@@ -29,16 +29,12 @@ Quickstart
 
 #. Then add it to INSTALLED_APPS along with its dependencies::
 
-        'filer',
-        'meta',
-        'easy_thumbnails',
-        'djangocms_page_meta',
+        "filer",
+        "meta",
+        "easy_thumbnails",
+        "djangocms_page_meta",
 
-#. Synchronize the database::
-
-        $ python manage.py syncdb
-
-   or migrate::
+#. Migrate the database::
 
         $ python manage.py migrate
 
