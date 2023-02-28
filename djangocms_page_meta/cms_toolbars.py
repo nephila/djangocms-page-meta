@@ -6,7 +6,7 @@ from cms.toolbar_pool import toolbar_pool
 from cms.utils.i18n import get_language_list, get_language_object
 from cms.utils.permissions import has_page_permission
 from django.urls import NoReverseMatch, reverse
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from .models import PageMeta, TitleMeta
 
