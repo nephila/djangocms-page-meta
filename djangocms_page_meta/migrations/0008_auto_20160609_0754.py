@@ -4,7 +4,6 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("djangocms_page_meta", "0007_auto_20160530_2257"),
     ]

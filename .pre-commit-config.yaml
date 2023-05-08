@@ -3,7 +3,7 @@
 exclude: "(.idea|node_modules|.tox)"
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.3.0
+    rev: v4.4.0
     hooks:
       - id: trailing-whitespace
         exclude: "setup.cfg"
@@ -18,41 +18,28 @@ repos:
         args:
           - --remove
   - repo: https://github.com/PyCQA/isort
-    rev: "5.10.1"
+    rev: "5.12.0"
     hooks:
       - id: isort
   - repo: https://github.com/psf/black
-    rev: 22.6.0
+    rev: 23.3.0
     hooks:
       - id: black
-  - repo: https://github.com/PyCQA/flake8
-    rev: 5.0.4
+  - repo: https://github.com/charliermarsh/ruff-pre-commit
+    rev: 'v0.0.262'
     hooks:
-      - id: flake8
-        additional_dependencies:
-          - flake8-broken-line
-          - flake8-bugbear
-          - flake8-builtins
-          - flake8-coding
-          - flake8-commas
-          - flake8-comprehensions
-          - flake8-eradicate
-          - flake8-quotes
-          - flake8-tidy-imports
-          - pep8-naming
-  - repo: https://github.com/econchick/interrogate
-    rev: 1.5.0
-    hooks:
-      - id: interrogate
-        args:
-          - "-cpyproject.toml"
-          - "--quiet"
+      - id: ruff
   - repo: https://github.com/asottile/pyupgrade
-    rev: v2.37.3
+    rev: v3.3.2
     hooks:
       - id: pyupgrade
         args:
           - --py3-plus
+  - repo: https://github.com/adamchainz/django-upgrade
+    rev: "1.13.0"
+    hooks:
+      - id: django-upgrade
+        args: [--target-version, "3.2"]
   - repo: local
     hooks:
       - id: towncrier
