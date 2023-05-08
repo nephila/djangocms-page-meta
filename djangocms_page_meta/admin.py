@@ -23,6 +23,7 @@ class GenericAttributeTitleInline(admin.TabularInline):
     extra = 1
 
 
+@admin.register(PageMeta)
 class PageMetaAdmin(PageExtensionAdmin):
     raw_id_fields = ("og_author",)
     inlines = (GenericAttributePageInline,)
@@ -53,9 +54,7 @@ class PageMetaAdmin(PageExtensionAdmin):
         return {}
 
 
-admin.site.register(PageMeta, PageMetaAdmin)
-
-
+@admin.register(TitleMeta)
 class TitleMetaAdmin(TitleExtensionAdmin):
     form = TitleMetaAdminForm
     inlines = (GenericAttributeTitleInline,)
@@ -68,9 +67,6 @@ class TitleMetaAdmin(TitleExtensionAdmin):
         Return empty perms dict thus hiding the model from admin index.
         """
         return {}
-
-
-admin.site.register(TitleMeta, TitleMetaAdmin)
 
 
 # Monkey patch the PageAdmin with a new get_form method

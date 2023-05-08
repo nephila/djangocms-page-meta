@@ -5,7 +5,6 @@ from meta import settings
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("djangocms_page_meta", "0003_auto_20151220_1734"),
     ]
