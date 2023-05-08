@@ -12,7 +12,7 @@ jobs:
         python-version: ["3.11", "3.10", "3.9"]
         django: [42, 41, 32]
         cms: [311, 39]
-        continue-on-error: 1
+        continue-on-error: "true"
         exclude:
           - django: 41
             cms: 39
