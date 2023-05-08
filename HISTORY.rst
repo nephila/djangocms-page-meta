@@ -6,6 +6,16 @@ History
 
 .. towncrier release notes start
 
+1.2.0 (2023-05-08)
+==================
+
+Features
+--------
+
+- Update GH actions / linting configuration (#157)
+- Add support for Django 4.2 / django CMS 3.11
+
+
 1.1.0 (2022-08-27)
 ==================
 
