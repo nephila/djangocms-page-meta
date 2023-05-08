@@ -3,7 +3,7 @@ from cms.extensions import PageExtensionAdmin, TitleExtensionAdmin
 from cms.utils import get_language_from_request
 from django.conf import settings
 from django.contrib import admin
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from .forms import GenericAttributeInlineForm, TitleMetaAdminForm
 from .models import GenericMetaAttribute, PageMeta, TitleMeta
