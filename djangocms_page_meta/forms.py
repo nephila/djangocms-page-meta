@@ -1,8 +1,25 @@
 from django import forms
 from django.core.validators import MaxLengthValidator
 
-from .models import GenericMetaAttribute, TitleMeta
+from .models import GenericMetaAttribute, PageMeta, TitleMeta
 from .settings import get_setting
+
+
+class PageMetaAdminForm(forms.ModelForm):
+    robots = forms.MultipleChoiceField(
+        choices=get_setting("ROBOTS_CHOICES"),
+        widget=forms.CheckboxSelectMultiple,
+        required=False,
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if kwargs.get("instance"):
+            self.initial["robots"] = kwargs.get("instance").robots_list
+
+    class Meta:
+        model = PageMeta
+        exclude = ()
 
 
 class TitleMetaAdminForm(forms.ModelForm):

@@ -107,6 +107,7 @@ def get_page_meta(page, language):
             meta.twitter_site = pagemeta.twitter_site
             meta.twitter_author = pagemeta.twitter_author
             meta.schemaorg_type = pagemeta.schemaorg_type
+            meta.robots = pagemeta.robots_list
             if page.publication_date:
                 meta.published_time = page.publication_date.isoformat()
             if page.changed_date:

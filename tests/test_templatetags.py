@@ -33,6 +33,46 @@ class TemplateMetaTest(BaseTest):
         self.assertContains(response, '<meta property="article:publisher" content="https://facebook.com/FakeUser">')
         self.assertContains(response, '<meta custom="attr" content="foo">')
 
+    def test_page_meta_robots_no_data(self):
+        """
+        Test page-level no robots templatetags
+        """
+        page1, __ = self.get_pages()
+        page_ext = PageMeta.objects.create(extended_object=page1)
+        page_ext.save()
+        page1.save()
+        page1.publish("en")
+        response = self.client.get(page1.get_public_url("en"))
+        self.assertNotContains(response, '<meta name="robots"')
+
+    def test_page_meta_robots_single(self):
+        """
+        Test page-level robots single templatetags
+        """
+        page1, __ = self.get_pages()
+        page_ext = PageMeta.objects.create(extended_object=page1)
+        for key, val in self.robots_data_single.items():
+            setattr(page_ext, key, val)
+        page_ext.save()
+        page1.save()
+        page1.publish("en")
+        response = self.client.get(page1.get_public_url("en"))
+        self.assertContains(response, '<meta name="robots" content="noindex">')
+
+    def test_page_meta_robots_multiple(self):
+        """
+        Test page-level robots multiple templatetags
+        """
+        page1, __ = self.get_pages()
+        page_ext = PageMeta.objects.create(extended_object=page1)
+        for key, val in self.robots_data_multiple.items():
+            setattr(page_ext, key, val)
+        page_ext.save()
+        page1.save()
+        page1.publish("en")
+        response = self.client.get(page1.get_public_url("en"))
+        self.assertContains(response, '<meta name="robots" content="none, noimageindex, noarchive">')
+
     def test_title_meta(self):
         """
         Test title-level templatetags

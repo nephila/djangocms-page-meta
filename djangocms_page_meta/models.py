@@ -1,3 +1,5 @@
+import ast
+
 from cms.extensions import PageExtension, TitleExtension
 from cms.extensions.extension_pool import extension_pool
 from cms.models import Page, Title
@@ -60,7 +62,6 @@ class PageMeta(PageExtension):
     twitter_type = models.CharField(
         _("Resource type"), max_length=255, choices=meta_settings.TWITTER_TYPES, blank=True
     )
-
     schemaorg_type = models.CharField(
         _("Resource type"),
         max_length=255,
@@ -68,6 +69,7 @@ class PageMeta(PageExtension):
         blank=True,
         help_text=_("Use Article for generic pages."),
     )
+    robots = models.CharField(_("Robots meta tag"), max_length=512, blank=True)
 
     class Meta:
         verbose_name = _("Page meta info (all languages)")
@@ -85,6 +87,12 @@ class PageMeta(PageExtension):
             item.pk = None
             item.page = self
             item.save()
+
+    @property
+    def robots_list(self):
+        if self.robots:
+            return ast.literal_eval(self.robots)
+        return None
 
 
 extension_pool.register(PageMeta)

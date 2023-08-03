@@ -16,13 +16,34 @@ PAGE_META_DESCRIPTION_LENGTH
 Set the max length of the HTML meta description field.
 Default is ``320``.
 
-.. PAGE_META_TWITTER_DESCRIPTION_LENGTH:
+.. _PAGE_META_TWITTER_DESCRIPTION_LENGTH:
 
 PAGE_META_TWITTER_DESCRIPTION_LENGTH
 ------------------------------------
 
 Set the max length of the Twitter card description field.
 Default is ``280``.
+
+.. _PAGE_META_ROBOTS_CHOICES:
+
+PAGE_META_ROBOTS_CHOICES
+------------------------
+
+Set all the available choices for robots meta tag.
+Default is:
+
+.. code-block:: python
+
+    (
+        ("none", _("None [noindex, nofollow]")),
+        ("noindex", _("No Index")),
+        ("nofollow", _("No Follow")),
+        ("noimageindex", _("No Image Index")),
+        ("nosnippet", _("No Snippet")),
+        ("noarchive", _("No Archive")),
+        ("notranslate", _("No Translate")),
+        ("nositelinkssearchbox", _("No Site Links Search Box")),
+    )
 
 django-meta configuration
 =========================

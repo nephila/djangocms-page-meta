@@ -60,9 +60,9 @@ Supported attributes
 ********************
 
 ``djangocms-page-meta`` currently offers partial support for `OpenGraph`_,
-`Twitter Cards`_ and `Schema.org microdata`_. As a generic application
-``djangocms-page-meta`` cannot cover every use case while still being
-useful to most people.
+`Twitter Cards`_, `Schema.org microdata`_ and robots meta tag. As a generic
+application ``djangocms-page-meta`` cannot cover every use case while
+still being useful to most people.
 
 
 Generic HTML
