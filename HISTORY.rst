@@ -6,6 +6,15 @@ History
 
 .. towncrier release notes start
 
+1.3.0 (2023-08-07)
+==================
+
+Features
+--------
+
+- Add meta robots (#116)
+
+
 1.2.0 (2023-05-08)
 ==================
 
