@@ -55,6 +55,8 @@ class BaseTest(BaseTestCase):
         "twitter_site": "fake_site",
         "twitter_type": "summary",
     }
+    robots_data_single = {"robots": "['noindex']"}
+    robots_data_multiple = {"robots": "['none', 'noimageindex', 'noarchive']"}
 
     def setUp(self):
         super().setUp()

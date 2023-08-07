@@ -5,7 +5,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
-from .forms import GenericAttributeInlineForm, TitleMetaAdminForm
+from .forms import GenericAttributeInlineForm, PageMetaAdminForm, TitleMetaAdminForm
 from .models import GenericMetaAttribute, PageMeta, TitleMeta
 
 
@@ -26,6 +26,7 @@ class GenericAttributeTitleInline(admin.TabularInline):
 @admin.register(PageMeta)
 class PageMetaAdmin(PageExtensionAdmin):
     raw_id_fields = ("og_author",)
+    form = PageMetaAdminForm
     inlines = (GenericAttributePageInline,)
     fieldsets = (
         (None, {"fields": ("image",)}),
@@ -42,6 +43,7 @@ class PageMetaAdmin(PageExtensionAdmin):
         ),
         (_("Twitter Cards"), {"fields": ("twitter_type", "twitter_author"), "classes": ("collapse",)}),
         (_("Schema.org microdata"), {"fields": ("schemaorg_type",), "classes": ("collapse")}),
+        (_("Robots"), {"fields": ("robots",), "classes": ("collapse")}),
     )
 
     class Media:

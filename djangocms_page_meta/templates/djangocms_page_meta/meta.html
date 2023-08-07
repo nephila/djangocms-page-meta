@@ -36,6 +36,7 @@
 		{% if meta.twitter_author %}{% twitter_prop 'creator' meta.twitter_author %}{% endif %}
 		{% if meta.twitter_site %}{% twitter_prop 'site_name' meta.twitter_site %}{% endif %}
 	{% endif %}
+  {% if meta.robots %}{% meta_list 'robots' meta.robots %}{% endif %}
 	{% if meta.use_schemaorg %}
         {% if meta.schemaorg_name %}{% schemaorg_prop 'name' meta.schemaorg_name %}{% endif %}
         {% if meta.schemaorg_datePublished %}{% schemaorg_prop 'datePublished' meta.schemaorg_datePublished %}{% endif %}
