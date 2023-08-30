@@ -64,7 +64,6 @@ def get_page_meta(page, language):
                 meta.twitter_description = meta.description
             if titlemeta.image:
                 meta.image = title.titlemeta.image.canonical_url or title.titlemeta.image.url
-                meta.schemaorg_image = meta.image
             meta.schemaorg_description = titlemeta.schemaorg_description.strip()
             if not meta.schemaorg_description:
                 meta.schemaorg_description = meta.description
@@ -129,7 +128,6 @@ def get_page_meta(page, language):
                     pass
             if not meta.image and pagemeta.image:
                 meta.image = pagemeta.image.canonical_url or pagemeta.image.url
-                meta.schemaorg_image = pagemeta.image
             for item in pagemeta.extra.all():
                 attribute = item.attribute
                 if not attribute:
@@ -142,9 +140,9 @@ def get_page_meta(page, language):
                 setattr(meta, attr, val)
         if not meta.image and default_meta_image:
             meta.image = default_meta_image.canonical_url or default_meta_image.url
-            meta.schemaorg_image = default_meta_image
         meta.url = page.get_absolute_url(language)
         meta.schemaorg_url = meta.url
+        meta.schemaorg_image = meta.image
         cache.set(meta_key, meta)
     return meta
 
