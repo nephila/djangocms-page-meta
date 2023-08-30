@@ -178,6 +178,26 @@ class GenericMetaAttribute(models.Model):
             return _("Attribute {0} for {1}").format(self.name, self.title)
 
 
+class DefaultMetaImage(models.Model):
+    image = FilerFileField(
+        null=True,
+        blank=True,
+        related_name="djangocms_page_meta_default_image",
+        help_text=_(
+            "Default image for og:image, twitter:image and schema.org image.\n"
+            "You can override this by setting the image in Meta-information page extension."
+        ),
+        on_delete=models.SET_NULL,
+    )
+
+    class Meta:
+        verbose_name = _("Default meta image")
+        verbose_name_plural = _("Default meta images")
+
+    def __str__(self):
+        return self.image.label if self.image else str(self.pk)
+
+
 # Cache cleanup when deleting pages / editing page extensions
 @receiver(pre_delete, sender=Page)
 def cleanup_page(sender, instance, **kwargs):

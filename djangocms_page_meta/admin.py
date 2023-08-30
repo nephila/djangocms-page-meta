@@ -6,7 +6,18 @@ from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
 from .forms import GenericAttributeInlineForm, PageMetaAdminForm, TitleMetaAdminForm
-from .models import GenericMetaAttribute, PageMeta, TitleMeta
+from .models import DefaultMetaImage, GenericMetaAttribute, PageMeta, TitleMeta
+
+
+@admin.register(DefaultMetaImage)
+class DefaultMetaImageAdmin(admin.ModelAdmin):
+    actions = None
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 class GenericAttributePageInline(admin.TabularInline):

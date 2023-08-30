@@ -25,6 +25,37 @@ class PageMetaUtilsTest(BaseTest):
         self.assertFalse(tag)
         self.assertTrue(context["meta"])
 
+    def test_page_default_meta_image(self):
+        page, __ = self.get_pages()
+        page_meta = models.PageMeta.objects.create(extended_object=page)
+        for key, val in self.page_data.items():
+            setattr(page_meta, key, val)
+        for key, val in self.og_data.items():
+            setattr(page_meta, key, val)
+        page_meta.save()
+        page.reload()
+        default_meta_image = models.DefaultMetaImage.objects.first()
+        default_meta_image.image = self.create_filer_image_object()
+        default_meta_image.save()
+        meta = get_page_meta(page, "en")
+        self.assertEqual(meta.image, f"http://example.com{default_meta_image.image.url}")
+
+    def test_page_default_meta_image_with_pagemeta_image(self):
+        page, __ = self.get_pages()
+        page_meta = models.PageMeta.objects.create(extended_object=page)
+        for key, val in self.page_data.items():
+            setattr(page_meta, key, val)
+        for key, val in self.og_data.items():
+            setattr(page_meta, key, val)
+        page_meta.image = self.create_filer_image(self.user, "page_meta_image.jpg")
+        page_meta.save()
+        page.reload()
+        default_meta_image = models.DefaultMetaImage.objects.first()
+        default_meta_image.image = self.create_filer_image_object()
+        default_meta_image.save()
+        meta = get_page_meta(page, "en")
+        self.assertEqual(meta.image, f"http://example.com{page_meta.image.url}")
+
     def test_page_meta_og(self):
         """
         Tests the OpenGraph meta tags
@@ -196,6 +227,7 @@ class PageMetaUtilsTest(BaseTest):
         page1, __ = self.get_pages()
         page_meta = models.PageMeta.objects.create(extended_object=page1)
         title_meta = models.TitleMeta.objects.create(extended_object=page1.get_title_obj("en"))
+        default_meta_image = models.DefaultMetaImage.objects.first()
         page_attr = models.GenericMetaAttribute.objects.create(
             page=page_meta, attribute="custom", name="attr", value="foo"
         )
@@ -205,8 +237,12 @@ class PageMetaUtilsTest(BaseTest):
 
         self.assertEqual(str(page_meta), f"Page Meta for {page1}")
         self.assertEqual(str(title_meta), f"Title Meta for {page1.get_title_obj('en')}")
+        self.assertEqual(str(default_meta_image), f"{default_meta_image.pk}")
         self.assertEqual(str(page_attr), f"Attribute {page_attr.name} for {page_meta}")
         self.assertEqual(str(title_attr), f"Attribute {title_attr.name} for {title_meta}")
+        default_meta_image.image = self.create_filer_image_object()
+        default_meta_image.save()
+        self.assertEqual(str(default_meta_image), "test_image.jpg")
 
     def test_robots_list_property(self):
         page1, __ = self.get_pages()

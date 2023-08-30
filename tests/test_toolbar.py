@@ -5,8 +5,12 @@ from django.test.utils import override_settings
 from django.urls import reverse
 from django.utils.encoding import force_str
 
-from djangocms_page_meta.cms_toolbars import PAGE_META_ITEM_TITLE, PAGE_META_MENU_TITLE
-from djangocms_page_meta.models import PageMeta, TitleMeta
+from djangocms_page_meta.cms_toolbars import (
+    PAGE_META_DEFAULT_META_IMAGE_TITLE,
+    PAGE_META_ITEM_TITLE,
+    PAGE_META_MENU_TITLE,
+)
+from djangocms_page_meta.models import DefaultMetaImage, PageMeta, TitleMeta
 
 from . import BaseTest
 
@@ -73,12 +77,15 @@ class ToolbarTest(BaseTest):
         toolbar.get_left_items()
         page_menu = toolbar.menus["page"]
         meta_menu = page_menu.find_items(SubMenu, name=force_str(PAGE_META_MENU_TITLE))[0].item
+        self.assertEqual(
+            len(meta_menu.find_items(ModalItem, name="{}...".format(force_str(PAGE_META_DEFAULT_META_IMAGE_TITLE)))), 1
+        )
         self.assertEqual(len(meta_menu.find_items(ModalItem, name="{}...".format(force_str(PAGE_META_ITEM_TITLE)))), 1)
 
     @override_settings(CMS_PERMISSION=True)
     def test_perm_permissions(self):
         """
-        Test that no page menu is present if user has general page Page.change_perm  but not permission on current page
+        Test that no page menu is present if user has general page Page.change_perm but not permission on current page
         """
         from cms.toolbar.toolbar import CMSToolbar
 
@@ -129,7 +136,13 @@ class ToolbarTest(BaseTest):
             self.assertEqual(
                 len(meta_menu.find_items(ModalItem, name="{}...".format(force_str(PAGE_META_ITEM_TITLE)))), 1
             )
-            self.assertEqual(len(meta_menu.find_items(ModalItem)), len(NEW_CMS_LANGS[1]) + 1)
+            self.assertEqual(
+                len(
+                    meta_menu.find_items(ModalItem, name="{}...".format(force_str(PAGE_META_DEFAULT_META_IMAGE_TITLE)))
+                ),
+                1,
+            )
+            self.assertEqual(len(meta_menu.find_items(ModalItem)), len(NEW_CMS_LANGS[1]) + 2)
 
     def test_toolbar_with_items(self):
         """
@@ -140,16 +153,26 @@ class ToolbarTest(BaseTest):
         page1, __ = self.get_pages()
         page_ext = PageMeta.objects.create(extended_object=page1)
         title_meta = TitleMeta.objects.create(extended_object=page1.get_title_obj("en"))
+        default_meta_image = DefaultMetaImage.objects.first()
         request = self.get_page_request(page1, self.user, "/", edit=True)
         toolbar = CMSToolbar(request)
         toolbar.get_left_items()
         page_menu = toolbar.menus["page"]
         meta_menu = page_menu.find_items(SubMenu, name=force_str(PAGE_META_MENU_TITLE))[0].item
         pagemeta_menu = meta_menu.find_items(ModalItem, name="{}...".format(force_str(PAGE_META_ITEM_TITLE)))
+        defaultmetaimage_menu = meta_menu.find_items(
+            ModalItem, name="{}...".format(force_str(PAGE_META_DEFAULT_META_IMAGE_TITLE))
+        )
         self.assertEqual(len(pagemeta_menu), 1)
+        self.assertEqual(len(defaultmetaimage_menu), 1)
         self.assertTrue(
             pagemeta_menu[0].item.url.startswith(
                 reverse("admin:djangocms_page_meta_pagemeta_change", args=(page_ext.pk,))
+            )
+        )
+        self.assertTrue(
+            defaultmetaimage_menu[0].item.url.startswith(
+                reverse("admin:djangocms_page_meta_defaultmetaimage_change", args=(default_meta_image.pk,))
             )
         )
         url_change = False
