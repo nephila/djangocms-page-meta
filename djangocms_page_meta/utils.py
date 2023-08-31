@@ -30,7 +30,7 @@ def get_page_meta(page, language):
     from django.core.cache import cache
     from meta.views import Meta
 
-    from .models import PageMeta, TitleMeta
+    from .models import DefaultMetaImage, PageMeta, TitleMeta
 
     try:
         meta_key = get_cache_key(page, language)
@@ -40,6 +40,7 @@ def get_page_meta(page, language):
     if not meta:
         meta = Meta()
         title = page.get_title_obj(language)
+        default_meta_image = DefaultMetaImage.objects.first().image
         meta.extra_custom_props = []
 
         meta.title = page.get_page_title(language)
@@ -63,7 +64,6 @@ def get_page_meta(page, language):
                 meta.twitter_description = meta.description
             if titlemeta.image:
                 meta.image = title.titlemeta.image.canonical_url or title.titlemeta.image.url
-                meta.schemaorg_image = meta.image
             meta.schemaorg_description = titlemeta.schemaorg_description.strip()
             if not meta.schemaorg_description:
                 meta.schemaorg_description = meta.description
@@ -138,8 +138,11 @@ def get_page_meta(page, language):
         for attr, val in defaults.items():
             if not getattr(meta, attr, "") and val:
                 setattr(meta, attr, val)
+        if not meta.image and default_meta_image:
+            meta.image = default_meta_image.canonical_url or default_meta_image.url
         meta.url = page.get_absolute_url(language)
         meta.schemaorg_url = meta.url
+        meta.schemaorg_image = meta.image
         cache.set(meta_key, meta)
     return meta
 

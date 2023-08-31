@@ -8,7 +8,7 @@ from cms.utils.permissions import has_page_permission
 from django.urls import NoReverseMatch, reverse
 from django.utils.translation import gettext_lazy as _
 
-from .models import PageMeta, TitleMeta
+from .models import DefaultMetaImage, PageMeta, TitleMeta
 
 try:
     from cms.utils import get_cms_setting
@@ -18,6 +18,7 @@ except ImportError:
 
 PAGE_META_MENU_TITLE = _("Meta-information")
 PAGE_META_ITEM_TITLE = _("Common")
+PAGE_META_DEFAULT_META_IMAGE_TITLE = _("Default meta image")
 
 
 @toolbar_pool.register
@@ -52,6 +53,14 @@ class PageToolbarMeta(CMSToolbar):
             meta_menu = current_page_menu.get_or_create_menu("pagemeta", PAGE_META_MENU_TITLE, position=super_item)
             position = 0
             # Page tags
+            default_meta_image = DefaultMetaImage.objects.first()
+            if default_meta_image:
+                meta_menu.add_modal_item(
+                    PAGE_META_DEFAULT_META_IMAGE_TITLE,
+                    url=reverse("admin:djangocms_page_meta_defaultmetaimage_change", args=(default_meta_image.pk,)),
+                    position=position,
+                )
+                position += 1
             try:
                 page_extension = PageMeta.objects.get(extended_object_id=self.page.pk)
             except PageMeta.DoesNotExist:

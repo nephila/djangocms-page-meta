@@ -1,5 +1,10 @@
 from cms.models import Page
 from django.contrib import admin
+from django.contrib.admin.sites import AdminSite
+from django.test.client import RequestFactory
+
+from djangocms_page_meta.admin import DefaultMetaImageAdmin
+from djangocms_page_meta.models import DefaultMetaImage
 
 from . import BaseTest
 
@@ -38,3 +43,10 @@ class AdminPageTest(BaseTest):
         request = self.get_page_request(page1, self.user, "/", edit=True)
         form = page_admin.get_form(request, page1)
         self.assertNotEqual(form.base_fields.get("meta_description"), None)
+
+    def test_default_meta_image_admin_permissions(self):
+        admin = DefaultMetaImageAdmin(DefaultMetaImage, AdminSite())
+        request = RequestFactory()
+        request.user = self.user
+        self.assertFalse(admin.has_add_permission(request))
+        self.assertFalse(admin.has_delete_permission(request))
