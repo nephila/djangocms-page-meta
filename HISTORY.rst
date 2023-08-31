@@ -6,6 +6,15 @@ History
 
 .. towncrier release notes start
 
+1.4.0 (2023-08-31)
+==================
+
+Features
+--------
+
+- Add DefaultMetaImage model to handle default meta image (#155)
+
+
 1.3.0 (2023-08-07)
 ==================
 
