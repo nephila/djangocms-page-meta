@@ -6,6 +6,21 @@ History
 
 .. towncrier release notes start
 
+1.4.1 (2023-09-20)
+==================
+
+Features
+--------
+
+- Migrate to bump-my-version, fix python/django/djangocms versions in README (#176)
+
+
+Bugfixes
+--------
+
+- Update filer dependency to avoid migration error from 155.feature (#173)
+
+
 1.4.0 (2023-08-31)
 ==================
 
