@@ -76,5 +76,5 @@ values = [
 optional_value = "dev"
 
 [[tool.bumpversion.files]]
-filename = "taiga/__init__.py"
+filename = "djangocms_page_meta/__init__.py"
 search = "{current_version}"
