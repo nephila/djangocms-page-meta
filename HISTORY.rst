@@ -6,6 +6,15 @@ History
 
 .. towncrier release notes start
 
+1.4.2 (2023-09-26)
+==================
+
+Bugfixes
+--------
+
+- Bump django-meta version, fix settings accordingly (#178)
+
+
 1.4.1 (2023-09-20)
 ==================
 
