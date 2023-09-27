@@ -1,1 +1,0 @@
-Set default_auto_field in AppConfig to avoid migrations problem if DEFAULT_AUTO_FIELD is different

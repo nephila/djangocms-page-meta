@@ -6,6 +6,15 @@ History
 
 .. towncrier release notes start
 
+1.4.3 (2023-09-27)
+==================
+
+Bugfixes
+--------
+
+- Set default_auto_field in AppConfig to avoid migrations problem if DEFAULT_AUTO_FIELD is different (#181)
+
+
 1.4.2 (2023-09-26)
 ==================
 
