@@ -6,6 +6,21 @@ History
 
 .. towncrier release notes start
 
+1.4.4 (2024-01-16)
+==================
+
+Features
+--------
+
+- Switch to Coveralls Github action (#189)
+
+
+Bugfixes
+--------
+
+- Pin Django CMS version < 4 (#197)
+
+
 1.4.3 (2023-09-27)
 ==================
 
