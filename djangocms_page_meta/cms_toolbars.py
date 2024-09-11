@@ -36,7 +36,7 @@ class PageToolbarMeta(CMSToolbar):
         # check global permissions if CMS_PERMISSIONS is active
         if get_cms_setting("PERMISSION"):
             has_global_current_page_change_permission = has_page_permission(
-                self.request.user, self.request.current_page, "change"
+                self.request.user, self.request.current_page, "change_page"
             )
         else:
             has_global_current_page_change_permission = False
