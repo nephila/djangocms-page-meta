@@ -1,1 +1,0 @@
-Fix misnamed 'change_page' permission when checking if user has change permission on current page.

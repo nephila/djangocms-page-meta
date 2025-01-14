@@ -6,6 +6,15 @@ History
 
 .. towncrier release notes start
 
+1.4.5 (2025-01-14)
+==================
+
+Bugfixes
+--------
+
+- Fix misnamed 'change_page' permission when checking if user has change permission on current page. (#214)
+
+
 1.4.4 (2024-01-16)
 ==================
 
