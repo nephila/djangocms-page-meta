@@ -27,6 +27,7 @@ Contributors
 * nastya
 * Peter Farrell
 * Peter Wischer
+* Robert Gutschale
 * Ryan Stalbow
 * Sergei Maertens
 * Tadas Dailyda
