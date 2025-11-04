@@ -40,7 +40,7 @@ jobs:
           ${{ runner.os }}-tox-${{ format('{{py{0}-django{1}-cms{2}}}', matrix.python-version, matrix.django, matrix.cms) }}-
     - name: Install dependencies
       run: |
-        sudo apt-get install gettext
+        sudo apt-get install gettext libcairo2-dev pkg-config python3-dev
         python -m pip install --upgrade pip setuptools tox>4
     - name: Test with tox
       env:
